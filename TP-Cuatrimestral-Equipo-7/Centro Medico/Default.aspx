@@ -3,5 +3,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+    <div class="container d-flex justify-content-center mt-4" style="height: 100vh;">
+        <asp:GridView runat="server" ID="dgvEspecialidades"></asp:GridView>
+    </div>
+
 </asp:Content>
