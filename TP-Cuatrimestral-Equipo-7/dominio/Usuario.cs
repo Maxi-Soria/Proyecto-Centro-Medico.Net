@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    public class Especialidad
+    public class Usuario
     {
         public int Id { get; set; }
-        public String Nombre { get; set; }
+        public String NombreUsuario { get; set; }
+        public string Conraseña { get; set;}
+        public String Rol { get; set; }
     }
 }

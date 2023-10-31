@@ -11,7 +11,7 @@ namespace Centro_Medico
 {
 
 
-    public partial class Contactanos
+    public partial class Recepcionista
     {
     }
 }

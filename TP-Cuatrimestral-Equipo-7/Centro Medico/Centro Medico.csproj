@@ -67,19 +67,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="RolAdministrador.aspx" />
     <Content Include="estilos.css" />
-    <Content Include="Turnos.aspx" />
+    <Content Include="RolMedico.aspx" />
+    <Content Include="RolRecepcionista.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Turnos.aspx.cs">
-      <DependentUpon>Turnos.aspx</DependentUpon>
+    <Compile Include="RolAdministrador.aspx.cs">
+      <DependentUpon>RolAdministrador.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Turnos.aspx.designer.cs">
-      <DependentUpon>Turnos.aspx</DependentUpon>
+    <Compile Include="RolAdministrador.aspx.designer.cs">
+      <DependentUpon>RolAdministrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RolMedico.aspx.cs">
+      <DependentUpon>RolMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RolMedico.aspx.designer.cs">
+      <DependentUpon>RolMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RolRecepcionista.aspx.cs">
+      <DependentUpon>RolRecepcionista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RolRecepcionista.aspx.designer.cs">
+      <DependentUpon>RolRecepcionista.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

@@ -30,9 +30,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="Default.aspx">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="Turnos.aspx">Turnos</a>
-                            </li>
                         </ul>
 
                     </div>

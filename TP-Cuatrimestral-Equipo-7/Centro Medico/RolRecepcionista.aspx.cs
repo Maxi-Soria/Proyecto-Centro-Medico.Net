@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Centro_Medico
 {
-    public partial class Contactanos : System.Web.UI.Page
+    public partial class Recepcionista : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

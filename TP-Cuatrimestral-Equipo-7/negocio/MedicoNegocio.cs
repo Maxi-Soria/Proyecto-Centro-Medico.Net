@@ -21,9 +21,7 @@ namespace negocio
 
                 while (datos.Lector.Read())
                 {
-                    Especialidad aux = new Especialidad();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.Nombre = (String)datos.Lector["Nombre"];
+                    Medico aux = new Medico();
 
                     lista.Add(aux);
                 }

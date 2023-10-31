@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    class Turno
+    public class Turno
     {
         public int Numero { get; set; }
         public DateTime Fecha_Horario_Entrada { get; set; }
