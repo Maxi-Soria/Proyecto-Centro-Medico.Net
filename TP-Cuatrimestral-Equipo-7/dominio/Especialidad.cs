@@ -8,7 +8,7 @@ namespace dominio
 {
     public class Especialidad
     {
-        public int Id { get; set; }
+        public int IDEspecialidad { get; set; }
         public String Nombre { get; set; }
     }
 }
