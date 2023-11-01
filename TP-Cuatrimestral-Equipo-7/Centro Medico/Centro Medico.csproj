@@ -67,15 +67,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Contacto.aspx" />
     <Content Include="RolAdministrador.aspx" />
     <Content Include="estilos.css" />
     <Content Include="RolMedico.aspx" />
     <Content Include="RolRecepcionista.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="FAQ.aspx" />
     <Content Include="Web.config" />
+    <Content Include="Turnos.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contacto.aspx.cs">
+      <DependentUpon>Contacto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contacto.aspx.designer.cs">
+      <DependentUpon>Contacto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RolAdministrador.aspx.cs">
       <DependentUpon>RolAdministrador.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -115,6 +125,20 @@
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FAQ.aspx.cs">
+      <DependentUpon>FAQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FAQ.aspx.designer.cs">
+      <DependentUpon>FAQ.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Turnos.aspx.cs">
+      <DependentUpon>Turnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Turnos.aspx.designer.cs">
+      <DependentUpon>Turnos.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
