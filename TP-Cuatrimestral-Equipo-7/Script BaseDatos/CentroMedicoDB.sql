@@ -1,26 +1,16 @@
+SELECT * FROM Medicos
 
+SELECT * FROM Especialidades
 
-CREATE DATABASE CentroMedicoDB;
-GO
+SELECT * FROM Usuarios
 
-USE CentroMedicoDB;
-GO
+CREATE TABLE Usuarios(
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Usuario VARCHAR(50) NOT NULL,
+    Pass VARCHAR(50)NOT NULL,
+    TipoUser INT NOT NULL,
+)
 
-CREATE TABLE Especialidades (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    Nombre NVARCHAR(255)
-);
-GO
-
-INSERT INTO Especialidades (nombre)
-VALUES
-    ('Cardiología'),
-    ('Dermatología'),
-    ('Gastroenterología'),
-    ('Neurología'),
-    ('Pediatría'),
-    ('Oftalmología'),
-    ('Oncología'),
-    ('Psiquiatría'),
-    ('Traumatología'),
-    ('Urología');
+INSERT INTO Usuarios (Usuario,Pass,TipoUser)VALUES('Admin','Admin',1)
+INSERT INTO Usuarios (Usuario,Pass,TipoUser)VALUES('Recepcionista','Recepcionista',2)
+INSERT INTO Usuarios (Usuario,Pass,TipoUser)VALUES('Medico','Medico',3)
