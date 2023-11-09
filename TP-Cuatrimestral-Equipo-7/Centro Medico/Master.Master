@@ -65,9 +65,7 @@
                 </asp:ContentPlaceHolder>
             </div>
 
-            <h2>
-                Aca va el footer
-            </h2>
+
 
         </div>
     </form>

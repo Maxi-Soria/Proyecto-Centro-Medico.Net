@@ -70,7 +70,7 @@
     <Content Include="Contacto.aspx" />
     <Content Include="CRUD_Especialidades.aspx" />
     <Content Include="Error.aspx" />
-    <Content Include="Default.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="MenuAdmin.aspx" />
     <Content Include="MenuMedico.aspx" />
     <Content Include="MenuPaciente.aspx" />
@@ -79,7 +79,7 @@
     <Content Include="estilos.css" />
     <Content Include="RolMedico.aspx" />
     <Content Include="RolRecepcionista.aspx" />
-    <Content Include="Default2.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="FAQ.aspx" />
     <Content Include="Web.config" />
@@ -107,12 +107,12 @@
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="MenuAdmin.aspx.cs">
       <DependentUpon>MenuAdmin.aspx</DependentUpon>
@@ -163,12 +163,12 @@
     <Compile Include="RolRecepcionista.aspx.designer.cs">
       <DependentUpon>RolRecepcionista.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default2.aspx.cs">
-      <DependentUpon>Default2.aspx</DependentUpon>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default2.aspx.designer.cs">
-      <DependentUpon>Default2.aspx</DependentUpon>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

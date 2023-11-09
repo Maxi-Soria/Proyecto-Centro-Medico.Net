@@ -2,10 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-       #HyperLink1 {
-        background-color: #ff5733;
-        color: #ffffff; 
-    } 
+        #HyperLink1 {
+            background-color: #ff5733;
+            color: #ffffff;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -32,7 +32,13 @@
                 <!-- Contenido del segundo contenedor -->
                 <h2 class="text-center">Ya estoy en la vista de CRUD Especialidades</h2>
                 <div class="table-responsive" style="max-height: 400px; max-width: 800px; overflow-x: auto;">
-                    <asp:GridView runat="server" ID="dgvEspecialidades" CssClass="table table-striped table-bordered"></asp:GridView>
+
+                    <asp:GridView runat="server" ID="dgvEspecialidades" OnSelectedIndexChanged="dgvEspecialidades_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark">
+                        <Columns>
+                            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion" />
+                        </Columns>
+                    </asp:GridView>
+
                 </div>
                 <div class="btn mt-3">
                     <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary" />
@@ -43,6 +49,11 @@
             </div>
 
             <div class="col-md-3 border">
+                <asp:Label ID="Label1" runat="server" Text="Label" ></asp:Label>
+                <asp:TextBox ID="TextBox1" runat="server"  CssClass="mt-3"></asp:TextBox> 
+                <br />
+                <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                <asp:TextBox ID="TextBox2" runat="server" CssClass="mt-3"></asp:TextBox>
             </div>
 
         </div>

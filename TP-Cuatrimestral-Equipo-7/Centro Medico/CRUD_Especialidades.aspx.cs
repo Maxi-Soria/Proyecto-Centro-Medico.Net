@@ -16,5 +16,10 @@ namespace Centro_Medico
             dgvEspecialidades.DataSource = negocio.listar();
             dgvEspecialidades.DataBind();
         }
+
+        protected void dgvEspecialidades_SelectedIndexChanged(Object sender, EventArgs e)
+        {
+            var algo = dgvEspecialidades.SelectedRow.Cells[1].Text;
+        }
     }
 }
