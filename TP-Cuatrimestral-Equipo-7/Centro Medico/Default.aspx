@@ -4,9 +4,9 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div >
-        <div class="row">
+        <div class="row mt-1" >
             <div class="col-12 d-flex justify-content-center align-items-center min-vh-100" style="background: url(img.jpg) center center / cover; background-color: rgba(255, 255, 255, 0.5);">
-                <div class="col-3 border my-auto text-center" style="border-radius: 3px; padding: 20px; background-color: #f2f2f2;">
+                <div class="col-3 border my-auto text-center" style="border-radius: 3px; padding: 20px; background-color: #c6ecf7;">
                     <img src="logoUser.png" alt="Logo de Usuario" class="img-fluid mb-3" />
 
                     <label for="txtUser">Usuario</label>
