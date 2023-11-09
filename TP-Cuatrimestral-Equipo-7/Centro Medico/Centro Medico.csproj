@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Contacto.aspx" />
+    <Content Include="CRUD_Especialidades.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="MenuAdmin.aspx" />
@@ -91,6 +92,13 @@
     </Compile>
     <Compile Include="Contacto.aspx.designer.cs">
       <DependentUpon>Contacto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD_Especialidades.aspx.cs">
+      <DependentUpon>CRUD_Especialidades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CRUD_Especialidades.aspx.designer.cs">
+      <DependentUpon>CRUD_Especialidades.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
