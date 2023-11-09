@@ -68,6 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Contacto.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="MenuAdmin.aspx" />
+    <Content Include="MenuMedico.aspx" />
+    <Content Include="MenuPaciente.aspx" />
+    <Content Include="MenuRecepcionista.aspx" />
     <Content Include="RolAdministrador.aspx" />
     <Content Include="estilos.css" />
     <Content Include="RolMedico.aspx" />
@@ -77,7 +83,6 @@
     <Content Include="FAQ.aspx" />
     <Content Include="Web.config" />
     <Content Include="Turnos.aspx" />
-    <Content Include="Login.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contacto.aspx.cs">
@@ -86,6 +91,48 @@
     </Compile>
     <Compile Include="Contacto.aspx.designer.cs">
       <DependentUpon>Contacto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuAdmin.aspx.cs">
+      <DependentUpon>MenuAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuAdmin.aspx.designer.cs">
+      <DependentUpon>MenuAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuMedico.aspx.cs">
+      <DependentUpon>MenuMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuMedico.aspx.designer.cs">
+      <DependentUpon>MenuMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuPaciente.aspx.cs">
+      <DependentUpon>MenuPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuPaciente.aspx.designer.cs">
+      <DependentUpon>MenuPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuRecepcionista.aspx.cs">
+      <DependentUpon>MenuRecepcionista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuRecepcionista.aspx.designer.cs">
+      <DependentUpon>MenuRecepcionista.aspx</DependentUpon>
     </Compile>
     <Compile Include="RolAdministrador.aspx.cs">
       <DependentUpon>RolAdministrador.aspx</DependentUpon>
@@ -139,13 +186,6 @@
     </Compile>
     <Compile Include="Turnos.aspx.designer.cs">
       <DependentUpon>Turnos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
