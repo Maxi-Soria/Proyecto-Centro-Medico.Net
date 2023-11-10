@@ -17,9 +17,22 @@ namespace Centro_Medico
             dgvEspecialidades.DataBind();
         }
 
-        protected void dgvEspecialidades_SelectedIndexChanged(Object sender, EventArgs e)
+        protected void dgvEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var algo = dgvEspecialidades.SelectedRow.Cells[1].Text;
+            
+            if (dgvEspecialidades.SelectedRow != null)
+            {
+                
+                string id = dgvEspecialidades.SelectedRow.Cells[1].Text; 
+                string nombre = dgvEspecialidades.SelectedRow.Cells[2].Text; 
+
+                
+                tbId.Text = id;
+                tbNombre.Text = nombre;
+            }
         }
+
+        
+
     }
 }

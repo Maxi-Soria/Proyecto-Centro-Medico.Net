@@ -42,19 +42,22 @@
                 </div>
                 <div class="btn mt-3">
                     <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary" />
-                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" />
-                    <asp:Button ID="btnElminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" />
                 </div>
 
             </div>
 
             <div class="col-md-3 border">
-                <asp:Label ID="Label1" runat="server" Text="Label" ></asp:Label>
-                <asp:TextBox ID="TextBox1" runat="server"  CssClass="mt-3"></asp:TextBox> 
+                <asp:Label ID="lblId" runat="server" Text="ID:    " ></asp:Label>
+                <asp:TextBox ID="tbId" runat="server"  CssClass="mt-3"></asp:TextBox> 
                 <br />
-                <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                <asp:TextBox ID="TextBox2" runat="server" CssClass="mt-3"></asp:TextBox>
+                <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
+                <asp:TextBox ID="tbNombre" runat="server" CssClass="mt-3"></asp:TextBox>
+                <div class="mt-2">
+                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" />
+                    <asp:Button ID="btnElminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" />
             </div>
+
+                </div>
 
         </div>
     </div>

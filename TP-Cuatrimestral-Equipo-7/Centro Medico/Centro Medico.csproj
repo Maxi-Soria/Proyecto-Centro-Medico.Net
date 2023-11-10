@@ -71,11 +71,11 @@
     <Content Include="CRUD_Especialidades.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="MenuAdmin.aspx" />
+    <Content Include="MenuAdminParaBorrar.aspx" />
     <Content Include="MenuMedico.aspx" />
     <Content Include="MenuPaciente.aspx" />
     <Content Include="MenuRecepcionista.aspx" />
-    <Content Include="RolAdministrador.aspx" />
+    <Content Include="MenuAdmin.aspx" />
     <Content Include="estilos.css" />
     <Content Include="RolMedico.aspx" />
     <Content Include="RolRecepcionista.aspx" />
@@ -114,12 +114,12 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MenuAdmin.aspx.cs">
-      <DependentUpon>MenuAdmin.aspx</DependentUpon>
+    <Compile Include="MenuAdminParaBorrar.aspx.cs">
+      <DependentUpon>MenuAdminParaBorrar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MenuAdmin.aspx.designer.cs">
-      <DependentUpon>MenuAdmin.aspx</DependentUpon>
+    <Compile Include="MenuAdminParaBorrar.aspx.designer.cs">
+      <DependentUpon>MenuAdminParaBorrar.aspx</DependentUpon>
     </Compile>
     <Compile Include="MenuMedico.aspx.cs">
       <DependentUpon>MenuMedico.aspx</DependentUpon>
@@ -142,12 +142,12 @@
     <Compile Include="MenuRecepcionista.aspx.designer.cs">
       <DependentUpon>MenuRecepcionista.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RolAdministrador.aspx.cs">
-      <DependentUpon>RolAdministrador.aspx</DependentUpon>
+    <Compile Include="MenuAdmin.aspx.cs">
+      <DependentUpon>MenuAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RolAdministrador.aspx.designer.cs">
-      <DependentUpon>RolAdministrador.aspx</DependentUpon>
+    <Compile Include="MenuAdmin.aspx.designer.cs">
+      <DependentUpon>MenuAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="RolMedico.aspx.cs">
       <DependentUpon>RolMedico.aspx</DependentUpon>
