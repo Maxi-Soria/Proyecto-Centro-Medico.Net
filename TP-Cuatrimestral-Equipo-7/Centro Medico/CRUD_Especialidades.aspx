@@ -54,7 +54,7 @@
                 <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
                 <asp:TextBox ID="tbNombre" runat="server" CssClass="mt-3"></asp:TextBox>
                 <div class="mt-2">
-                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" />
+                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" OnClick="btnModificar_Click" />
                     <asp:Button ID="btnElminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
             </div>
 

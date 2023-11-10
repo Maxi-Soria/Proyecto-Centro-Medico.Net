@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using dominio;
 
@@ -11,8 +12,8 @@ namespace negocio
     {
         public List<Especialidad> listar()
         {
-            List<Especialidad> lista = new List<Especialidad>();
             AccesoDatos datos = new AccesoDatos();
+            List<Especialidad> lista = new List<Especialidad>();
 
             try
             {
@@ -77,6 +78,25 @@ namespace negocio
                 throw ex;
             }
             finally { datos.cerrarConexion(); }
+        }
+
+        public void modificarEspecialidad(Especialidad editada)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Especialidades SET Nombre = @Nombre WHERE Id = @Id");
+                datos.setearParametro("@Id", editada.Id);
+                datos.setearParametro("@Nombre", editada.Nombre);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+
+
         }
     }
 }
