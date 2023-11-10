@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocio;
 
 namespace Centro_Medico
 {
@@ -13,5 +14,23 @@ namespace Centro_Medico
         {
 
         }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            EmailService emailService = new EmailService();
+            emailService.armarCorreo(txtEmail.Text, txtAsunto.Text, txtMensaje.Text);
+
+            try
+            {
+                emailService.enviarEail();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
     }
 }
