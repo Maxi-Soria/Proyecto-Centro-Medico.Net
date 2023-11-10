@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using negocio;
 using dominio;
+using System.Web.UI;
+using System.Linq;
 
 namespace Centro_Medico
 {
@@ -52,7 +54,6 @@ namespace Centro_Medico
             try
             {
                 int idEspecialidad = Convert.ToInt32(tbId.Text);
-                Console.WriteLine(idEspecialidad.ToString()); //mostrar el id por consola
                 especialidadNegocio.eliminarEspecialidad(idEspecialidad);
                 cargarListaEspecialidades();
                 limpiarCampos();
@@ -65,21 +66,36 @@ namespace Centro_Medico
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            
-                String nuevaEspecialidad = tbAgregar.Text;
             try
             {
-                
-                especialidadNegocio.agregarCategoria(nuevaEspecialidad);
-                cargarListaEspecialidades();
-                limpiarCampos();
+                string nuevaEspecialidad = "";
+                nuevaEspecialidad = tbAgregar.Text;
+
+                if (!existeEspecialidad(nuevaEspecialidad) && nuevaEspecialidad != "")
+                {
+                    especialidadNegocio.agregarCategoria(nuevaEspecialidad);
+                    cargarListaEspecialidades();
+                    limpiarCampos();
+                }
+                else
+                {
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('La especialidad ya existe en la lista, o el campo esta vacio');", true);
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al eliminar la especialidad: " + ex.Message);
+                Console.WriteLine("Error al agregar la especialidad: " + ex.Message);
             }
-
         }
+
+        private bool existeEspecialidad(string especialidad)
+        {
+            List<Especialidad> lista = especialidadNegocio.listar();
+
+            return lista.Any(e => e.Nombre.Equals(especialidad, StringComparison.OrdinalIgnoreCase));
+        }
+
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
