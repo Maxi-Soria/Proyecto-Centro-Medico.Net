@@ -41,7 +41,8 @@
 
                 </div>
                 <div class="btn mt-3">
-                    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary" />
+                    <asp:TextBox ID="tbAgregar" runat="server"></asp:TextBox>
+                    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary" OnClick="btnAgregar_Click" />
                 </div>
 
             </div>
@@ -53,19 +54,14 @@
                 <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
                 <asp:TextBox ID="tbNombre" runat="server" CssClass="mt-3"></asp:TextBox>
                 <div class="mt-2">
-                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" OnClientClick="btnEliminar_Click" />
-                    <asp:Button ID="btnElminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" />
+                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" />
+                    <asp:Button ID="btnElminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
             </div>
 
                 </div>
 
         </div>
     </div>
-
-
-
-
-
 
 
 </asp:Content>

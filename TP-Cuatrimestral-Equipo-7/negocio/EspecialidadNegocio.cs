@@ -50,17 +50,33 @@ namespace negocio
             {
                 datos.setearConsulta("DELETE FROM Especialidades WHERE Id = @Id");
                 datos.setearParametro("@Id", id);
-                datos.ejecutarLectura();
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
-                // Maneja cualquier excepción que pueda ocurrir durante la eliminación
+                
                 throw ex;
             }
             finally
             {
                 datos.cerrarConexion();
             }
+        }
+
+        public void agregarCategoria(String nueva)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("insert into Especialidades VALUES ('" + nueva + "')");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
         }
     }
 }

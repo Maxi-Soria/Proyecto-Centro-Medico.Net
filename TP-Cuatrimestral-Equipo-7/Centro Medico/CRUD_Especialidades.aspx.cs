@@ -52,6 +52,7 @@ namespace Centro_Medico
             try
             {
                 int idEspecialidad = Convert.ToInt32(tbId.Text);
+                Console.WriteLine(idEspecialidad.ToString()); //mostrar el id por consola
                 especialidadNegocio.eliminarEspecialidad(idEspecialidad);
                 cargarListaEspecialidades();
                 limpiarCampos();
@@ -62,8 +63,27 @@ namespace Centro_Medico
             }
         }
 
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            
+                String nuevaEspecialidad = tbAgregar.Text;
+            try
+            {
+                
+                especialidadNegocio.agregarCategoria(nuevaEspecialidad);
+                cargarListaEspecialidades();
+                limpiarCampos();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al eliminar la especialidad: " + ex.Message);
+            }
+
+        }
+
         protected void limpiarCampos()
         {
+            tbAgregar.Text = string.Empty;
             tbId.Text = string.Empty;
             tbNombre.Text = string.Empty;
         }
