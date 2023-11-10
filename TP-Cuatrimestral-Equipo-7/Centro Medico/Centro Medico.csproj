@@ -69,6 +69,9 @@
   <ItemGroup>
     <Content Include="Contacto.aspx" />
     <Content Include="CRUD_Especialidades.aspx" />
+    <Content Include="CRUD_Medicos.aspx" />
+    <Content Include="CRUD_Turnos.aspx" />
+    <Content Include="CRUD_Usuarios.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MenuAdminParaBorrar.aspx" />
@@ -99,6 +102,27 @@
     </Compile>
     <Compile Include="CRUD_Especialidades.aspx.designer.cs">
       <DependentUpon>CRUD_Especialidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD_Medicos.aspx.cs">
+      <DependentUpon>CRUD_Medicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CRUD_Medicos.aspx.designer.cs">
+      <DependentUpon>CRUD_Medicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD_Turnos.aspx.cs">
+      <DependentUpon>CRUD_Turnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CRUD_Turnos.aspx.designer.cs">
+      <DependentUpon>CRUD_Turnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD_Usuarios.aspx.cs">
+      <DependentUpon>CRUD_Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CRUD_Usuarios.aspx.designer.cs">
+      <DependentUpon>CRUD_Usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>

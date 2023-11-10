@@ -11,12 +11,11 @@
             <div class="col-md-2 vh-100 bg-dark">
                 <div class="btn-group-vertical btn-group-lg w-100">
                     <!-- Tus botones aquí -->
-                    <asp:HyperLink ID="HyperLink1" runat="server" class="btn btn-primary rounded custom-btn-size w-100 mt-3" NavigateUrl="CRUD_Especialidades.aspx">Especialidades</asp:HyperLink>
-                    <asp:HyperLink ID="HyperLink2" runat="server" class="btn btn-success mt-3 rounded custom-btn-size w-100">Usuarios</asp:HyperLink>
-                    <asp:HyperLink ID="HyperLink3" runat="server" class="btn btn-info mt-3 rounded custom-btn-size w-100">Turnos</asp:HyperLink>
-                    <asp:HyperLink ID="HyperLink4" runat="server" class="btn btn-warning mt-3 rounded custom-btn-size w-100">Medicos</asp:HyperLink>
-                    <asp:HyperLink ID="HyperLink5" runat="server" class="btn btn-danger mt-3 rounded custom-btn-size w-100">NO se</asp:HyperLink>
-                    <asp:HyperLink ID="HyperLink6" runat="server" class="btn btn-secondary mt-3 rounded custom-btn-size w-100">Tampoco se</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" runat="server" class="btn btn-primary rounded custom-btn-size w-100 mt-3" NavigateUrl="CRUD_Especialidades.aspx" >Especialidades</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink2" runat="server" class="btn btn-success mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Usuarios.aspx">Usuarios</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink3" runat="server" class="btn btn-info mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Turnos">Turnos</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink4" runat="server" class="btn btn-warning mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Medicos.aspx">Medicos</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink5" runat="server" class="btn btn-danger mt-3 rounded custom-btn-size w-100" NavigateUrl="#">NO se</asp:HyperLink>
                 </div>
             </div>
 
@@ -24,7 +23,7 @@
             <!-- Contenedor de 10 columnas -->
             <div class="col-md-7">
                 <!-- Contenido del segundo contenedor -->
-                <h2 class="text-center">Ya estoy en la vista de CRUD Especialidades</h2>
+                <h2 class="text-center">vista de CRUD Especialidades</h2>
                 <div class="table-responsive" style="max-height: 400px; max-width: 800px; overflow-x: auto;">
                     <asp:GridView runat="server" ID="dgvEspecialidades" OnSelectedIndexChanged="dgvEspecialidades_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark">
                         <HeaderStyle CssClass="sticky-top " />

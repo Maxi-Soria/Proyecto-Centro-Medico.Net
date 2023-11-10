@@ -11,7 +11,7 @@ namespace Centro_Medico
 {
 
 
-    public partial class Administrador
+    public partial class CRUD_Usuarios
     {
 
         /// <summary>

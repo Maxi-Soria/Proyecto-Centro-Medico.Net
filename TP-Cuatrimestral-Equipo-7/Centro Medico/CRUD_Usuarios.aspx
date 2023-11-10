@@ -1,11 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="MenuAdmin.aspx.cs" Inherits="Centro_Medico.Administrador" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="CRUD_Usuarios.aspx.cs" Inherits="Centro_Medico.CRUD_Usuarios" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
-
-<div class="container-fluid vh-100">
+    <div class="container-fluid vh-100">
     <div class="row">
         <!-- Contenedor de 2 columnas -->
 <div class="col-md-2 border vh-100 bg-dark">
@@ -24,13 +22,11 @@
         <!-- Contenedor de 10 columnas -->
         <div class="col-md-10 border ">
             <!-- Contenido del segundo contenedor -->
-            <h2 class="text-center">Vista de Menu Administracion</h2>
+            <h2 class="text-center">Vista de CRUD Usuarios</h2>
 
         </div>
     </div>
 </div>
-
-
 
 
 </asp:Content>
