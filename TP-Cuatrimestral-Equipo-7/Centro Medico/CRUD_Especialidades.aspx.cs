@@ -1,38 +1,71 @@
-﻿using negocio;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocio;
+using dominio;
 
 namespace Centro_Medico
 {
     public partial class CRUDEspecialidades : System.Web.UI.Page
     {
+        private EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            EspecialidadNegocio negocio = new EspecialidadNegocio();
-            dgvEspecialidades.DataSource = negocio.listar();
-            dgvEspecialidades.DataBind();
+            if (!IsPostBack)
+            {
+                cargarListaEspecialidades();
+            }
+        }
+
+        protected void cargarListaEspecialidades()
+        {
+            try
+            {
+                List<Especialidad> lista = especialidadNegocio.listar();
+                dgvEspecialidades.DataSource = lista;
+                dgvEspecialidades.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al cargar la lista de especialidades: " + ex.Message);
+            }
         }
 
         protected void dgvEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            if (dgvEspecialidades.SelectedRow != null)
+            try
             {
-                
-                string id = dgvEspecialidades.SelectedRow.Cells[1].Text; 
-                string nombre = dgvEspecialidades.SelectedRow.Cells[2].Text; 
-
-                
-                tbId.Text = id;
-                tbNombre.Text = nombre;
+                GridViewRow row = dgvEspecialidades.SelectedRow;
+                tbId.Text = row.Cells[1].Text;
+                tbNombre.Text = row.Cells[2].Text;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al seleccionar la especialidad: " + ex.Message);
             }
         }
 
-        
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                int idEspecialidad = Convert.ToInt32(tbId.Text);
+                especialidadNegocio.eliminarEspecialidad(idEspecialidad);
+                cargarListaEspecialidades();
+                limpiarCampos();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al eliminar la especialidad: " + ex.Message);
+            }
+        }
 
+        protected void limpiarCampos()
+        {
+            tbId.Text = string.Empty;
+            tbNombre.Text = string.Empty;
+        }
     }
 }
