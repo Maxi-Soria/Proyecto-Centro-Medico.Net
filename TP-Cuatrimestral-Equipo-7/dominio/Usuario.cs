@@ -20,6 +20,7 @@ namespace dominio
         public String User { get; set; }
         public string Pass { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
+        public string Email { get; set; }
 
         public Usuario(string user, string pass, int tipoUsuario)
         {

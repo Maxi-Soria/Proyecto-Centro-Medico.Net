@@ -1,16 +1,23 @@
-SELECT * FROM Medicos
+ALTER TABLE Usuarios
+ADD Email VARCHAR(50) NULL
 
-SELECT * FROM Especialidades
+GO
 
+SELECT * FROM Pacientes
 SELECT * FROM Usuarios
 
-CREATE TABLE Usuarios(
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    Usuario VARCHAR(50) NOT NULL,
-    Pass VARCHAR(50)NOT NULL,
-    TipoUser INT NOT NULL,
-)
+GO
 
-INSERT INTO Usuarios (Usuario,Pass,TipoUser)VALUES('Admin','Admin',1)
-INSERT INTO Usuarios (Usuario,Pass,TipoUser)VALUES('Recepcionista','Recepcionista',2)
-INSERT INTO Usuarios (Usuario,Pass,TipoUser)VALUES('Medico','Medico',3)
+ALTER TABLE Pacientes
+ADD IDUsuario INT FOREIGN KEY REFERENCES Usuarios(Id)
+
+GO
+
+CREATE PROCEDURE insertarNuevo
+@Email VARCHAR(50),
+@Pass VARCHAR(50),
+@User VARCHAR(50)
+AS
+INSERT INTO Usuarios(Usuario,Pass,TipoUser,Email) output inserted.Id VALUES(@User,@Pass,4,@Email)
+
+SELECT * FROM Usuarios

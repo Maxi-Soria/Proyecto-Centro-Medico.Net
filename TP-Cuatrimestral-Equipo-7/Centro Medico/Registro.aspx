@@ -16,7 +16,7 @@
                     <input type="password" class="form-control" id="txtPassword" runat="server" />
 
                     <label for="txtEmail">Email</label>
-                    <input type="email" class="form-control" id="Email1" runat="server" />
+                    <input type="email" class="form-control" id="txtEmail" runat="server" />
 
                     <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" OnClick="btnRegistrar_Click" CssClass="btn btn-primary mt-2 mb-3" />
                 
