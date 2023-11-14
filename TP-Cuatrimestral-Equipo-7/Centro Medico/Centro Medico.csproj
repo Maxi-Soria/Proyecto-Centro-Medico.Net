@@ -80,6 +80,7 @@
     <Content Include="MenuRecepcionista.aspx" />
     <Content Include="MenuAdmin.aspx" />
     <Content Include="estilos.css" />
+    <Content Include="Registro.aspx" />
     <Content Include="RolMedico.aspx" />
     <Content Include="RolRecepcionista.aspx" />
     <Content Include="Default.aspx" />
@@ -172,6 +173,13 @@
     </Compile>
     <Compile Include="MenuAdmin.aspx.designer.cs">
       <DependentUpon>MenuAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Registro.aspx.cs">
+      <DependentUpon>Registro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registro.aspx.designer.cs">
+      <DependentUpon>Registro.aspx</DependentUpon>
     </Compile>
     <Compile Include="RolMedico.aspx.cs">
       <DependentUpon>RolMedico.aspx</DependentUpon>
