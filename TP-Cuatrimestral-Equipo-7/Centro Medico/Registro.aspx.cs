@@ -23,11 +23,16 @@ namespace Centro_Medico
             {
                 Usuario nuevoUsuario = new Usuario("paciente","paciente",4);
                 UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+                EmailService emailService = new EmailService();
 
                 nuevoUsuario.Email = txtEmail.Value;
                 nuevoUsuario.User = txtUser.Value;
                 nuevoUsuario.Pass = txtPassword.Value;
                 int id = usuarioNegocio.insertarUsuario(nuevoUsuario);
+
+                emailService.armarCorreo(nuevoUsuario.Email, "Bienvenido/a al Centro Médico", "Te damos la bienvenida a nuestra aplicación");
+                emailService.enviarEmail();
+                Response.Redirect("Default.aspx", false);
             }
             catch (Exception ex)
             {

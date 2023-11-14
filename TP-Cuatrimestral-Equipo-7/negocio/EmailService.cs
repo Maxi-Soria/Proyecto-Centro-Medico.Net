@@ -16,20 +16,19 @@ namespace negocio
         public EmailService()
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("centromedicoprogra3@gmail.com", "programacion3");
+            server.Credentials = new NetworkCredential("e8be951f2764e2", "163fc84964077a");
             server.EnableSsl = true;
-            server.Port = 587;
-            server.Host = "smtp.gmail.com";
+            server.Port = 2525;
+            server.Host = "sandbox.smtp.mailtrap.io";
+
         }
 
         public void armarCorreo(string emailDestino, string asunto, string cuerpo)
         {
             email = new MailMessage();
-            email.From = new MailAddress("noresponder@ecommerceprogramacioniii.com");
+            email.From = new MailAddress("noresponder@centromedico.com");
             email.To.Add(emailDestino);
             email.Subject = asunto;
-            //email.IsBodyHtml = false;
-            //email.Body = "<h1>Enviado</h1>";
             email.Body = cuerpo;
 
             try
@@ -43,9 +42,17 @@ namespace negocio
             }
         }
 
-        public void enviarEail()
+        public void enviarEmail()
         {
+            try
+            {
+                server.Send(email);
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
         }
 
     }

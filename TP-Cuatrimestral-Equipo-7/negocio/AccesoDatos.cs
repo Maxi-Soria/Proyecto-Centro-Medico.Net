@@ -81,6 +81,23 @@ namespace negocio
             finally { conexion.Close(); }
         }
 
+        public int verificarUsuarioExistente(string usuario)
+        {
+            int existe = 0;
+
+            try
+            {
+
+
+                return existe;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public void setearParametro(string nombre, object valor)
         {
             comando.Parameters.AddWithValue(nombre, valor);

@@ -22,7 +22,7 @@ namespace Centro_Medico
 
             try
             {
-                emailService.enviarEail();
+                emailService.enviarEmail();
             }
             catch (Exception ex)
             {
