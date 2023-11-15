@@ -70,6 +70,7 @@
     <Content Include="Contacto.aspx" />
     <Content Include="CRUD_Especialidades.aspx" />
     <Content Include="CRUD_Medicos.aspx" />
+    <Content Include="CRUD_Pacientes.aspx" />
     <Content Include="CRUD_Turnos.aspx" />
     <Content Include="CRUD_Usuarios.aspx" />
     <Content Include="Error.aspx" />
@@ -110,6 +111,13 @@
     </Compile>
     <Compile Include="CRUD_Medicos.aspx.designer.cs">
       <DependentUpon>CRUD_Medicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD_Pacientes.aspx.cs">
+      <DependentUpon>CRUD_Pacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CRUD_Pacientes.aspx.designer.cs">
+      <DependentUpon>CRUD_Pacientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="CRUD_Turnos.aspx.cs">
       <DependentUpon>CRUD_Turnos.aspx</DependentUpon>

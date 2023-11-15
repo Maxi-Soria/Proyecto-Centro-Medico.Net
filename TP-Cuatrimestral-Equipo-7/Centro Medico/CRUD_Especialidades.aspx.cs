@@ -96,7 +96,6 @@ namespace Centro_Medico
             return lista.Any(e => e.Nombre.Equals(especialidad, StringComparison.OrdinalIgnoreCase));
         }
 
-
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             try
@@ -126,7 +125,6 @@ namespace Centro_Medico
                 Console.WriteLine("Error al modificar la especialidad: " + ex.Message);
             }
         }
-
 
         protected void limpiarCampos()
         {

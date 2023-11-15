@@ -11,10 +11,11 @@
             <div class="col-md-2 border vh-100 bg-dark">
                 <div class="btn-group-vertical w-100">
                     <!-- Tus botones aquí -->
-                    <asp:HyperLink ID="HyperLink1" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100 " NavigateUrl="CRUD_Especialidades.aspx">Especialidades</asp:HyperLink>
-                    <asp:HyperLink ID="HyperLink2" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Usuarios.aspx">Usuarios</asp:HyperLink>
-                    <asp:HyperLink ID="HyperLink3" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Turnos.aspx">Turnos</asp:HyperLink>
-                    <asp:HyperLink ID="HyperLink4" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Medicos.aspx">Medicos</asp:HyperLink>
+                    <asp:HyperLink ID="Especialidades" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100 " NavigateUrl="CRUD_Especialidades.aspx">Especialidades</asp:HyperLink>
+                    <asp:HyperLink ID="Pacientes" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100 " NavigateUrl="CRUD_Pacientes.aspx">Pacientes</asp:HyperLink>
+                    <asp:HyperLink ID="Usuarios" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Usuarios.aspx">Usuarios</asp:HyperLink>
+                    <asp:HyperLink ID="Turnos" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Turnos.aspx">Turnos</asp:HyperLink>
+                    <asp:HyperLink ID="Medicos" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Medicos.aspx">Medicos</asp:HyperLink>
                 </div>
             </div>
 
@@ -23,11 +24,12 @@
             <div class="col-md-7">
                 <!-- Contenido del segundo contenedor -->
                 <h2 class="text-center">CRUD Especialidades</h2>
+
                 <div class="table-responsive" style="max-height: 400px; max-width: 800px; overflow-x: auto;">
                     <asp:GridView runat="server" ID="dgvEspecialidades" OnSelectedIndexChanged="dgvEspecialidades_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark">
                         <HeaderStyle CssClass="sticky-top " />
                         <Columns>
-                            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion" />
+                            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion" ControlStyle-CssClass="btn btn-sm btn-primary"/>
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -38,6 +40,7 @@
                 </div>
 
             </div>
+
 
             <div class="col-md-3 border">
                 <asp:Label ID="lblId" runat="server" Text="ID:    "></asp:Label>

@@ -11,7 +11,7 @@ namespace Centro_Medico
 {
 
 
-    public partial class CRUD_Usuarios
+    public partial class CRUD_Pacientes
     {
 
         /// <summary>
@@ -58,5 +58,14 @@ namespace Centro_Medico
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink Medicos;
+
+        /// <summary>
+        /// dgvPacientes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvPacientes;
     }
 }

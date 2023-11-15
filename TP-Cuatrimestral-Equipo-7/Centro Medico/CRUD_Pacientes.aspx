@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="CRUD_Turnos.aspx.cs" Inherits="Centro_Medico.CRUD_Turnos" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="CRUD_Pacientes.aspx.cs" Inherits="Centro_Medico.CRUD_Pacientes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -22,7 +22,20 @@
             <!-- Contenedor de 10 columnas -->
             <div class="col-md-10 border ">
                 <!-- Contenido del segundo contenedor -->
-                <h2 class="text-center">Vista CRUD turnos</h2>
+                <h2 class="text-center">Pacientes</h2>
+
+<asp:GridView runat="server" ID="dgvPacientes" OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark">
+    <HeaderStyle CssClass="sticky-top" />
+    <Columns>
+        
+ 
+        <asp:CommandField ShowSelectButton="true" SelectText="Selec" HeaderText="Acción" ControlStyle-CssClass="btn btn-sm btn-primary" />
+
+    </Columns>
+</asp:GridView>
+
+
+
 
             </div>
         </div>
