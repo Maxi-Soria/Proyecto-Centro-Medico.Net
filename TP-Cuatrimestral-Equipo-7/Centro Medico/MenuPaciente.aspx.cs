@@ -17,5 +17,10 @@ namespace Centro_Medico
                 Response.Redirect("Default.aspx", false);
             }
         }
+
+        protected void btnSolicitarTurno_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Turnos.aspx", false);
+        }
     }
 }

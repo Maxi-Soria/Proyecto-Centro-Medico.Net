@@ -9,7 +9,7 @@
                 <a href="administrar_turnos.html" class="btn btn-primary btn-block">Solicitar un turno</a>
             </div>
             <div class="col-md-4">
-                <a href="administrar_turnos.html" class="btn btn-primary btn-block">Reprogramar un turno</a>
+                <a href="administrar_turnos.html" class="btn btn-primary btn-block">Mi perfil</a>
             </div>
            
     </div>

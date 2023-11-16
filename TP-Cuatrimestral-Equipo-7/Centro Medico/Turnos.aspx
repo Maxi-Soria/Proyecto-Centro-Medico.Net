@@ -1,23 +1,40 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Turnos.aspx.cs" Inherits="Centro_Medico.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        #txtFechaSeleccionada {
+            display: none;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-        <img src="https://images.vexels.com/media/users/3/144216/isolated/preview/1e8c01182d73aa41192422c6f7770a59-calendario-medico.png" class="img-fluid" alt="...">
-    </div>
     <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <span class="label label-primary">Reserve su turno</span>
+            <h1>Reserve su turno</h1>
         </div>
     </div>
     </div>
-    <select class="form-select" aria-label="Default select example">
-            
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-</select>
+
+    <h4>Especialidad</h4>
+    <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-select" 
+        AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
+        <asp:ListItem Text="" Value="" />
+    </asp:DropDownList>
+
+    <h4>Médico</h4>
+        <asp:DropDownList ID="ddlMedicos" runat="server" CssClass="form-select">
+            <asp:ListItem Text="" Value="" />
+            </asp:DropDownList>
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
+
+    <h4>Día</h4>
+        <asp:Calendar ID="calendario" runat="server" OnSelectionChanged="calendario_SelectionChanged"></asp:Calendar>
+        <asp:TextBox ID="txtFechaSeleccionada" runat="server" ReadOnly="true" style="display: none;"></asp:TextBox>
+
+    <h4>Horario</h4>
+        <asp:DropDownList ID="ddlHorarios" runat="server" CssClass="form-select">
+        <asp:ListItem Text="" Value="" />
+    </asp:DropDownList>
+
 </asp:Content>
