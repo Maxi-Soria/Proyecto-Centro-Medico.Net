@@ -73,7 +73,7 @@ namespace Centro_Medico
 
                 if (!existeEspecialidad(nuevaEspecialidad) && nuevaEspecialidad != "")
                 {
-                    especialidadNegocio.agregarCategoria(nuevaEspecialidad);
+                    especialidadNegocio.agregarEspecialidad(nuevaEspecialidad);
                     cargarListaEspecialidades();
                     limpiarCampos();
                 }

@@ -58,8 +58,31 @@ namespace Centro_Medico
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Paciente nuevo = new Paciente();
+                nuevo.Dni = int.Parse(txtDniPaciente.Text);
+                nuevo.Nombre = txtNombrePaciente.Text;
+                nuevo.Apellido = txtApellidoPaciente.Text;
+                nuevo.EmailPersonal = txtEmail.Text;
+                nuevo.FechaDeNacimiento = DateTime.Parse(txtFechaNacimiento.Text);
+                nuevo.Domicilio = txtDireccion.Text;
+                nuevo.NumeroTelefonico = txtTelefono.Text;
 
+                pacienteNegocio.agregarPaciente(nuevo);
+                limpiarCampos();
+
+                // Luego de agregar el paciente, actualiza la lista en el GridView
+                cargarListaPacientes();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al agregar el paciente: " + ex.Message);
+                // Muestra un mensaje de error al usuario
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Error al agregar el paciente');", true);
+            }
         }
+
 
 
         protected void btnModificar_Click(object sender, EventArgs e)
@@ -70,6 +93,17 @@ namespace Centro_Medico
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void limpiarCampos()
+        {
+            txtDniPaciente.Text = string.Empty;
+            txtNombrePaciente.Text = string.Empty;
+            txtApellidoPaciente.Text = string.Empty;
+            txtEmail.Text= string.Empty;
+            txtFechaNacimiento.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
         }
 
         /*

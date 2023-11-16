@@ -47,5 +47,25 @@ namespace negocio
             }
 
         }
+
+        //--------------------------------------------------
+
+        public void agregarPaciente(Paciente nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("INSERT INTO Pacientes VALUES ('" + nuevo.Dni + "', '" + nuevo.Nombre + "', '" + nuevo.Apellido + "', '" + nuevo.EmailPersonal + "', '" + nuevo.FechaDeNacimiento.ToString("yyyy-MM-dd") + "', '" + nuevo.Domicilio + "', '" + nuevo.NumeroTelefonico + "')");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+
+
     }
 }

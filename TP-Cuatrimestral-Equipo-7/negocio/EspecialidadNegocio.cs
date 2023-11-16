@@ -64,7 +64,7 @@ namespace negocio
             }
         }
 
-        public void agregarCategoria(String nueva)
+        public void agregarEspecialidad(String nueva)
         {
             AccesoDatos datos = new AccesoDatos();
             try
