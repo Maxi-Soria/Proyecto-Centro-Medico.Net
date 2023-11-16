@@ -20,29 +20,7 @@ namespace Centro_Medico
             Usuario usuario;
             UsuarioNegocio usuarioNegocio = new negocio.UsuarioNegocio();
             
-            int nroUser = 5;
-            /*
-            if(txtUser.Value == "Admin" && txtPassword.Value == "Admin")
-            {
-                nroUser = 1;
-            }else if(txtUser.Value == "Recepcionista" && txtPassword.Value == "Recepcionista")
-            {
-                nroUser = 2;
-            }
-            else if (txtUser.Value == "Medico" && txtPassword.Value == "Medico")
-            {
-                nroUser = 3;
-            }
-            else if (txtUser.Value == "Paciente" && txtPassword.Value == "Paciente")
-            {
-                nroUser = 4;
-            }
-            else 
-            {
-                nroUser = 5;
-            }*/
-
-        
+            int nroUser = 5;       
 
             try
             {
@@ -71,14 +49,14 @@ namespace Centro_Medico
                 }
                 else
                 {
-                    Session.Add("error", "user o pass incorrectos");
+                    Session.Add("Error", "Usuario o Contraseña incorrectos");
                     Response.Redirect("Error.aspx", false);
                 }
             }
             catch (Exception ex)
             {
 
-                Session.Add("error", ex.ToString());
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx",false);
             }
         }

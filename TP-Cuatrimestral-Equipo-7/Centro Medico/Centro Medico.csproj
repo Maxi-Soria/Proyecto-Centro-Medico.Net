@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AgendaMedico.aspx" />
     <Content Include="Contacto.aspx" />
     <Content Include="CRUD_Especialidades.aspx" />
     <Content Include="CRUD_Medicos.aspx" />
@@ -91,6 +92,13 @@
     <Content Include="Turnos.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgendaMedico.aspx.cs">
+      <DependentUpon>AgendaMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgendaMedico.aspx.designer.cs">
+      <DependentUpon>AgendaMedico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contacto.aspx.cs">
       <DependentUpon>Contacto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
