@@ -20,7 +20,8 @@ namespace negocio
                 datos.setearParametro("@Pass", usuario.Pass);
 
                 datos.ejecutarLectura();
-                while (datos.Lector.Read())
+
+                if (datos.Lector.Read())
                 {
                     usuario.Id = (int)datos.Lector["Id"];
                     if((int)(datos.Lector["TipoUser"]) == 1)
@@ -50,7 +51,7 @@ namespace negocio
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally
             {
@@ -85,6 +86,7 @@ namespace negocio
             
         }
 
+     
  
     }
 }

@@ -20,7 +20,8 @@ namespace Centro_Medico
             Usuario usuario;
             UsuarioNegocio usuarioNegocio = new negocio.UsuarioNegocio();
             
-            int nroUser;
+            int nroUser = 5;
+            /*
             if(txtUser.Value == "Admin" && txtPassword.Value == "Admin")
             {
                 nroUser = 1;
@@ -39,13 +40,16 @@ namespace Centro_Medico
             else 
             {
                 nroUser = 5;
-            }
+            }*/
+
+        
 
             try
             {
-                
-
+                                
                 usuario = new Usuario(txtUser.Value, txtPassword.Value, nroUser);
+                usuarioNegocio.Loguear(usuario);
+                nroUser = (int)usuario.TipoUsuario;
 
                 if (usuarioNegocio.Loguear(usuario))
                 {
