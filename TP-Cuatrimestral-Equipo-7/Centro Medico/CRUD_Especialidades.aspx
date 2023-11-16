@@ -51,7 +51,7 @@
                 <div class="mt-2 w100" >
                     <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" OnClick="btnModificar_Click" />
                     <asp:Button ID="btnElminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
-                    <asp:HyperLink ID="linkEspecialidades" runat="server" class="btn btn-primary mt-2" NavigateUrl="CRUD_Especialidades.aspx">Cancelar</asp:HyperLink>
+                    <asp:HyperLink ID="linkEspecialidades" runat="server" class="btn btn-primary" NavigateUrl="CRUD_Especialidades.aspx">Cancelar</asp:HyperLink>
 
                 </div>
 
