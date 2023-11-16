@@ -37,6 +37,9 @@
             <div class="col-md-3 mt-1 border">
 
                 <div class="mb-3">
+                    <asp:Label ID="lblIdPaciente" runat="server" AssociatedControlID="txtDniPaciente" CssClass="form-label fw-bold">ID</asp:Label>
+                    <asp:TextBox ID="txtIdPaciente" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+
                     <asp:Label ID="lblDniPaciente" runat="server" AssociatedControlID="txtDniPaciente" CssClass="form-label fw-bold">DNI</asp:Label>
                     <asp:TextBox ID="txtDniPaciente" runat="server" CssClass="form-control"></asp:TextBox>
 

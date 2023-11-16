@@ -69,6 +69,24 @@ namespace Centro_Medico
         protected global::System.Web.UI.WebControls.GridView dgvPacientes;
 
         /// <summary>
+        /// lblIdPaciente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIdPaciente;
+
+        /// <summary>
+        /// txtIdPaciente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIdPaciente;
+
+        /// <summary>
         /// lblDniPaciente control.
         /// </summary>
         /// <remarks>

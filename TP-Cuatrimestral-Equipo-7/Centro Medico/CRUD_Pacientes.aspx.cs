@@ -2,6 +2,7 @@
 using negocio;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -41,20 +42,35 @@ namespace Centro_Medico
             try
             {
                 GridViewRow row = dgvPacientes.SelectedRow;
+                txtIdPaciente.Text = row.Cells[1].Text;
                 txtDniPaciente.Text = row.Cells[2].Text;
                 txtNombrePaciente.Text = row.Cells[3].Text;
                 txtApellidoPaciente.Text = row.Cells[4].Text;
                 txtEmail.Text = row.Cells[5].Text;
-                txtFechaNacimiento.Text = row.Cells[6].Text;    
+
+                // Convertir el formato de fecha si es necesario
+                DateTime fechaNacimiento;
+                if (DateTime.TryParseExact(row.Cells[6].Text, "dd/M/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaNacimiento))
+                {
+                    // Formatear la fecha al formato deseado "yyyy-MM-dd"
+                    txtFechaNacimiento.Text = fechaNacimiento.ToString("yyyy-MM-dd");
+                }
+                else
+                {
+                    // Si la conversión falla, asigna un mensaje de error o un valor predeterminado
+                    txtFechaNacimiento.Text = "Fecha inválida";
+                }
+
                 txtDireccion.Text = row.Cells[7].Text;
                 txtTelefono.Text = row.Cells[8].Text;
-                
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al seleccionar Un Paciente: " + ex.Message);
+                Console.WriteLine("Error al seleccionar un paciente: " + ex.Message);
+                // Manejar el error aquí, como mostrar un mensaje de error en la interfaz
             }
         }
+
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -87,8 +103,44 @@ namespace Centro_Medico
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int Id = Convert.ToInt32(txtIdPaciente.Text);
+                int dni = Convert.ToInt32(txtDniPaciente.Text);
+                string nombre = txtNombrePaciente.Text;
+                string apellido = txtApellidoPaciente.Text;
+                string email = txtEmail.Text;
+                DateTime fechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
+                string domicilio = txtDireccion.Text;
+                string telefono = txtTelefono.Text;
+                Paciente pacienteModificado = new Paciente
+                {
+                    ID = Id,
+                    Dni = dni,
+                    Nombre = nombre,
+                    Apellido = apellido,
+                    EmailPersonal = email,
+                    FechaDeNacimiento = fechaNacimiento,
+                    Domicilio = domicilio,
+                    NumeroTelefonico = telefono
+                };
 
+                // Llamar al método para modificar el paciente
+                pacienteNegocio.modificarPaciente(pacienteModificado);
+
+                // Volver a cargar la lista de pacientes
+                cargarListaPacientes();
+
+                // Limpiar los campos después de la modificación
+                limpiarCampos();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al modificar el paciente: " + ex.Message);
+                // Manejar la excepción y mostrar un mensaje de error si es necesario
+            }
         }
+
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -97,6 +149,7 @@ namespace Centro_Medico
 
         protected void limpiarCampos()
         {
+            txtIdPaciente.Text = string.Empty;
             txtDniPaciente.Text = string.Empty;
             txtNombrePaciente.Text = string.Empty;
             txtApellidoPaciente.Text = string.Empty;
@@ -123,30 +176,7 @@ namespace Centro_Medico
             }
         }
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string nuevaEspecialidad = "";
-                nuevaEspecialidad = tbAgregar.Text;
 
-                if (!existeEspecialidad(nuevaEspecialidad) && nuevaEspecialidad != "")
-                {
-                    especialidadNegocio.agregarCategoria(nuevaEspecialidad);
-                    cargarListaEspecialidades();
-                    limpiarCampos();
-                }
-                else
-                {
-
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('La especialidad ya existe en la lista, o el campo esta vacio');", true);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al agregar la especialidad: " + ex.Message);
-            }
-        }
 
         private bool existeEspecialidad(string especialidad)
         {

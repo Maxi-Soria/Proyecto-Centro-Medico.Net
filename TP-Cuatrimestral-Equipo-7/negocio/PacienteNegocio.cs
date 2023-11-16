@@ -66,6 +66,38 @@ namespace negocio
             finally { datos.cerrarConexion(); }
         }
 
+        //--------------------------------------------------------------------------------
+
+        public void modificarPaciente(Paciente paciente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Pacientes SET DNI = @Dni, Nombre = @Nombre, Apellido = @Apellido, Email = @Email, FechaNacimiento = @FechaNacimiento, Domicilio = @Domicilio, NumeroTelefonico = @NumeroTelefonico WHERE ID = @Id");
+
+                datos.setearParametro("@Dni", paciente.Dni);
+                datos.setearParametro("@Nombre", paciente.Nombre);
+                datos.setearParametro("@Apellido", paciente.Apellido);
+                datos.setearParametro("@Email", paciente.EmailPersonal);
+                datos.setearParametro("@FechaNacimiento", paciente.FechaDeNacimiento);
+                datos.setearParametro("@Domicilio", paciente.Domicilio);
+                datos.setearParametro("@NumeroTelefonico", paciente.NumeroTelefonico);
+                datos.setearParametro("@Id", paciente.ID);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
 
     }
 }
