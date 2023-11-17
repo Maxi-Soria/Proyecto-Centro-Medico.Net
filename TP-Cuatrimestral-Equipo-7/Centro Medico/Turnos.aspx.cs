@@ -129,6 +129,67 @@ namespace Centro_Medico
             return horariosDisponibles;
         }
 
-        // Otros métodos y eventos de la página...
+        protected void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
+                int idMedico = Convert.ToInt32(ddlMedicos.SelectedValue);
+                DateTime fecha = Convert.ToDateTime(txtFechaSeleccionada.Text);
+                int idUsuario = 1; // FORZADO
+                int estado = 0; // FORZADO
+                string horarioSeleccionado = ddlHorarios.SelectedValue;
+                int idHorario = ObtenerIDHorario(horarioSeleccionado);
+
+                AccesoDatos datos = new AccesoDatos();
+                          
+                    string consulta = "INSERT INTO Turnos (IDMedico, IDUsuario, Estado, Fecha, IDHorario) VALUES (@IDMedico, @IDUsuario, @Estado, @Fecha, @IDHorario)";
+
+                    datos.setearConsulta(consulta);
+                    datos.setearParametro("@IDMedico", idMedico);
+                    datos.setearParametro("@IDUsuario", idUsuario);
+                    datos.setearParametro("@Estado", estado);
+                    datos.setearParametro("@Fecha", fecha);
+                    datos.setearParametro("@IDHorario", idHorario);
+
+                    
+                    datos.ejecutarAccion();
+                
+
+                
+                Response.Write("Turno confirmado exitosamente."); 
+            }
+            catch (Exception ex)
+            {
+                
+                Response.Write("Error al confirmar el turno: " + ex.Message); 
+            }
+        }
+
+        private int ObtenerIDHorario(string horario)
+        {
+
+            int idHorario = 0;
+            AccesoDatos datos = new AccesoDatos();
+            datos.setearConsulta("SELECT IDHorario FROM Horarios WHERE HoraInicio = @HoraInicio");
+            datos.setearParametro("@HoraInicio", horario);
+
+            try
+            {
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    idHorario = Convert.ToInt32(datos.Lector["IDHorario"]);
+                }
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return idHorario;
+        }
+
     }
 }

@@ -37,4 +37,6 @@
         <asp:ListItem Text="" Value="" />
     </asp:DropDownList>
 
+    <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" CssClass="btn btn-primary" />
+
 </asp:Content>
