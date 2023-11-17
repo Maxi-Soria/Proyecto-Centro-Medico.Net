@@ -144,7 +144,17 @@ namespace Centro_Medico
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                int idPaciente = Convert.ToInt32(txtIdPaciente.Text);
+                pacienteNegocio.eliminarPaciente(idPaciente);
+                cargarListaPacientes();
+                limpiarCampos();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al eliminar el paciente: " + ex.Message);
+            }
         }
 
         protected void limpiarCampos()
@@ -160,7 +170,7 @@ namespace Centro_Medico
         }
 
         /*
-                 protected void btnEliminar_Click(object sender, EventArgs e)
+        protected void btnEliminar_Click(object sender, EventArgs e)
         {
             
             try

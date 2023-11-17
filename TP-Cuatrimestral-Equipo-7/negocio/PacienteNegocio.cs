@@ -96,8 +96,27 @@ namespace negocio
             }
         }
 
+        //---------------------------------------------------------------------------------
+        public void eliminarPaciente(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.setearConsulta("DELETE FROM Pacientes WHERE Id = @Id");
+                datos.setearParametro("@Id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 }
