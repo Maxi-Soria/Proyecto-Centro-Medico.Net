@@ -73,7 +73,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("UPDATE Pacientes SET DNI = @Dni, Nombre = @Nombre, Apellido = @Apellido, Email = @Email, FechaNacimiento = @FechaNacimiento, Domicilio = @Domicilio, NumeroTelefonico = @NumeroTelefonico WHERE ID = @Id");
+                datos.setearConsulta("UPDATE Pacientes SET DNI = @Dni, Nombre = @Nombre, Apellido = @Apellido, Email = @Email, FechaNacimiento = @FechaNacimiento, Domicilio = @Domicilio, NumeroTelefonico = @NumeroTelefonico WHERE IDUsuario = @Id");
 
                 datos.setearParametro("@Dni", paciente.Dni);
                 datos.setearParametro("@Nombre", paciente.Nombre);
@@ -103,7 +103,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("DELETE FROM Pacientes WHERE Id = @Id");
+                datos.setearConsulta("DELETE FROM Pacientes WHERE IDUsuario = @Id");
                 datos.setearParametro("@Id", id);
                 datos.ejecutarAccion();
             }
