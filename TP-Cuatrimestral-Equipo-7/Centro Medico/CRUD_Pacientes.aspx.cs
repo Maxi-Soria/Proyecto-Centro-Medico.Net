@@ -169,69 +169,7 @@ namespace Centro_Medico
             txtTelefono.Text = string.Empty;
         }
 
-        /*
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-            
-            try
-            {
-                int idEspecialidad = Convert.ToInt32(tbId.Text);
-                especialidadNegocio.eliminarEspecialidad(idEspecialidad);
-                cargarListaEspecialidades();
-                limpiarCampos();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al eliminar la especialidad: " + ex.Message);
-            }
-        }
 
-
-
-        private bool existeEspecialidad(string especialidad)
-        {
-            List<Especialidad> lista = especialidadNegocio.listar();
-
-            return lista.Any(e => e.Nombre.Equals(especialidad, StringComparison.OrdinalIgnoreCase));
-        }
-
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                
-                int idEspecialidad = Convert.ToInt32(tbId.Text);
-                string nuevaNombre = tbNombre.Text;
-
-                
-                Especialidad especialidadEditada = new Especialidad
-                {
-                    Id = idEspecialidad,
-                    Nombre = nuevaNombre
-                };
-
-                
-                especialidadNegocio.modificarEspecialidad(especialidadEditada);
-
-                
-                cargarListaEspecialidades();
-
-                
-                limpiarCampos();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al modificar la especialidad: " + ex.Message);
-            }
-        }
-
-        protected void limpiarCampos()
-        {
-            tbAgregar.Text = string.Empty;
-            tbId.Text = string.Empty;
-            tbNombre.Text = string.Empty;
-        }
-        */
 
 
     }

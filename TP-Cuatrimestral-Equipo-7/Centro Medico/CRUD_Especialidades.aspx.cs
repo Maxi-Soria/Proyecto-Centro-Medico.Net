@@ -39,8 +39,8 @@ namespace Centro_Medico
             try
             {
                 GridViewRow row = dgvEspecialidades.SelectedRow;
-                tbId.Text = row.Cells[1].Text;
-                tbNombre.Text = row.Cells[2].Text;
+                txtId.Text = row.Cells[1].Text;
+                txtNombre.Text = row.Cells[2].Text;
             }
             catch (Exception ex)
             {
@@ -53,7 +53,7 @@ namespace Centro_Medico
             
             try
             {
-                int idEspecialidad = Convert.ToInt32(tbId.Text);
+                int idEspecialidad = Convert.ToInt32(txtId.Text);
                 especialidadNegocio.eliminarEspecialidad(idEspecialidad);
                 cargarListaEspecialidades();
                 limpiarCampos();
@@ -69,7 +69,7 @@ namespace Centro_Medico
             try
             {
                 string nuevaEspecialidad = "";
-                nuevaEspecialidad = tbAgregar.Text;
+                nuevaEspecialidad = txtNombre.Text;
 
                 if (!existeEspecialidad(nuevaEspecialidad) && nuevaEspecialidad != "")
                 {
@@ -101,8 +101,8 @@ namespace Centro_Medico
             try
             {
                 
-                int idEspecialidad = Convert.ToInt32(tbId.Text);
-                string nuevaNombre = tbNombre.Text;
+                int idEspecialidad = Convert.ToInt32(txtId.Text);
+                string nuevaNombre = txtNombre.Text;
 
                 
                 Especialidad especialidadEditada = new Especialidad
@@ -128,9 +128,8 @@ namespace Centro_Medico
 
         protected void limpiarCampos()
         {
-            tbAgregar.Text = string.Empty;
-            tbId.Text = string.Empty;
-            tbNombre.Text = string.Empty;
+            txtId.Text = string.Empty;
+            txtNombre.Text = string.Empty;
         }
     }
 }

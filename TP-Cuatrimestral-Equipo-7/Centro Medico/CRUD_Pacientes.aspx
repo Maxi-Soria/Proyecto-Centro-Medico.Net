@@ -23,7 +23,7 @@
             <div class="col-md-7 border ">
                 <!-- Contenido del segundo contenedor -->
                 <h2 class="text-center">Pacientes</h2>
-                <div class="table-responsive" style="max-height: 400px; max-width: 800px; overflow-x: auto;">
+                <div class="table-responsive" style="max-height: 600px; max-width: 800px; overflow-x: auto;">
                     <asp:GridView runat="server" ID="dgvPacientes" OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark">
                         <HeaderStyle CssClass="sticky-top" />
                         <Columns>
@@ -71,6 +71,8 @@
                 </div>
 
             </div>
+
+
         </div>
     </div>
 </asp:Content>
