@@ -16,6 +16,22 @@
     </div>
     </div>
 
+    <h4>Paciente</h4>
+        <asp:GridView ID="gvPacientes" runat="server" AutoGenerateColumns="False" OnRowCommand="gvPacientes_RowCommand" DataKeyNames="ID">
+        <Columns>
+        <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" Visible="false" />
+        <asp:BoundField DataField="DNI" HeaderText="DNI" SortExpression="DNI" />
+        <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
+        <asp:BoundField DataField="Apellido" HeaderText="Apellido" SortExpression="Apellido" />
+        <asp:TemplateField>
+            <ItemTemplate>
+                <asp:Button runat="server" Text="Seleccionar" CommandName="Seleccionar" CommandArgument='<%# Container.DataItemIndex %>' />
+            </ItemTemplate>
+        </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
+
+
     <h4>Especialidad</h4>
     <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-select" 
         AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
@@ -23,10 +39,10 @@
     </asp:DropDownList>
 
     <h4>Médico</h4>
-        <asp:DropDownList ID="ddlMedicos" runat="server" CssClass="form-select">
-            <asp:ListItem Text="" Value="" />
-            </asp:DropDownList>
-        <asp:ScriptManager runat="server"></asp:ScriptManager>
+        <asp:DropDownList ID="ddlMedicos" runat="server" CssClass="form-select" 
+            AutoPostBack="true" OnSelectedIndexChanged="ddlMedicos_SelectedIndexChanged">
+        <asp:ListItem Text="" Value="" />
+    </asp:DropDownList>
 
     <h4>Día</h4>
         <asp:Calendar ID="calendario" runat="server" OnSelectionChanged="calendario_SelectionChanged"></asp:Calendar>
@@ -38,5 +54,6 @@
     </asp:DropDownList>
 
     <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" CssClass="btn btn-primary" />
+    
 
 </asp:Content>

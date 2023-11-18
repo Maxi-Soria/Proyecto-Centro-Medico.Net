@@ -16,13 +16,13 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT ID, DNI, Nombre, Apellido, Email, FechaNacimiento, Domicilio, NumeroTelefonico  FROM Pacientes");
+                datos.setearConsulta("SELECT IDUsuario, DNI, Nombre, Apellido, Email, FechaNacimiento, Domicilio, NumeroTelefonico  FROM Pacientes");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Paciente aux = new Paciente();
-                    aux.ID = (int)datos.Lector["ID"];
+                    aux.ID = (int)datos.Lector["IDUsuario"];
                     aux.Dni = (int)datos.Lector["DNI"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Apellido = (string)datos.Lector["Apellido"];

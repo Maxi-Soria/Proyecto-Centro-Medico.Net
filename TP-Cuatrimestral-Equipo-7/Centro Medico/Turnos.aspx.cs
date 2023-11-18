@@ -15,9 +15,44 @@ namespace Centro_Medico
         {
             if (!IsPostBack)
             {
+                CargarPacientes();
                 CargarEspecialidades();
             }
         }
+
+        private void CargarPacientes()
+        {
+            
+            List<Paciente> listaPacientes = ObtenerListaPacientes();
+                     
+            gvPacientes.DataSource = listaPacientes;
+            gvPacientes.DataBind();
+        }
+
+        private List<Paciente> ObtenerListaPacientes()
+        {
+         
+            PacienteNegocio pacienteNegocio = new PacienteNegocio();
+            List<Paciente> listaPacientes = pacienteNegocio.listar();
+
+            return listaPacientes;
+        }
+
+        protected void gvPacientes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Seleccionar")
+            {
+                
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                
+                int idUsuario = Convert.ToInt32(gvPacientes.DataKeys[index].Value);
+
+                
+                ViewState["IDUsuarioSeleccionado"] = idUsuario;
+            }
+        }
+
 
         private void CargarEspecialidades()
         {
@@ -89,15 +124,7 @@ namespace Centro_Medico
 
         private void CargarHorariosDisponibles(DateTime fechaSeleccionada)
         {
-
-            List<string> horariosDisponibles = ObtenerHorariosDisponibles(fechaSeleccionada);
-
-            ddlHorarios.Items.Clear();
-
-            foreach (string horario in horariosDisponibles)
-            {
-                ddlHorarios.Items.Add(new ListItem(horario, horario));
-            }
+            CargarHorariosPorMedico(fechaSeleccionada);
         }
 
         private List<string> ObtenerHorariosDisponibles(DateTime fecha)
@@ -136,10 +163,23 @@ namespace Centro_Medico
                
                 int idMedico = Convert.ToInt32(ddlMedicos.SelectedValue);
                 DateTime fecha = Convert.ToDateTime(txtFechaSeleccionada.Text);
-                int idUsuario = 1; // FORZADO
-                int estado = 0; // FORZADO
+                int idUsuario = ViewState["IDUsuarioSeleccionado"] != null ? Convert.ToInt32(ViewState["IDUsuarioSeleccionado"]) : 0;
+                int estado = 0;
                 string horarioSeleccionado = ddlHorarios.SelectedValue;
                 int idHorario = ObtenerIDHorario(horarioSeleccionado);
+
+                if (idUsuario == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Seleccione un paciente antes de confirmar el turno.', 'error');", true);
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(ddlHorarios.SelectedValue))
+                {
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Seleccione un horario antes de confirmar el turno.', 'error');", true);
+                    return; 
+                }
 
                 AccesoDatos datos = new AccesoDatos();
                           
@@ -154,15 +194,16 @@ namespace Centro_Medico
 
                     
                     datos.ejecutarAccion();
-                
 
-                
-                Response.Write("Turno confirmado exitosamente."); 
+
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Turno confirmado', 'El turno se ha registrado exitosamente.', 'success');", true);
+                LimpiarDropDownLists();
             }
             catch (Exception ex)
             {
-                
-                Response.Write("Error al confirmar el turno: " + ex.Message); 
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Error al confirmar el turno: " + ex.Message + "', 'error');", true);
             }
         }
 
@@ -189,6 +230,85 @@ namespace Centro_Medico
             }
 
             return idHorario;
+        }
+
+        protected void ddlMedicos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(ddlMedicos.SelectedValue))
+            {
+                CargarHorariosPorMedico(calendario.SelectedDate);
+            }
+        }
+
+        private void CargarHorariosPorMedico(DateTime fechaSeleccionada)
+        {
+            if (!string.IsNullOrEmpty(ddlMedicos.SelectedValue))
+            {
+                int idMedico = Convert.ToInt32(ddlMedicos.SelectedValue);
+                List<string> horariosDisponibles = ObtenerHorariosDisponiblesPorMedico(fechaSeleccionada, idMedico);
+
+                ddlHorarios.Items.Clear();
+                foreach (string horario in horariosDisponibles)
+                {
+                    ddlHorarios.Items.Add(new ListItem(horario, horario));
+                }
+            }
+        }
+
+        private void CargarHorariosDisponibles(DateTime fechaSeleccionada, int idMedico)
+        {
+            List<string> horariosDisponibles = ObtenerHorariosDisponiblesPorMedico(fechaSeleccionada, idMedico);
+
+            ddlHorarios.Items.Clear();
+
+            foreach (string horario in horariosDisponibles)
+            {
+                ddlHorarios.Items.Add(new ListItem(horario, horario));
+            }
+        }
+
+        private List<string> ObtenerHorariosDisponiblesPorMedico(DateTime fecha, int idMedico)
+        {
+            List<string> horariosDisponibles = new List<string>();
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+            try
+            {
+                
+                accesoDatos.setearConsulta("SELECT H.HoraInicio " +
+                                           "FROM Horarios_x_Medico HM " +
+                                           "INNER JOIN Horarios H ON HM.IDHorario = H.IDHorario " +
+                                           "WHERE HM.IDMedico = @IDMedico " +
+                                           "AND NOT EXISTS (SELECT 1 FROM Turnos T WHERE T.Fecha = @Fecha AND T.IDHorario = H.IDHorario)");
+                accesoDatos.setearParametro("@IDMedico", idMedico);
+                accesoDatos.setearParametro("@Fecha", fecha);
+
+                accesoDatos.ejecutarLectura();
+
+                while (accesoDatos.Lector.Read())
+                {
+                    horariosDisponibles.Add(accesoDatos.Lector["HoraInicio"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+
+            return horariosDisponibles;
+        }
+
+        private void LimpiarDropDownLists()
+        {
+            ddlEspecialidad.SelectedIndex = -1;
+            ddlMedicos.Items.Clear();
+            ddlHorarios.Items.Clear();
+            calendario.SelectedDate = DateTime.Today;
+            txtFechaSeleccionada.Text = string.Empty;
         }
 
     }
