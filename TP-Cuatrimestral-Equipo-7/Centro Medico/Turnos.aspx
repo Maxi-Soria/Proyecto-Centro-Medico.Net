@@ -4,6 +4,36 @@
         #txtFechaSeleccionada {
             display: none;
         }
+
+   .calendario {
+    width: 300px;
+    margin: auto;
+}
+
+.calendario table {
+    width: 100%;
+}
+
+.calendario th {
+    background-color: #007bff;
+    color: white;
+}
+
+.calendario td {
+    text-align: center;
+}
+
+.calendario a {
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+    color: black;
+}
+
+.calendario a:hover {
+    background-color: #f2f2f2;
+}
+
     </style>
 </asp:Content>
 
@@ -17,19 +47,19 @@
     </div>
 
     <h4>Paciente</h4>
-        <asp:GridView ID="gvPacientes" runat="server" AutoGenerateColumns="False" OnRowCommand="gvPacientes_RowCommand" DataKeyNames="ID">
-        <Columns>
-        <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" Visible="false" />
-        <asp:BoundField DataField="DNI" HeaderText="DNI" SortExpression="DNI" />
-        <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
-        <asp:BoundField DataField="Apellido" HeaderText="Apellido" SortExpression="Apellido" />
+        <asp:GridView ID="gvPacientes" runat="server" AutoGenerateColumns="False" OnRowCommand="gvPacientes_RowCommand" DataKeyNames="ID" CssClass="table table-striped table-dark">
+    <Columns>
+        <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" ItemStyle-CssClass="table-cell" HeaderStyle-CssClass="table-cell" />
+        <asp:BoundField DataField="DNI" HeaderText="DNI" SortExpression="DNI" ItemStyle-CssClass="table-cell" HeaderStyle-CssClass="table-cell" />
+        <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" ItemStyle-CssClass="table-cell" HeaderStyle-CssClass="table-cell" />
+        <asp:BoundField DataField="Apellido" HeaderText="Apellido" SortExpression="Apellido" ItemStyle-CssClass="table-cell" HeaderStyle-CssClass="table-cell" />
         <asp:TemplateField>
             <ItemTemplate>
-                <asp:Button runat="server" Text="Seleccionar" CommandName="Seleccionar" CommandArgument='<%# Container.DataItemIndex %>' />
+                <asp:Button runat="server" Text="Seleccionar" CommandName="Seleccionar" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-success" />
             </ItemTemplate>
         </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
+    </Columns>
+</asp:GridView>
 
 
     <h4>Especialidad</h4>
@@ -45,7 +75,7 @@
     </asp:DropDownList>
 
     <h4>Día</h4>
-        <asp:Calendar ID="calendario" runat="server" OnSelectionChanged="calendario_SelectionChanged"></asp:Calendar>
+        <asp:Calendar ID="calendario" runat="server" OnSelectionChanged="calendario_SelectionChanged" CssClass="calendario"></asp:Calendar>
         <asp:TextBox ID="txtFechaSeleccionada" runat="server" ReadOnly="true" style="display: none;"></asp:TextBox>
 
     <h4>Horario</h4>

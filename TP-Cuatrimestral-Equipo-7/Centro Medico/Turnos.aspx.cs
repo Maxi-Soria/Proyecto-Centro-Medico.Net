@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlTypes;
 using negocio;
 using dominio;
 
@@ -117,9 +118,20 @@ namespace Centro_Medico
 
         protected void calendario_SelectionChanged(object sender, EventArgs e)
         {
-            txtFechaSeleccionada.Text = calendario.SelectedDate.ToShortDateString();
+            DateTime fechaSeleccionada = calendario.SelectedDate;
 
-            CargarHorariosDisponibles(calendario.SelectedDate);
+            if (fechaSeleccionada >= SqlDateTime.MinValue.Value && fechaSeleccionada <= SqlDateTime.MaxValue.Value)
+            {
+                txtFechaSeleccionada.Text = fechaSeleccionada.ToShortDateString();
+                CargarHorariosDisponibles(fechaSeleccionada);
+            }
+            else
+            {
+                
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'La fecha seleccionada está fuera del rango permitido.', 'error');", true);
+                calendario.SelectedDate = DateTime.Today;
+                txtFechaSeleccionada.Text = string.Empty;
+            }
         }
 
         private void CargarHorariosDisponibles(DateTime fechaSeleccionada)
