@@ -15,8 +15,26 @@
                     <label for="txtPassword">Contraseña</label>
                     <input type="password" class="form-control" id="txtPassword" runat="server" />
 
+                    <label for="txtNombre">Nombre</label>
+                    <input type="text" class="form-control" id="txtNombre" runat="server" />
+
+                    <label for="txtApellido">Apellido</label>
+                    <input type="text" class="form-control" id="txtApellido" runat="server" />
+
+                    <label for="txtDNI">DNI</label>
+                    <input type="text" class="form-control" id="txtDNI" runat="server" />
+
                     <label for="txtEmail">Email</label>
                     <input type="email" class="form-control" id="txtEmail" runat="server" />
+
+                    <label for="calFechaNacimiento">Fecha de Nacimiento</label>
+                    <asp:Calendar ID="calFechaNacimiento" runat="server"></asp:Calendar>
+
+                    <label for="txtDomicilio">Domicilio</label>
+                    <input type="text" class="form-control" id="txtDomicilio" runat="server" />
+
+                    <label for="txtTelefono">Número de Teléfono</label>
+                    <input type="text" class="form-control" id="txtTelefono" runat="server" />
 
                     <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" OnClick="btnRegistrar_Click" CssClass="btn btn-primary mt-2 mb-3" />
                 

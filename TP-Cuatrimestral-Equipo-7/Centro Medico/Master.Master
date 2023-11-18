@@ -47,13 +47,6 @@
 
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="Turnos.aspx">Turnos</a>
-                            </li>
-                        </ul>
-
-
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
                                 <a class="nav-link" href="FAQ.aspx">FAQ</a>
                             </li>
                         </ul>

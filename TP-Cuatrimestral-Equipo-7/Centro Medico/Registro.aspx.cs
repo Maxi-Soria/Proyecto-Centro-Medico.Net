@@ -18,26 +18,66 @@ namespace Centro_Medico
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-
             try
             {
-                Usuario nuevoUsuario = new Usuario("paciente","paciente",4);
-                UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-                EmailService emailService = new EmailService();
+                string nombre = txtNombre.Value;
+                string apellido = txtApellido.Value;
+                int dni = Convert.ToInt32(txtDNI.Value);
+                string email = txtEmail.Value;
+                DateTime fechaNacimiento = calFechaNacimiento.SelectedDate;
+                string domicilio = txtDomicilio.Value;
+                string telefono = txtTelefono.Value;
 
-                nuevoUsuario.Email = txtEmail.Value;
-                nuevoUsuario.User = txtUser.Value;
-                nuevoUsuario.Pass = txtPassword.Value;
-                int id = usuarioNegocio.insertarUsuario(nuevoUsuario);
+                PacienteNegocio pacienteNegocio = new PacienteNegocio();
 
-                emailService.armarCorreo(nuevoUsuario.Email, "Bienvenido/a al Centro Médico", "Te damos la bienvenida a nuestra aplicación");
-                emailService.enviarEmail();
-                Response.Redirect("Default.aspx", false);
+                if (pacienteNegocio.verificarExistenciaDNI(dni))
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'El paciente ya existe.', 'error');", true);
+                    return;
+                }
+
+                AccesoDatos datos = new AccesoDatos();
+                
+                    
+                    string consultaUsuario = "INSERT INTO Usuarios (Usuario, Pass, TipoUser, Email) " +
+                                            "VALUES (@Usuario, @Pass, @TipoUser, @Email); " +
+                                            "SELECT SCOPE_IDENTITY();";
+
+                    datos.setearConsulta(consultaUsuario);
+                    datos.setearParametro("@Usuario", txtUser.Value);
+                    datos.setearParametro("@Pass", txtPassword.Value);
+                    datos.setearParametro("@TipoUser", 4);
+                    datos.setearParametro("@Email", email);
+
+                    int idUsuario = Convert.ToInt32(datos.ejecutarScalar());
+
+
+                
+                string consultaPaciente = "INSERT INTO Pacientes (DNI, Nombre, Apellido, Email, FechaNacimiento, Domicilio, NumeroTelefonico, IDUsuario) " +
+                                          "VALUES (@DNI, @Nombre, @Apellido, @EmailPaciente, @FechaNacimiento, @Domicilio, @NumeroTelefonico, @IDUsuario)";
+
+                datos.setearConsulta(consultaPaciente);
+                    datos.setearParametro("@DNI", dni);
+                    datos.setearParametro("@Nombre", nombre);
+                    datos.setearParametro("@Apellido", apellido);
+                    datos.setearParametro("@EmailPaciente", email);
+                    datos.setearParametro("@FechaNacimiento", fechaNacimiento);
+                    datos.setearParametro("@Domicilio", domicilio);
+                    datos.setearParametro("@NumeroTelefonico", telefono);
+                    datos.setearParametro("@IDUsuario", idUsuario);
+
+                    datos.ejecutarAccion();
+                
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Éxito', 'Paciente registrado correctamente.', 'success');", true);
+            }
+            catch (System.Data.SqlClient.SqlException sqlEx)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", $"Swal.fire('Error', 'Error de SQL: {sqlEx.Message}', 'error');", true);
             }
             catch (Exception ex)
             {
-
-                Session.Add("Error",ex.ToString());
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", $"Swal.fire('Error', 'Error general: {ex.Message}', 'error');", true);
             }
         }
     }

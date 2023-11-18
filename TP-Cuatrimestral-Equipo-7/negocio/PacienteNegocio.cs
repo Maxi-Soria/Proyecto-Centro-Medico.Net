@@ -118,5 +118,36 @@ namespace negocio
             }
         }
 
+        public bool verificarExistenciaDNI(int dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+               
+                string consulta = "SELECT COUNT(*) FROM Pacientes WHERE DNI = @DNI";
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@DNI", dni);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    int cantidad = Convert.ToInt32(datos.Lector[0]);
+                    return cantidad > 0; 
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
