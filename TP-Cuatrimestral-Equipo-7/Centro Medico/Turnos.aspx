@@ -83,6 +83,9 @@
         <asp:ListItem Text="" Value="" />
     </asp:DropDownList>
 
+    <h4>Observación</h4>
+        <asp:TextBox ID="txtObservacion" runat="server" CssClass="form-control"></asp:TextBox>
+
     <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" CssClass="btn btn-primary" />
     
 

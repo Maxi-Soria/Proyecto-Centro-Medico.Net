@@ -172,7 +172,14 @@ namespace Centro_Medico
         {
             try
             {
-               
+                DateTime fechaSeleccionada = Convert.ToDateTime(txtFechaSeleccionada.Text);
+
+                if (fechaSeleccionada < DateTime.Today)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'No se pueden registrar turnos en fechas anteriores al día actual.', 'error');", true);
+                    return;
+                }
+
                 int idMedico = Convert.ToInt32(ddlMedicos.SelectedValue);
                 DateTime fecha = Convert.ToDateTime(txtFechaSeleccionada.Text);
                 int idUsuario = ViewState["IDUsuarioSeleccionado"] != null ? Convert.ToInt32(ViewState["IDUsuarioSeleccionado"]) : 0;
@@ -194,18 +201,20 @@ namespace Centro_Medico
                 }
 
                 AccesoDatos datos = new AccesoDatos();
-                          
-                    string consulta = "INSERT INTO Turnos (IDMedico, IDUsuario, Estado, Fecha, IDHorario) VALUES (@IDMedico, @IDUsuario, @Estado, @Fecha, @IDHorario)";
 
-                    datos.setearConsulta(consulta);
-                    datos.setearParametro("@IDMedico", idMedico);
-                    datos.setearParametro("@IDUsuario", idUsuario);
-                    datos.setearParametro("@Estado", estado);
-                    datos.setearParametro("@Fecha", fecha);
-                    datos.setearParametro("@IDHorario", idHorario);
+                string consulta = "INSERT INTO Turnos (IDMedico, IDUsuario, Estado, Fecha, IDHorario, ObservacionesMedico) VALUES (@IDMedico, @IDUsuario, @Estado, @Fecha, @IDHorario, @ObservacionesMedico)";
 
-                    
-                    datos.ejecutarAccion();
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@IDMedico", idMedico);
+                datos.setearParametro("@IDUsuario", idUsuario);
+                datos.setearParametro("@Estado", estado);
+                datos.setearParametro("@Fecha", fecha);
+                datos.setearParametro("@IDHorario", idHorario);
+                datos.setearParametro("@ObservacionesMedico", txtObservacion.Text);
+                
+
+
+                datos.ejecutarAccion();
 
 
 
@@ -286,7 +295,8 @@ namespace Centro_Medico
 
             try
             {
-                
+
+                DateTime ahora = DateTime.Now;
                 accesoDatos.setearConsulta("SELECT H.HoraInicio " +
                                            "FROM Horarios_x_Medico HM " +
                                            "INNER JOIN Horarios H ON HM.IDHorario = H.IDHorario " +
@@ -299,9 +309,17 @@ namespace Centro_Medico
 
                 while (accesoDatos.Lector.Read())
                 {
-                    horariosDisponibles.Add(accesoDatos.Lector["HoraInicio"].ToString());
+                    string horaInicio = accesoDatos.Lector["HoraInicio"].ToString();
+                    DateTime fechaYHoraInicio = fecha.Date + DateTime.Parse(horaInicio).TimeOfDay;
+
+                   
+                    if (fechaYHoraInicio > ahora)
+                    {
+                        horariosDisponibles.Add(horaInicio);
+                    }
                 }
             }
+
             catch (Exception ex)
             {
                 throw ex;
@@ -312,6 +330,12 @@ namespace Centro_Medico
             }
 
             return horariosDisponibles;
+        }
+
+        private bool EsHorarioMayorQueActual(string hora, DateTime horaActual)
+        {
+            DateTime horaInicio = DateTime.Parse(hora);
+            return horaInicio > horaActual;
         }
 
         private void LimpiarDropDownLists()
