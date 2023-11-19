@@ -7,13 +7,13 @@
         <h2>Panel de Recepcionista</h2>
         <div class="row">
             <div class="col-md-4">
-                <a href="administrar_turnos.html" class="btn btn-primary btn-block">Insertar Turno</a>
+                <a href="CRUD_Turnos.aspx" class="btn btn-primary btn-block">Turnos</a>
             </div>
             <div class="col-md-4">
-                <a href="administrar_turnos.html" class="btn btn-primary btn-block">Modificar Turno</a>
+                <a href="CRUD_Medicos.aspx" class="btn btn-primary btn-block">Médicos</a>
             </div>
             <div class="col-md-4">
-                <a href="administrar_turnos.html" class="btn btn-primary btn-block">Eliminar Turno</a>
+                <a href="CRUD_Pacientes.aspx" class="btn btn-primary btn-block">Pacientes</a>
             </div>
         </div>
     </div>

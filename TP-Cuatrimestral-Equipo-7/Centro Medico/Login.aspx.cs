@@ -49,15 +49,13 @@ namespace Centro_Medico
                 }
                 else
                 {
-                    Session.Add("Error", "Usuario o Contraseña incorrectos");
-                    Response.Redirect("Error.aspx", false);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Usuario o Contraseña incorrectos', 'error');", true);
                 }
             }
             catch (Exception ex)
             {
 
-                Session.Add("Error", ex.ToString());
-                Response.Redirect("Error.aspx",false);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', '" + ex.Message.Replace("'", "\\'") + "', 'error');", true);
             }
         }
     }

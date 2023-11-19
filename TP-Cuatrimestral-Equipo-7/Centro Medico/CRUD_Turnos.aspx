@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="CRUD_Turnos.aspx.cs" Inherits="Centro_Medico.CRUD_Turnos" %>
 
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -18,14 +20,65 @@
                 </div>
             </div>
 
+            <div class="col-md-7 border ">
+                
+                <h2 class="text-center">Turnos</h2>
+                <div class="table-responsive" style="max-height: 3000px; max-width: 3000px; overflow-x: auto;">
+                    <asp:GridView runat="server" ID="dgvTurnos" OnSelectedIndexChanged="dgvTurnos_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark">
+            <HeaderStyle CssClass="sticky-top" />
+                <Columns>
+                    <asp:CommandField ShowSelectButton="true" SelectText="Selec" HeaderText="Acción" ControlStyle-CssClass="btn btn-sm btn-primary" />
+                    <asp:BoundField DataField="IDTurno" HeaderText="ID Turno" />
+                    <asp:BoundField DataField="IDMedico" HeaderText="ID Médico" />
+                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+                    <asp:BoundField DataField="ObservacionesMedico" HeaderText="Observaciones" />
+                    <asp:BoundField DataField="IDHorario" HeaderText="ID Horario" />
+                    <asp:BoundField DataField="IDUsuario" HeaderText="ID Usuario" />
+                    <asp:BoundField DataField="Estado" HeaderText="Estado" />
+                </Columns>
+</asp:GridView>
+                </div>
+            </div>
 
-            <!-- Contenedor de 10 columnas -->
-            <div class="col-md-10 border ">
-                <!-- Contenido del segundo contenedor -->
-                <h2 class="text-center">Vista CRUD turnos</h2>
+            <div class="col-md-3 mt-1 border">
+                <div class="mb-3">
+                    <asp:Label ID="lblId" runat="server" AssociatedControlID="txtIdTurno" CssClass="form-label fw-bold">ID</asp:Label>
+                    <asp:TextBox ID="txtIdTurno" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+
+                    <asp:Label ID="lblIDMedico" runat="server" AssociatedControlID="txtIdMedico" CssClass="form-label fw-bold">IDMédico</asp:Label>
+                    <asp:TextBox ID="txtIdMedico" runat="server" CssClass="form-control"></asp:TextBox>
+
+                    <asp:Label ID="lblFecha" runat="server" AssociatedControlID="txtFecha" CssClass="form-label fw-bold">Fecha</asp:Label>
+                    <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control"></asp:TextBox>
+
+                    <asp:Label ID="lblObservaciones" runat="server" AssociatedControlID="txtObservaciones" CssClass="form-label fw-bold">Observaciones</asp:Label>
+                    <asp:TextBox ID="txtObservaciones" runat="server" CssClass="form-control"></asp:TextBox>
+
+                    <asp:Label ID="lblHorario" runat="server" AssociatedControlID="txtIdHorario" CssClass="form-label fw-bold">Horario</asp:Label>
+                    <asp:TextBox ID="txtIdHorario" runat="server" CssClass="form-control"></asp:TextBox>
+
+                    <asp:Label ID="lblIDUsuario" runat="server" AssociatedControlID="txtIdUsuario" CssClass="form-label fw-bold">IDUsuario</asp:Label>
+                    <asp:TextBox ID="txtIdUsuario" runat="server" CssClass="form-control"></asp:TextBox>
+
+                    <asp:Label ID="lblEstado" runat="server" AssociatedControlID="txtEstado" CssClass="form-label fw-bold">Estado</asp:Label>
+                    <asp:TextBox ID="txtEstado" runat="server" CssClass="form-control"></asp:TextBox>
+
+
+                    <div class="mt-4 w-100">
+                        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary btn-sm" OnClick="btnAgregar_Click" />
+                        <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning btn-sm" OnClick="btnModificar_Click" />
+                        <asp:Button ID="btnEliminar" runat="server" Text="Cancelar" CssClass="btn btn-danger btn-sm" OnClick="btnEliminar_Click" />
+                        <asp:HyperLink ID="linkPacientes" runat="server" class="btn btn-primary btn-sm bg-dark" NavigateUrl="CRUD_Medicos.aspx">Volver</asp:HyperLink>
+                    </div>
+
+                </div>
 
             </div>
-        </div>
+         
+          
+
+            </div>
+        
     </div>
 
 </asp:Content>
