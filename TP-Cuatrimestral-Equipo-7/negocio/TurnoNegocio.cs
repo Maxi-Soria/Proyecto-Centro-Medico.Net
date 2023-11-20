@@ -26,7 +26,7 @@ namespace negocio
                     aux.IDMedico = (int)datos.Lector["IDMedico"];
                     aux.Fecha_Horario_Entrada = (DateTime)datos.Lector["Fecha"];
                     aux.Observaciones = (string)datos.Lector["ObservacionesMedico"];
-                    aux.Estado = (string)datos.Lector["Estado"];
+                    aux.Estado = (string)datos.Lector["Estado"].ToString();
                     aux.IDHorario = (int)datos.Lector["IDHorario"];
                     aux.IDUsuario = (int)datos.Lector["IDUsuario"];
 

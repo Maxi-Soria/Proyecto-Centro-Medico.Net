@@ -59,28 +59,26 @@ namespace Centro_Medico
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            /*
             try
             {
-                Medico nuevo = new Medico();
-                nuevo.Legajo = int.Parse(txtLegajoMedico.Text);
-                nuevo.Nombre = txtNombreMedico.Text;
-                nuevo.Apellido = txtApellidoMedico.Text;
-                nuevo.EmailInstitucional = txtEmail.Text;
+                Usuario nuevo = new Usuario();
+                nuevo.User = txtUser.Text;
+                nuevo.Pass = txtPass.Text;
+                nuevo.Email = txtEmail.Text;
 
-                medicoNegocio.agregarMedico(nuevo);
+                usuarioNegocio.agregarUsuario(nuevo);
                 limpiarCampos();
 
 
-                cargarListaMedicos();
+                cargarListaUsuarios();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al agregar el paciente: " + ex.Message);
+                Console.WriteLine("Error al agregar el paUsuario: " + ex.Message);
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Error al agregar el paciente');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Error al agregar un usuario');", true);
             }
-            */
+
         }
 
 
@@ -125,30 +123,29 @@ namespace Centro_Medico
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            /*
+            
             try
             {
-                int idMedico = Convert.ToInt32(txtIdMedico.Text);
-                medicoNegocio.eliminarMedico(idMedico);
-                cargarListaMedicos();
+                int id = Convert.ToInt32(txtIdUsuario.Text);
+                usuarioNegocio.eliminarMedico(id);
+                cargarListaUsuarios();
                 limpiarCampos();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al eliminar el Medico: " + ex.Message);
+                Console.WriteLine("Error al eliminar el usuario: " + ex.Message);
             }
-            */
+            
         }
 
         protected void limpiarCampos()
         {
-            /*
-            txtIdMedico.Text = string.Empty;
-            txtLegajoMedico.Text = string.Empty;
-            txtNombreMedico.Text = string.Empty;
-            txtApellidoMedico.Text = string.Empty;
+            
+            txtIdUsuario.Text = string.Empty;
+            txtUser.Text = string.Empty;
+            txtPass.Text = string.Empty;
             txtEmail.Text = string.Empty;
-            */
+            
         }
 
 
