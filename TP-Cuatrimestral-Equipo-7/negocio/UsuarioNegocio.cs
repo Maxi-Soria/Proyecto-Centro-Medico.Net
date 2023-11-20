@@ -10,6 +10,43 @@ namespace negocio
 {
     public class UsuarioNegocio
     {
+        public List<Usuario> listar()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Usuario> lista = new List<Usuario>();
+
+            try
+            {
+                datos.setearConsulta("SELECT Id, Usuario, Pass, Email FROM Usuarios");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.User = (String)datos.Lector["Usuario"];
+                    aux.Pass = (String)datos.Lector["Pass"];
+                    aux.Email = datos.Lector["Email"] != DBNull.Value ? (String)datos.Lector["Email"] : "Sin Correo";
+
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
         public bool Loguear(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -62,7 +99,6 @@ namespace negocio
         public int insertarUsuario(Usuario nuevoUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
-
 
             try
             {

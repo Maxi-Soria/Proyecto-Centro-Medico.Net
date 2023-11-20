@@ -22,6 +22,10 @@ namespace dominio
         public TipoUsuario TipoUsuario { get; set; }
         public string Email { get; set; }
 
+        public Usuario()
+        {
+        }
+
         public Usuario(string user, string pass, int tipoUsuario)
         {
             User = user;
