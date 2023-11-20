@@ -138,7 +138,7 @@ namespace negocio
             finally { datos.cerrarConexion(); }
         }
 
-        public void eliminarMedico(int id)
+        public void eliminarUsuario(int id)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -151,6 +151,31 @@ namespace negocio
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void modificarUsuario(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Usuarios SET Usuario = @Usuario, Pass = @Pass, Email = @Email WHERE Id = @Id");
+
+                datos.setearParametro("@Usuario", usuario.User);
+                datos.setearParametro("@Pass", usuario.Pass);
+
+                datos.setearParametro("@Email", usuario.Email);
+                datos.setearParametro("@Id", usuario.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally

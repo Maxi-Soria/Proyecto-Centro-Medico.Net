@@ -81,45 +81,42 @@ namespace Centro_Medico
 
         }
 
-
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            /*
+            
             try
             {
-                int Id = Convert.ToInt32(txtIdMedico.Text);
-                int Legajo = Convert.ToInt32(txtLegajoMedico.Text);
-                string nombre = txtNombreMedico.Text;
-                string apellido = txtApellidoMedico.Text;
+                int id = Convert.ToInt32(txtIdUsuario.Text);
+                String user = txtUser.Text;
+                string pass = txtPass.Text;
                 string email = txtEmail.Text;
+                
 
-                Medico medicoModificado = new Medico
+                Usuario usuarioModificado = new Usuario
                 {
-                    IDMedico = Id,
-                    Legajo = Legajo,
-                    Nombre = nombre,
-                    Apellido = apellido,
-                    EmailInstitucional = email,
+                    Id = id,
+                    User = user,
+                    Pass = pass,
+                    Email = email,
 
                 };
 
                 // Llamar al método para modificar el paciente
-                medicoNegocio.modificarMedico(medicoModificado);
+                usuarioNegocio.modificarUsuario(usuarioModificado);
 
                 // Volver a cargar la lista de pacientes
-                cargarListaMedicos();
+                cargarListaUsuarios();
 
                 // Limpiar los campos después de la modificación
                 limpiarCampos();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al modificar el paciente: " + ex.Message);
+                Console.WriteLine("Error al modificar el usuario: " + ex.Message);
                 // Manejar la excepción y mostrar un mensaje de error si es necesario
             }
-            */
+            
         }
-
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -127,7 +124,7 @@ namespace Centro_Medico
             try
             {
                 int id = Convert.ToInt32(txtIdUsuario.Text);
-                usuarioNegocio.eliminarMedico(id);
+                usuarioNegocio.eliminarUsuario(id);
                 cargarListaUsuarios();
                 limpiarCampos();
             }
