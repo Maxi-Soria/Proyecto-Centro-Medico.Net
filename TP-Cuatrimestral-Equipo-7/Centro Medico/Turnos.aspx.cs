@@ -127,7 +127,6 @@ namespace Centro_Medico
             }
             else
             {
-                
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'La fecha seleccionada está fuera del rango permitido.', 'error');", true);
                 calendario.SelectedDate = DateTime.Today;
                 txtFechaSeleccionada.Text = string.Empty;
@@ -200,13 +199,20 @@ namespace Centro_Medico
 
                 if (string.IsNullOrEmpty(ddlHorarios.SelectedValue))
                 {
-
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Seleccione un horario antes de confirmar el turno.', 'error');", true);
-                    return; 
+                    return;
                 }
 
-                AccesoDatos datos = new AccesoDatos();
+                
+                if (ExisteTurnoParaPacienteEnFechaHora(idUsuario, fecha, horarioSeleccionado))
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Ya existe un turno para el paciente seleccionado en la fecha y hora especificadas.', 'error');", true);
+                    return;
+                }
 
+                
+
+                AccesoDatos datos = new AccesoDatos();
                 string consulta = "INSERT INTO Turnos (IDMedico, IDUsuario, Estado, Fecha, IDHorario, ObservacionesMedico) VALUES (@IDMedico, @IDUsuario, @Estado, @Fecha, @IDHorario, @ObservacionesMedico)";
 
                 datos.setearConsulta(consulta);
@@ -216,19 +222,14 @@ namespace Centro_Medico
                 datos.setearParametro("@Fecha", fecha);
                 datos.setearParametro("@IDHorario", idHorario);
                 datos.setearParametro("@ObservacionesMedico", txtObservacion.Text);
-                
-
 
                 datos.ejecutarAccion();
-
-
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Turno confirmado', 'El turno se ha registrado exitosamente.', 'success');", true);
                 LimpiarDropDownLists();
             }
             catch (Exception ex)
             {
-
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Error al confirmar el turno: " + ex.Message + "', 'error');", true);
             }
         }
@@ -341,6 +342,37 @@ namespace Centro_Medico
         {
             DateTime horaInicio = DateTime.Parse(hora);
             return horaInicio > horaActual;
+        }
+
+        private bool ExisteTurnoParaPacienteEnFechaHora(int idPaciente, DateTime fecha, string hora)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM Turnos WHERE IDUsuario = @IDUsuario AND Fecha = @Fecha AND IDHorario IN (SELECT IDHorario FROM Horarios WHERE HoraInicio = @HoraInicio)");
+                datos.setearParametro("@IDUsuario", idPaciente);
+                datos.setearParametro("@Fecha", fecha);
+                datos.setearParametro("@HoraInicio", hora);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    int cantidadTurnos = Convert.ToInt32(datos.Lector[0]);
+                    return cantidadTurnos > 0;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         private void LimpiarDropDownLists()
