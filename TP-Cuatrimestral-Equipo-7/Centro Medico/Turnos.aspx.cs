@@ -168,6 +168,11 @@ namespace Centro_Medico
             return horariosDisponibles;
         }
 
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MenuRecepcionista.aspx");
+        }
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             try

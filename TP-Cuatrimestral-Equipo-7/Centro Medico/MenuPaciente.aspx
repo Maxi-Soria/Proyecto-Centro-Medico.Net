@@ -9,8 +9,8 @@
                 <a href="administrar_turnos.html" class="btn btn-primary btn-block">Solicitar un turno</a>
             </div>
             <div class="col-md-4">
-                <a href="administrar_turnos.html" class="btn btn-primary btn-block">Mi perfil</a>
+                <a href="Paciente-MiPerfil.aspx" class="btn btn-primary btn-block">Mi Perfil</a>
             </div>
-           
+        </div>   
     </div>
 </asp:Content>

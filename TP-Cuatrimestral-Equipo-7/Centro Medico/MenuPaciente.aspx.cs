@@ -22,5 +22,7 @@ namespace Centro_Medico
         {
             Response.Redirect("Turnos.aspx", false);
         }
+
+      
     }
 }

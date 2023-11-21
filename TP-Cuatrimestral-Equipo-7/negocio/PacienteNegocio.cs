@@ -48,7 +48,48 @@ namespace negocio
 
         }
 
-        //--------------------------------------------------
+        public Paciente listarUnPaciente(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            
+
+            try
+            {
+                datos.setearConsulta("SELECT IDUsuario, DNI, Nombre, Apellido, Email, FechaNacimiento, Domicilio, NumeroTelefonico  FROM Pacientes WHERE IDUsuario = @IDUsuario");
+
+                datos.ejecutarLectura();
+                Paciente aux = new Paciente();
+                datos.setearParametro("@IDUsuario", id);
+
+                while (datos.Lector.Read())
+                {
+                    
+                    aux.ID = (int)datos.Lector["IDUsuario"];
+                    aux.Dni = (int)datos.Lector["DNI"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.EmailPersonal = (string)datos.Lector["Email"];
+                    aux.FechaDeNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
+                    aux.Domicilio = (String)datos.Lector["Domicilio"];
+                    aux.NumeroTelefonico = (string)datos.Lector["NumeroTelefonico"];
+
+                    
+                }
+
+                return aux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
 
         public void agregarPaciente(Paciente nuevo)
         {

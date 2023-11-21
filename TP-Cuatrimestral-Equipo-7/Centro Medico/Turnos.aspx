@@ -99,6 +99,7 @@
 
             <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" CssClass="btn btn-primary mt-2" />
 
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CssClass="btn btn-primary mt-2" />
         </div>
     </div>
 

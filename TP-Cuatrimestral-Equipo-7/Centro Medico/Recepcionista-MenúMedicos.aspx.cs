@@ -1,26 +1,24 @@
-﻿using dominio;
-using negocio;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using dominio;
+using negocio;
 
 namespace Centro_Medico
 {
-    public partial class CRUD_Medicos : System.Web.UI.Page
+    public partial class Recepcionista_MenúMedicos : System.Web.UI.Page
     {
         MedicoNegocio medicoNegocio = new MedicoNegocio();
-        EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 cargarListaMedicos();
-                cargarCheckBoxEspecialidades();
             }
         }
 
@@ -40,31 +38,12 @@ namespace Centro_Medico
 
         }
 
-        protected void cargarCheckBoxEspecialidades()
-        {
-            try
-            {
-                List<Especialidad> especialidades = especialidadNegocio.listar();
-
-                foreach (Especialidad especialidad in especialidades)
-                {
-                    ListItem item = new ListItem(especialidad.Nombre, especialidad.Id.ToString());
-                    chkEspecialidades.Items.Add(item);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al cargar la lista de especialidades: " + ex.Message);
-            }
-        }
-
         protected void dgvMedicos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             try
             {
                 GridViewRow row = dgvMedicos.SelectedRow;
-
                 txtIdMedico.Text = row.Cells[1].Text;
                 txtLegajoMedico.Text = row.Cells[2].Text;
                 txtNombreMedico.Text = row.Cells[3].Text;
@@ -75,9 +54,9 @@ namespace Centro_Medico
             catch (Exception ex)
             {
                 Console.WriteLine("Error al seleccionar un medico: " + ex.Message);
-        
+
             }
-        
+
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
@@ -125,13 +104,13 @@ namespace Centro_Medico
 
                 };
 
-               
+                
                 medicoNegocio.modificarMedico(medicoModificado);
 
                 
                 cargarListaMedicos();
 
-               
+                
                 limpiarCampos();
             }
             catch (Exception ex)
@@ -163,13 +142,8 @@ namespace Centro_Medico
             txtLegajoMedico.Text = string.Empty;
             txtNombreMedico.Text = string.Empty;
             txtApellidoMedico.Text = string.Empty;
-            txtEmail.Text = string.Empty;   
+            txtEmail.Text = string.Empty;
         }
-
-
-
-
-
 
 
 

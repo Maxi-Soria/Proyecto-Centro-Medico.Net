@@ -23,16 +23,6 @@ namespace Centro_Medico
             Response.Redirect("Turnos.aspx");
         }
 
-        protected void btnModificarTurno_Click(object sender, EventArgs e)
-        {
-            // Lógica cuando se hace clic en Modificar Turno
-            // Puedes redirigir a la página correspondiente o realizar otras acciones
-        }
-
-        protected void btnCancelarTurno_Click(object sender, EventArgs e)
-        {
-            // Lógica cuando se hace clic en Cancelar Turno
-            // Puedes redirigir a la página correspondiente o realizar otras acciones
-        }
+      
     }
 }
