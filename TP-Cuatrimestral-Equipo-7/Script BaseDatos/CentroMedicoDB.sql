@@ -144,7 +144,8 @@ CREATE TABLE [dbo].[Turnos] (
     CONSTRAINT [FK_Turnos_Horarios] FOREIGN KEY ([IDHorario]) REFERENCES [dbo].[Horarios] ([IDHorario])
 );
 
-
+SELECT * FROM Horarios
+SELECT * FROM Turnos
 
 
 
@@ -182,4 +183,10 @@ CREATE PROCEDURE insertarNuevo
 AS
 INSERT INTO Usuarios(Usuario,Pass,TipoUser,Email) output inserted.Id VALUES(@User,@Pass,4,@Email)
 
-SELECT * FROM Usuarios
+
+
+
+
+
+
+

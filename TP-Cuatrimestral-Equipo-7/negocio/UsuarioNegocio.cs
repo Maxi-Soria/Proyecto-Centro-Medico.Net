@@ -17,7 +17,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT Id, Usuario, Pass, Email FROM Usuarios");
+                datos.setearConsulta("SELECT Id, Usuario, Pass,TipoUser, Email FROM Usuarios");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -27,6 +27,7 @@ namespace negocio
                     aux.Id = (int)datos.Lector["Id"];
                     aux.User = (String)datos.Lector["Usuario"];
                     aux.Pass = (String)datos.Lector["Pass"];
+                    aux.TipoUsuario = (TipoUsuario)datos.Lector["TipoUser"];
                     aux.Email = datos.Lector["Email"] != DBNull.Value ? (String)datos.Lector["Email"] : "Sin Correo";
 
 
