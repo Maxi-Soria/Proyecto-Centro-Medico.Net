@@ -12,7 +12,7 @@
         <asp:GridView ID="GridViewAgenda" runat="server" AutoGenerateColumns="False" 
             EmptyDataText="No hay datos disponibles" CssClass="table table-bordered">
             <Columns>
-                <asp:BoundField DataField="DNIPaciente" HeaderText="DNIPaciente" SortExpression="DNIPaciente" />
+                <asp:BoundField DataField="IDUsuario" HeaderText="IDUsuario" SortExpression="IDUsuario" />
                 <asp:BoundField DataField="Fecha" HeaderText="Fecha de Cita" SortExpression="Fecha" />
 
 

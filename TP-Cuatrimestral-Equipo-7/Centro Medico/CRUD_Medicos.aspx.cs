@@ -167,12 +167,5 @@ namespace Centro_Medico
         }
 
 
-
-
-
-
-
-
-
     }
 }

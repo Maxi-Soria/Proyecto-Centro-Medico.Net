@@ -14,9 +14,6 @@
                 <a href="administrar_turnos.html" class="btn btn-primary btn-block">Horarios</a>
             </div>
             <div class="col-md-4">
-                <a href="administrar_turnos.html" class="btn btn-primary btn-block">Estudios</a>
-            </div>
-            <div class="col-md-4">
                 <a href="administrar_turnos.html" class="btn btn-primary btn-block">Informes</a>
             </div>
             <div class="col-md-4">

@@ -27,6 +27,7 @@ namespace Centro_Medico
                 DateTime fechaNacimiento = calFechaNacimiento.SelectedDate;
                 string domicilio = txtDomicilio.Value;
                 string telefono = txtTelefono.Value;
+                string usuario = txtUser.Value;
 
                 PacienteNegocio pacienteNegocio = new PacienteNegocio();
 
@@ -35,6 +36,14 @@ namespace Centro_Medico
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'El paciente ya existe.', 'error');", true);
                     return;
                 }
+
+                if (pacienteNegocio.verificarExistenciaUsuario(usuario))
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'El usuario ya existe.', 'error');", true);
+                    return;
+                }
+
+
 
                 AccesoDatos datos = new AccesoDatos();
                 

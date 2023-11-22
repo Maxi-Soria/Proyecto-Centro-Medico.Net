@@ -203,14 +203,14 @@ namespace Centro_Medico
                     return;
                 }
 
-                
-                if (ExisteTurnoParaPacienteEnFechaHora(idUsuario, fecha, horarioSeleccionado))
+
+                if (ExisteTurnoParaPacienteEnFechaHora(idUsuario, fechaSeleccionada, idHorario))
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Ya existe un turno para el paciente seleccionado en la fecha y hora especificadas.', 'error');", true);
                     return;
                 }
 
-                
+
 
                 AccesoDatos datos = new AccesoDatos();
                 string consulta = "INSERT INTO Turnos (IDMedico, IDUsuario, Estado, Fecha, IDHorario, ObservacionesMedico) VALUES (@IDMedico, @IDUsuario, @Estado, @Fecha, @IDHorario, @ObservacionesMedico)";
@@ -307,7 +307,7 @@ namespace Centro_Medico
                                            "FROM Horarios_x_Medico HM " +
                                            "INNER JOIN Horarios H ON HM.IDHorario = H.IDHorario " +
                                            "WHERE HM.IDMedico = @IDMedico " +
-                                           "AND NOT EXISTS (SELECT 1 FROM Turnos T WHERE T.Fecha = @Fecha AND T.IDHorario = H.IDHorario)");
+                                           "AND NOT EXISTS (SELECT 1 FROM Turnos T WHERE T.Fecha = @Fecha AND T.IDHorario = H.IDHorario AND T.IDMedico = @IDMedico)");
                 accesoDatos.setearParametro("@IDMedico", idMedico);
                 accesoDatos.setearParametro("@Fecha", fecha);
 
@@ -344,16 +344,16 @@ namespace Centro_Medico
             return horaInicio > horaActual;
         }
 
-        private bool ExisteTurnoParaPacienteEnFechaHora(int idPaciente, DateTime fecha, string hora)
+        private bool ExisteTurnoParaPacienteEnFechaHora(int idPaciente, DateTime fecha, int idHorario)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("SELECT COUNT(*) FROM Turnos WHERE IDUsuario = @IDUsuario AND Fecha = @Fecha AND IDHorario IN (SELECT IDHorario FROM Horarios WHERE HoraInicio = @HoraInicio)");
+                datos.setearConsulta("SELECT COUNT(*) FROM Turnos WHERE IDUsuario = @IDUsuario AND Fecha = @Fecha AND IDHorario = @IDHorario");
                 datos.setearParametro("@IDUsuario", idPaciente);
                 datos.setearParametro("@Fecha", fecha);
-                datos.setearParametro("@HoraInicio", hora);
+                datos.setearParametro("@IDHorario", idHorario);
 
                 datos.ejecutarLectura();
 
