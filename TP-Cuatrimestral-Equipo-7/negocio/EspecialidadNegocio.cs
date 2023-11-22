@@ -43,6 +43,22 @@ namespace negocio
 
         }
 
+        public void agregarEspecialidad(String nueva)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("insert into Especialidades VALUES ('" + nueva + "')");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+
         public void eliminarEspecialidad(int id)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -62,22 +78,6 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
-        }
-
-        public void agregarEspecialidad(String nueva)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setearConsulta("insert into Especialidades VALUES ('" + nueva + "')");
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally { datos.cerrarConexion(); }
         }
 
         public void modificarEspecialidad(Especialidad editada)

@@ -31,13 +31,14 @@
                             <asp:CommandField ShowSelectButton="true" SelectText="Selec" HeaderText="Acción" ControlStyle-CssClass="btn btn-sm btn-primary" />
                         </Columns>
                     </asp:GridView>
+
                 </div>
             </div>
 
             <div class="col-md-3 mt-1 border">
                 <div class="mb-3">
-                    <asp:Label ID="lblId" runat="server" AssociatedControlID="txtIdMedico" CssClass="form-label fw-bold">ID</asp:Label>
-                    <asp:TextBox ID="txtIdMedico" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                    <asp:Label ID="lblId" runat="server" AssociatedControlID="txtIdMedico" CssClass="form-label fw-bold" style="display:none;">ID</asp:Label>
+                    <asp:TextBox ID="txtIdMedico" runat="server" CssClass="form-control" ReadOnly="true" style="display:none;"></asp:TextBox>
 
                     <asp:Label ID="lblLegajo" runat="server" AssociatedControlID="txtLegajoMedico" CssClass="form-label fw-bold">DNI</asp:Label>
                     <asp:TextBox ID="txtLegajoMedico" runat="server" CssClass="form-control"></asp:TextBox>

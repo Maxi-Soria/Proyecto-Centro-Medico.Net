@@ -15,12 +15,14 @@ namespace Centro_Medico
         MedicoNegocio medicoNegocio = new MedicoNegocio();
         EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
 
+        Especialidades_X_MedicoNegocio especialidades_X_Medico = new Especialidades_X_MedicoNegocio();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
                 cargarListaMedicos();
-                cargarCheckBoxEspecialidades();
+                
             }
         }
 
@@ -30,8 +32,12 @@ namespace Centro_Medico
             {
                 List<Medico> lista = medicoNegocio.listar();
 
+
                 dgvMedicos.DataSource = lista;
                 dgvMedicos.DataBind();
+
+
+
             }
             catch (Exception ex)
             {
@@ -40,15 +46,22 @@ namespace Centro_Medico
 
         }
 
-        protected void cargarCheckBoxEspecialidades()
+        protected void cargarCheckBoxEspecialidades(int idMedico)
         {
             try
             {
+                chkEspecialidades.Items.Clear();
+
+                List<Especialidad_x_Medico> listaEspXMed = especialidades_X_Medico.listar().Where(em => em.IDMedico == idMedico).ToList();
+
+                List<int> especialidadesDelMedico = listaEspXMed.Select(em => em.IDEspecialidad).ToList();
+
                 List<Especialidad> especialidades = especialidadNegocio.listar();
 
                 foreach (Especialidad especialidad in especialidades)
                 {
                     ListItem item = new ListItem(especialidad.Nombre, especialidad.Id.ToString());
+                    item.Selected = especialidadesDelMedico.Contains(especialidad.Id);
                     chkEspecialidades.Items.Add(item);
                 }
             }
@@ -57,6 +70,9 @@ namespace Centro_Medico
                 Console.WriteLine("Error al cargar la lista de especialidades: " + ex.Message);
             }
         }
+
+
+
 
         protected void dgvMedicos_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -70,6 +86,8 @@ namespace Centro_Medico
                 txtNombreMedico.Text = row.Cells[3].Text;
                 txtApellidoMedico.Text = row.Cells[4].Text;
                 txtEmail.Text = row.Cells[5].Text;
+
+                cargarCheckBoxEspecialidades(Convert.ToInt32(row.Cells[1].Text));
 
             }
             catch (Exception ex)

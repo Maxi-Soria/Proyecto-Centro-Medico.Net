@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="EmailService.cs" />
+    <Compile Include="Especialidades_X_MedicoNegocio.cs" />
     <Compile Include="EspecialidadNegocio.cs" />
     <Compile Include="MedicoNegocio.cs" />
     <Compile Include="PacienteNegocio.cs" />
