@@ -84,6 +84,8 @@
     <Content Include="MenuAdmin.aspx" />
     <Content Include="estilos.css" />
     <Content Include="Paciente-MiPerfil.aspx" />
+    <Content Include="Paciente-TurnoManual.aspx" />
+    <Content Include="Paciente-TurnoPersonal.aspx" />
     <Content Include="Recepcionista-MenúMedicos.aspx" />
     <Content Include="Recepcionista-MenúPacientes.aspx" />
     <Content Include="Registro.aspx" />
@@ -206,6 +208,20 @@
     </Compile>
     <Compile Include="Paciente-MiPerfil.aspx.designer.cs">
       <DependentUpon>Paciente-MiPerfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paciente-TurnoManual.aspx.cs">
+      <DependentUpon>Paciente-TurnoManual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paciente-TurnoManual.aspx.designer.cs">
+      <DependentUpon>Paciente-TurnoManual.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paciente-TurnoPersonal.aspx.cs">
+      <DependentUpon>Paciente-TurnoPersonal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paciente-TurnoPersonal.aspx.designer.cs">
+      <DependentUpon>Paciente-TurnoPersonal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Recepcionista-MenúMedicos.aspx.cs">
       <DependentUpon>Recepcionista-MenúMedicos.aspx</DependentUpon>
