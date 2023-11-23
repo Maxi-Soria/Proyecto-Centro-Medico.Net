@@ -21,15 +21,15 @@
             <div class="col-md-7 border">
                 <h2 class="text-center">Horarios</h2>
                 <div class="table-responsive" style="max-height: 600px; max-width: 800px; overflow-x: auto;">
-                    <asp:GridView runat="server" ID="dgvHorarios" OnSelectedIndexChanged="dgvHorarios_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark">
-                        <HeaderStyle CssClass="sticky-top" />
-                        <Columns>
-                           <asp:BoundField DataField="IDHorario" HeaderText="IDHorario" SortExpression="IDHorario" Visible="true" />
-                    <asp:BoundField DataField="HoraInicio" HeaderText="Hora de Inicio" SortExpression="HoraInicio" Visible="true" />
-                    <asp:BoundField DataField="HoraFin" HeaderText="Hora de Fin" SortExpression="HoraFin" Visible="true" />
-                            <asp:CommandField ShowSelectButton="true" SelectText="Selec" HeaderText="Acción" ControlStyle-CssClass="btn btn-sm btn-primary" />
-                        </Columns>
-                    </asp:GridView>
+                    <asp:GridView runat="server" ID="dgvHorarios" OnSelectedIndexChanged="dgvHorarios_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark" AutoGenerateColumns="false">
+    <HeaderStyle CssClass="sticky-top" />
+    <Columns>
+        <asp:BoundField DataField="IDHorario" HeaderText="IDHorario" SortExpression="IDHorario" Visible="true" />
+        <asp:BoundField DataField="HoraInicio" HeaderText="Hora de Inicio" SortExpression="HoraInicio" Visible="true" />
+        <asp:BoundField DataField="HoraFin" HeaderText="Hora de Fin" SortExpression="HoraFin" Visible="true" />
+        <asp:CommandField ShowSelectButton="true" SelectText="Selec" HeaderText="Acción" ControlStyle-CssClass="btn btn-sm btn-primary" />
+    </Columns>
+</asp:GridView>
                 </div>
             </div>
 

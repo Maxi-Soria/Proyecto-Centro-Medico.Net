@@ -42,8 +42,16 @@ namespace Centro_Medico
             {
                 GridViewRow row = dgvHorarios.SelectedRow;
                 txtIDHorario.Text = row.Cells[1].Text;
-                txtHoraInicio.Text = row.Cells[2].Text;
-                txtHoraFin.Text = row.Cells[3].Text;
+
+                if (TimeSpan.TryParse(row.Cells[2].Text, out TimeSpan horaInicio))
+                {
+                    txtHoraInicio.Text = horaInicio.ToString("hh\\:mm\\:ss");
+                }
+
+                if (TimeSpan.TryParse(row.Cells[3].Text, out TimeSpan horaFin))
+                {
+                    txtHoraFin.Text = horaFin.ToString("hh\\:mm\\:ss");
+                }
             }
             catch (Exception ex)
             {
@@ -84,7 +92,7 @@ namespace Centro_Medico
                 string horaFinText = txtHoraFin.Text;
                 DateTime.TryParse(horaFinText, out DateTime horaFin);
 
-                if (!existeHorario(nuevoHorarioInicio, nuevoHorarioFin))
+                if (!existeHorario(nuevoHorarioInicio.TimeOfDay, nuevoHorarioFin.TimeOfDay))
                 {
                     horarioNegocio.agregarHorario(nuevoHorarioInicio,nuevoHorarioFin);
                     cargarListaHorarios();
@@ -102,7 +110,7 @@ namespace Centro_Medico
             }
         }
 
-        private bool existeHorario(DateTime horaInicio, DateTime horaFin)
+        private bool existeHorario(TimeSpan horaInicio, TimeSpan horaFin)
         {
             List<Horario> lista = horarioNegocio.listar();
 
@@ -113,41 +121,36 @@ namespace Centro_Medico
         {
             try
             {
-
                 int idHorario = Convert.ToInt32(txtIDHorario.Text);
                 TimeSpan tiempoInicio = new TimeSpan(0, 0, 0);
                 TimeSpan tiempoFin = new TimeSpan(0, 0, 0);
 
-                DateTime nuevoHorarioInicio = DateTime.Today.Add(tiempoInicio);
-                DateTime nuevoHorarioFin = DateTime.Today.Add(tiempoFin);
-
                 string horaInicioText = txtHoraInicio.Text;
-                DateTime.TryParse(horaInicioText, out DateTime horaInicio);
-
-
                 string horaFinText = txtHoraFin.Text;
-                DateTime.TryParse(horaFinText, out DateTime horaFin);
 
-
-                Horario horarioEditado = new Horario
+                if (TimeSpan.TryParse(horaInicioText, out TimeSpan horaInicio) && TimeSpan.TryParse(horaFinText, out TimeSpan horaFin))
                 {
-                    IDHorario = idHorario,
-                    HoraInicio = nuevoHorarioInicio,
-                    HoraFin = nuevoHorarioFin,
+                    Horario horarioEditado = new Horario
+                    {
+                        IDHorario = idHorario,
+                        HoraInicio = horaInicio,
+                        HoraFin = horaFin
+                    };
+
+                    horarioNegocio.modificarHorario(horarioEditado);
+
+                    cargarListaHorarios();
+                    limpiarCampos();
+                }
+                else
+                {
                     
-                };
-
-
-                horarioNegocio.modificarHorario(horarioEditado);
-
-
-                cargarListaHorarios();
-
-                limpiarCampos();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Formato de hora no válido');", true);
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al modificar la especialidad: " + ex.Message);
+                Console.WriteLine("Error al modificar el horario: " + ex.Message);
             }
         }
 

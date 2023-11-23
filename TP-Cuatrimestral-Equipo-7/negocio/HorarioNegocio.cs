@@ -23,8 +23,8 @@ namespace negocio
                 {
                     Horario aux = new Horario();
                     aux.IDHorario = (int)datos.Lector["IDHorario"];
-                    aux.HoraInicio = (DateTime)datos.Lector["HoraInicio"];
-                    aux.HoraFin = (DateTime)datos.Lector["HoraFin"];
+                    aux.HoraInicio = (TimeSpan)datos.Lector["HoraInicio"];
+                    aux.HoraFin = (TimeSpan)datos.Lector["HoraFin"];
 
                     lista.Add(aux);
                 }
@@ -47,12 +47,13 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("insert into Horarios(HoraInicio, HoraFin) VALUES ('" + horaInicio + "''" + horaFin + "')");
+                datos.setearConsulta("INSERT INTO Horarios (HoraInicio, HoraFin) VALUES (@HoraInicio, @HoraFin)");
+                datos.setearParametro("@HoraInicio", horaInicio.TimeOfDay);
+                datos.setearParametro("@HoraFin", horaFin.TimeOfDay);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally { datos.cerrarConexion(); }
@@ -84,7 +85,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("UPDATE Horario SET HoraInicio = @HoraInicio, HoraFin = @HoraFin WHERE IDHorario = @IDHorario");
+                datos.setearConsulta("UPDATE Horarios SET HoraInicio = @HoraInicio, HoraFin = @HoraFin WHERE IDHorario = @IDHorario");
                 datos.setearParametro("@IDHorario", editada.IDHorario);
                 datos.setearParametro("@HoraInicio", editada.HoraInicio);
                 datos.setearParametro("@HoraFin", editada.HoraFin);
@@ -94,9 +95,10 @@ namespace negocio
             {
                 throw ex;
             }
-            finally { datos.cerrarConexion(); }
-
-
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
 }
