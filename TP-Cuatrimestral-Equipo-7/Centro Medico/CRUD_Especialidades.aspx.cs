@@ -48,6 +48,40 @@ namespace Centro_Medico
             }
         }
 
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string nuevaEspecialidad = "";
+                nuevaEspecialidad = txtNombre.Text;
+                List<Especialidad> lista = especialidadNegocio.listar();
+
+                if (!existeEspecialidad(nuevaEspecialidad) && nuevaEspecialidad != "")
+                {
+                    if(!lista.Any(especialidad => especialidad.Nombre == nuevaEspecialidad) && !string.IsNullOrEmpty(nuevaEspecialidad))
+                    {
+                        especialidadNegocio.agregarEspecialidad(nuevaEspecialidad);
+                        cargarListaEspecialidades();
+                        limpiarCampos();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('La especialidad ya existe en la lista');", true);
+                    }
+
+                }
+                else
+                {
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('La especialidad ya existe en la lista, o el campo esta vacio');", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al agregar la especialidad: " + ex.Message);
+            }
+        }
+
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             
@@ -61,31 +95,6 @@ namespace Centro_Medico
             catch (Exception ex)
             {
                 Console.WriteLine("Error al eliminar la especialidad: " + ex.Message);
-            }
-        }
-
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string nuevaEspecialidad = "";
-                nuevaEspecialidad = txtNombre.Text;
-
-                if (!existeEspecialidad(nuevaEspecialidad) && nuevaEspecialidad != "")
-                {
-                    especialidadNegocio.agregarEspecialidad(nuevaEspecialidad);
-                    cargarListaEspecialidades();
-                    limpiarCampos();
-                }
-                else
-                {
-
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('La especialidad ya existe en la lista, o el campo esta vacio');", true);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al agregar la especialidad: " + ex.Message);
             }
         }
 

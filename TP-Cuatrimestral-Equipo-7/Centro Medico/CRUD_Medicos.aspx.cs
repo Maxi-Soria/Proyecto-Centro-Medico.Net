@@ -102,26 +102,37 @@ namespace Centro_Medico
         {
             try
             {
-                Medico nuevo = new Medico();
-                nuevo.Legajo = int.Parse(txtLegajoMedico.Text);
-                nuevo.Nombre = txtNombreMedico.Text;
-                nuevo.Apellido = txtApellidoMedico.Text;
-                nuevo.EmailInstitucional = txtEmail.Text;
+                List<Medico> lista = medicoNegocio.listar();
 
-                medicoNegocio.agregarMedico(nuevo);
-                limpiarCampos();
+                int legajo = int.Parse(txtLegajoMedico.Text);
+
+                if (!lista.Any(medico => medico.Legajo == legajo))
+                {
+                    Medico nuevo = new Medico();
+                    nuevo.Legajo = legajo;
+                    nuevo.Nombre = txtNombreMedico.Text;
+                    nuevo.Apellido = txtApellidoMedico.Text;
+                    nuevo.EmailInstitucional = txtEmail.Text;
+
+                    medicoNegocio.agregarMedico(nuevo);
+                    limpiarCampos();
 
 
-                cargarListaMedicos();
+                    cargarListaMedicos();
+                }
+                else
+                {
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('El médico ya existe en la lista');", true);
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al agregar el paciente: " + ex.Message);
+                Console.WriteLine("Error al agregar el médico: " + ex.Message);
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Error al agregar el paciente');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Error al agregar el médico');", true);
             }
         }
-
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
@@ -158,7 +169,6 @@ namespace Centro_Medico
                 
             }
         }
-
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {

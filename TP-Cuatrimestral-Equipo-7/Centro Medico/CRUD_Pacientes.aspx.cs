@@ -76,30 +76,37 @@ namespace Centro_Medico
         {
             try
             {
-                Paciente nuevo = new Paciente();
-                nuevo.Dni = int.Parse(txtDniPaciente.Text);
-                nuevo.Nombre = txtNombrePaciente.Text;
-                nuevo.Apellido = txtApellidoPaciente.Text;
-                nuevo.EmailPersonal = txtEmail.Text;
-                nuevo.FechaDeNacimiento = DateTime.Parse(txtFechaNacimiento.Text);
-                nuevo.Domicilio = txtDireccion.Text;
-                nuevo.NumeroTelefonico = txtTelefono.Text;
+                List<Paciente> lista = pacienteNegocio.listar();
 
-                pacienteNegocio.agregarPaciente(nuevo);
-                limpiarCampos();
+                int dni = int.Parse(txtDniPaciente.Text);
 
-                // Luego de agregar el paciente, actualiza la lista en el GridView
-                cargarListaPacientes();
+                if (!lista.Any(paciente => paciente.Dni == dni))
+                {
+                    Paciente nuevo = new Paciente();
+                    nuevo.Dni = dni;
+                    nuevo.Nombre = txtNombrePaciente.Text;
+                    nuevo.Apellido = txtApellidoPaciente.Text;
+                    nuevo.EmailPersonal = txtEmail.Text;
+                    nuevo.FechaDeNacimiento = DateTime.Parse(txtFechaNacimiento.Text);
+                    nuevo.Domicilio = txtDireccion.Text;
+                    nuevo.NumeroTelefonico = txtTelefono.Text;
+
+                    pacienteNegocio.agregarPaciente(nuevo);
+                    limpiarCampos();
+
+                    cargarListaPacientes();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('El paciente ya existe en la lista');", true);
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al agregar el paciente: " + ex.Message);
-                // Muestra un mensaje de error al usuario
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Error al agregar el paciente');", true);
             }
         }
-
-
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
@@ -140,7 +147,6 @@ namespace Centro_Medico
                 // Manejar la excepción y mostrar un mensaje de error si es necesario
             }
         }
-
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {

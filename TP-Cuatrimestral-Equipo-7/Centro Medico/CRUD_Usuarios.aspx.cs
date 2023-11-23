@@ -61,24 +61,33 @@ namespace Centro_Medico
         {
             try
             {
-                Usuario nuevo = new Usuario();
-                nuevo.User = txtUser.Text;
-                nuevo.Pass = txtPass.Text;
-                nuevo.Email = txtEmail.Text;
+                List<Usuario> lista = usuarioNegocio.listar();
 
-                usuarioNegocio.agregarUsuario(nuevo);
-                limpiarCampos();
+                string nombreUsuario = txtUser.Text.ToString();
 
+                if (!lista.Any(usuario => usuario.User.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase)))
+                {
+                    Usuario nuevo = new Usuario();
+                    nuevo.User = nombreUsuario;
+                    nuevo.Pass = txtPass.Text;
+                    nuevo.Email = txtEmail.Text;
 
-                cargarListaUsuarios();
+                    usuarioNegocio.agregarUsuario(nuevo);
+                    limpiarCampos();
+
+                    cargarListaUsuarios();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('El usuario ya existe en la lista');", true);
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al agregar el paUsuario: " + ex.Message);
+                Console.WriteLine("Error al agregar el usuario: " + ex.Message);
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Error al agregar un usuario');", true);
             }
-
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
