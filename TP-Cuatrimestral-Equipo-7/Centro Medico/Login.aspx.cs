@@ -19,37 +19,48 @@ namespace Centro_Medico
         {
             Usuario usuario;
             UsuarioNegocio usuarioNegocio = new negocio.UsuarioNegocio();
-            
-            int nroUser = 5;       
+
+            int nroUser = 5;
 
             try
             {
-                                
+
                 usuario = new Usuario(txtUser.Value, txtPassword.Value, nroUser);
                 usuarioNegocio.Loguear(usuario);
                 nroUser = (int)usuario.TipoUsuario;
 
                 if (usuarioNegocio.Loguear(usuario))
                 {
-                    Session.Add("usuario", usuario);
+                    if (usuarioNegocio.Loguear(usuario))
+                    {
+                        Session.Add("usuario", usuario);
+                        Session.Add("IDUsuario", usuario.Id);
+
+                        
                     switch (nroUser)
                     {
-                        case 1:Response.Redirect("MenuAdmin.aspx", false);
-                        break;
-                        case 2:Response.Redirect("MenuRecepcionista.aspx", false);
-                        break;
-                        case 3: Response.Redirect("MenuMedico.aspx", false);
-                        break;
-                        case 4:Response.Redirect("MenuPaciente.aspx", false);
-                        break;
-                        case 5:Response.Redirect("Default.aspx", false);
-                        break;
+                        case 1:
+                            Response.Redirect("MenuAdmin.aspx", false);
+                            break;
+                        case 2:
+                            Response.Redirect("MenuRecepcionista.aspx", false);
+                            break;
+                        case 3:
+                            Response.Redirect("MenuMedico.aspx", false);
+                            break;
+                        case 4:
+                            Response.Redirect("MenuPaciente.aspx", false);
+                            break;
+                        case 5:
+                            Response.Redirect("Default.aspx", false);
+                            break;
                     }
-                    
+
                 }
                 else
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Usuario o Contraseña incorrectos', 'error');", true);
+                    }
                 }
             }
             catch (Exception ex)

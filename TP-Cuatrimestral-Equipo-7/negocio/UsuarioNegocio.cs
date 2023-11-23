@@ -184,5 +184,36 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public int ObtenerIDUsuario(string nombreUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT Id FROM Usuarios WHERE Usuario = @Usuario");
+                datos.setearParametro("@Usuario", nombreUsuario);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    return Convert.ToInt32(datos.Lector["Id"]);
+                }
+                else
+                {
+                    
+                    return 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

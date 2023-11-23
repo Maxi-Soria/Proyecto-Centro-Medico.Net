@@ -41,7 +41,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col justify-content-center">
-                <h1>Reserve su turno</h1>
+                <h1>Recepcionista - Turnos</h1>
             </div>
         </div>
     </div>

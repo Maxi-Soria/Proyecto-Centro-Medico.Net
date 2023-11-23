@@ -18,6 +18,7 @@ namespace Centro_Medico
             {
                 CargarPacientes();
                 CargarEspecialidades();
+                calendario.SelectedDate = DateTime.Today;
             }
         }
 
@@ -263,7 +264,14 @@ namespace Centro_Medico
         {
             if (!string.IsNullOrEmpty(ddlMedicos.SelectedValue))
             {
-                CargarHorariosPorMedico(calendario.SelectedDate);
+                if (calendario.SelectedDate != DateTime.MinValue)
+                {
+                    CargarHorariosPorMedico(calendario.SelectedDate);
+                }
+                else
+                {
+                    calendario.SelectedDate = DateTime.Today;
+                }
             }
         }
 
