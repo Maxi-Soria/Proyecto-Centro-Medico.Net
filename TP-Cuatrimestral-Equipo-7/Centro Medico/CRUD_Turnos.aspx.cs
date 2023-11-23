@@ -52,7 +52,7 @@ namespace Centro_Medico
                 txtIdTurno.Text = row.Cells[1].Text;
                 txtIdMedico.Text = row.Cells[2].Text;
                 
-                txtFecha.Text = DateTime.Parse(row.Cells[3].Text).ToString("dd/MM/yyyy");
+                txtFecha.Text = DateTime.Parse(row.Cells[3].Text).ToString("yyyy/dd/MM");
                 txtObservaciones.Text = row.Cells[4].Text;
                 txtIdHorario.Text = row.Cells[5].Text;
                 txtIdUsuario.Text = row.Cells[6].Text;

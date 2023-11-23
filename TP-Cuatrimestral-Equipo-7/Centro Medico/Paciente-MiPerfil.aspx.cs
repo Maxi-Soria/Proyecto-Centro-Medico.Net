@@ -7,6 +7,8 @@ using System.Globalization;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using dominio;
+using negocio;
 
 namespace Centro_Medico
 {
@@ -18,8 +20,54 @@ namespace Centro_Medico
         {
             if (!IsPostBack)
             {
-                cargarListaPacientes();
+                
+                int idPacienteActual = ObtenerIdPacienteActual();
+
+                
+                cargarListaPacientes(idPacienteActual);
             }
+        }
+
+        protected void cargarListaPacientes(int idPacienteActual)
+        {
+            try
+            {
+                
+                List<Paciente> lista = pacienteNegocio.listar();
+
+                
+                List<Paciente> listaFiltrada = lista.Where(p => p.ID == idPacienteActual).ToList();
+
+                
+                dgvPacientes.DataSource = listaFiltrada;
+
+                
+                dgvPacientes.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al cargar la lista de pacientes: " + ex.Message);
+            }
+        }
+
+        private int ObtenerIdPacienteActual()
+        {
+            if (Session["usuario"] != null)
+            {
+                Usuario usuario = (Usuario)Session["usuario"];
+
+                
+                if (usuario.TipoUsuario == TipoUsuario.Paciente)
+                {
+                    
+                    int idPaciente = 1;
+                    
+                        return idPaciente;
+                    
+                }
+            }
+
+            return 0; 
         }
 
         protected void cargarListaPacientes()

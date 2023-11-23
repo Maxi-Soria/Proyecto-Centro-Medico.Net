@@ -17,6 +17,7 @@
                     <asp:HyperLink ID="Usuarios" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Usuarios.aspx">Usuarios</asp:HyperLink>
                     <asp:HyperLink ID="Turnos" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Turnos.aspx">Turnos</asp:HyperLink>
                     <asp:HyperLink ID="Medicos" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Medicos.aspx">Medicos</asp:HyperLink>
+                    <asp:HyperLink ID="Horarios" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Horarios.aspx">Horarios</asp:HyperLink>
                 </div>
             </div>
 
@@ -28,13 +29,7 @@
             <HeaderStyle CssClass="sticky-top" />
                 <Columns>
                     <asp:CommandField ShowSelectButton="true" SelectText="Selec" HeaderText="Acción" ControlStyle-CssClass="btn btn-sm btn-primary" />
-                    <asp:BoundField DataField="IDTurno" HeaderText="ID Turno" />
-                    <asp:BoundField DataField="IDMedico" HeaderText="ID Médico" />
-                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
-                    <asp:BoundField DataField="ObservacionesMedico" HeaderText="Observaciones" />
-                    <asp:BoundField DataField="IDHorario" HeaderText="ID Horario" />
-                    <asp:BoundField DataField="IDUsuario" HeaderText="ID Usuario" />
-                    <asp:BoundField DataField="Estado" HeaderText="Estado" />
+
                 </Columns>
 </asp:GridView>
                 </div>
