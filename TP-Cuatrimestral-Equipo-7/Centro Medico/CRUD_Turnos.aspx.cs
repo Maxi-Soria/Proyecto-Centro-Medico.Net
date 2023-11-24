@@ -20,10 +20,21 @@ namespace Centro_Medico
         {
             if (!IsPostBack)
             {
-                
+                if (!IsUserAuthenticated())
+                {
+
+                    Response.Redirect("~/Login.aspx");
+                    return;
+                }
                 CargarListaTurnos();
             }
         }
+
+        private bool IsUserAuthenticated()
+        {
+            return Session["usuario"] != null;
+        }
+
 
         protected void CargarListaTurnos()
         {

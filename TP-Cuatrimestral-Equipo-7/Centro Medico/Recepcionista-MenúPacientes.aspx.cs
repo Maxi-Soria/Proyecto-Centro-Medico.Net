@@ -19,9 +19,21 @@ namespace Centro_Medico
         {
             if (!IsPostBack)
             {
+                if (!IsUserAuthenticated())
+                {
+
+                    Response.Redirect("~/Login.aspx");
+                    return;
+                }
                 cargarListaPacientes();
             }
         }
+
+        private bool IsUserAuthenticated()
+        {
+            return Session["usuario"] != null;
+        }
+
 
         protected void cargarListaPacientes()
         {

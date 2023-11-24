@@ -20,33 +20,41 @@ namespace Centro_Medico
         {
             if (!IsPostBack)
             {
-                
+                if (!IsUserAuthenticated())
+                {
+                    
+                    Response.Redirect("~/Login.aspx");
+                    return;
+                }
+
                 int idPacienteActual = ObtenerIdPacienteActual();
 
-                
-                cargarListaPacientes(idPacienteActual);
+                if (idPacienteActual > 0)
+                {
+                    CargarDatosPaciente(idPacienteActual);
+                }
             }
         }
 
-        protected void cargarListaPacientes(int idPacienteActual)
+        private bool IsUserAuthenticated()
         {
-            try
+            return Session["usuario"] != null;
+        }
+
+        private void CargarDatosPaciente(int idPaciente)
+        {
+            Paciente paciente = pacienteNegocio.listarUnPaciente(idPaciente);
+
+            if (paciente != null)
             {
-                
-                List<Paciente> lista = pacienteNegocio.listar();
-
-                
-                List<Paciente> listaFiltrada = lista.Where(p => p.ID == idPacienteActual).ToList();
-
-                
-                dgvPacientes.DataSource = listaFiltrada;
-
-                
-                dgvPacientes.DataBind();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al cargar la lista de pacientes: " + ex.Message);
+                txtIdPaciente.Text = paciente.ID.ToString();
+                txtDniPaciente.Text = paciente.Dni.ToString();
+                txtNombrePaciente.Text = paciente.Nombre;
+                txtApellidoPaciente.Text = paciente.Apellido;
+                txtEmail.Text = paciente.EmailPersonal;
+                txtFechaNacimiento.Text = paciente.FechaDeNacimiento.ToString("yyyy-MM-dd");
+                txtDireccion.Text = paciente.Domicilio;
+                txtTelefono.Text = paciente.NumeroTelefonico;
             }
         }
 
@@ -56,100 +64,16 @@ namespace Centro_Medico
             {
                 Usuario usuario = (Usuario)Session["usuario"];
 
-                
                 if (usuario.TipoUsuario == TipoUsuario.Paciente)
                 {
-                    
-                    int idPaciente = 1;
-                    
-                        return idPaciente;
-                    
+                    return usuario.Id;
                 }
             }
 
-            return 0; 
+            return 0;
         }
 
-        protected void cargarListaPacientes()
-        {
-            try
-            {
-               
-                List<Paciente> lista = pacienteNegocio.listar();
-                dgvPacientes.DataSource = lista;
-                dgvPacientes.DataBind();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al cargar la lista de pacientes: " + ex.Message);
-            }
-
-        }
-
-        protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                GridViewRow row = dgvPacientes.SelectedRow;
-                txtIdPaciente.Text = row.Cells[1].Text;
-                txtDniPaciente.Text = row.Cells[2].Text;
-                txtNombrePaciente.Text = row.Cells[3].Text;
-                txtApellidoPaciente.Text = row.Cells[4].Text;
-                txtEmail.Text = row.Cells[5].Text;
-
-                
-                DateTime fechaNacimiento;
-                if (DateTime.TryParseExact(row.Cells[6].Text, "dd/M/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaNacimiento))
-                {
-                    
-                    txtFechaNacimiento.Text = fechaNacimiento.ToString("yyyy-MM-dd");
-                }
-                else
-                {
-                    
-                    txtFechaNacimiento.Text = "Fecha inválida";
-                }
-
-                txtDireccion.Text = row.Cells[7].Text;
-                txtTelefono.Text = row.Cells[8].Text;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al seleccionar un paciente: " + ex.Message);
-                
-            }
-        }
-
-
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Paciente nuevo = new Paciente();
-                nuevo.Dni = int.Parse(txtDniPaciente.Text);
-                nuevo.Nombre = txtNombrePaciente.Text;
-                nuevo.Apellido = txtApellidoPaciente.Text;
-                nuevo.EmailPersonal = txtEmail.Text;
-                nuevo.FechaDeNacimiento = DateTime.Parse(txtFechaNacimiento.Text);
-                nuevo.Domicilio = txtDireccion.Text;
-                nuevo.NumeroTelefonico = txtTelefono.Text;
-
-                pacienteNegocio.agregarPaciente(nuevo);
-                limpiarCampos();
-
-                // Luego de agregar el paciente, actualiza la lista en el GridView
-                cargarListaPacientes();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al agregar el paciente: " + ex.Message);
-                // Muestra un mensaje de error al usuario
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Error al agregar el paciente');", true);
-            }
-        }
-
-
-
+       
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             try
@@ -174,37 +98,17 @@ namespace Centro_Medico
                     NumeroTelefonico = telefono
                 };
 
-                
                 pacienteNegocio.modificarPaciente(pacienteModificado);
-
-                
-                cargarListaPacientes();
-
-               
                 limpiarCampos();
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "swal('Éxito', 'La información se ha editado correctamente', 'success');", true);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al modificar el paciente: " + ex.Message);
-                
             }
         }
 
-
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int idPaciente = Convert.ToInt32(txtIdPaciente.Text);
-                pacienteNegocio.eliminarPaciente(idPaciente);
-                cargarListaPacientes();
-                limpiarCampos();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al eliminar el paciente: " + ex.Message);
-            }
-        }
+        
 
         protected void limpiarCampos()
         {
@@ -217,7 +121,5 @@ namespace Centro_Medico
             txtDireccion.Text = string.Empty;
             txtTelefono.Text = string.Empty;
         }
-
-
     }
 }

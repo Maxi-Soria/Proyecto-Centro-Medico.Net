@@ -17,7 +17,19 @@ namespace Centro_Medico
             if (!IsPostBack)
             {
                 cargarListaEspecialidades();
+
+                if (!IsUserAuthenticated())
+                {
+
+                    Response.Redirect("~/Login.aspx");
+                    return;
+                }
             }
+        }
+
+        private bool IsUserAuthenticated()
+        {
+            return Session["usuario"] != null;
         }
 
         protected void cargarListaEspecialidades()

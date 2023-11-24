@@ -16,13 +16,24 @@ namespace Centro_Medico
         {
             if (!IsPostBack)
             {
-                
+                if (!IsUserAuthenticated())
+                {
+
+                    Response.Redirect("~/Login.aspx");
+                    return;
+                }
                 CargarEspecialidades();
                 calendario.SelectedDate = DateTime.Today;
             }
         }
 
-     
+        private bool IsUserAuthenticated()
+        {
+            return Session["usuario"] != null;
+        }
+
+
+
         private void CargarEspecialidades()
         {
             AccesoDatos datos = new AccesoDatos();

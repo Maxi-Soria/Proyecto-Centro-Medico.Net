@@ -89,7 +89,6 @@
     <Content Include="Recepcionista-MenúMedicos.aspx" />
     <Content Include="Recepcionista-MenúPacientes.aspx" />
     <Content Include="Registro.aspx" />
-    <Content Include="RolRecepcionista.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="FAQ.aspx" />
@@ -243,13 +242,6 @@
     </Compile>
     <Compile Include="Registro.aspx.designer.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="RolRecepcionista.aspx.cs">
-      <DependentUpon>RolRecepcionista.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RolRecepcionista.aspx.designer.cs">
-      <DependentUpon>RolRecepcionista.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
