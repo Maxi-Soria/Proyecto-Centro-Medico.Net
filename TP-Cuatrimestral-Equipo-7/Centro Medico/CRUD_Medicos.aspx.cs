@@ -19,7 +19,7 @@ namespace Centro_Medico
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
 
                 if (!IsUserAuthenticated())
@@ -29,9 +29,10 @@ namespace Centro_Medico
                     return;
                 }
                 cargarListaMedicos();
-                
+
+
             }
-           }
+        }
 
         private bool IsUserAuthenticated()
         {
@@ -58,55 +59,72 @@ namespace Centro_Medico
             }
 
         }
-
-        protected void cargarListBox(int idMedico)
+        protected void cargarDropDawnList(int idMedico)
         {
             try
             {
-                listBox.Items.Add(new ListItem("Argentina", "AR"));
-                listBox.Items.Add(new ListItem("Brasil", "BR"));
-                listBox.Items.Add(new ListItem("México", "MX"));
+                List<Especialidad_x_Medico> especialidadesDelMedico = especialidades_X_Medico.listar().Where(em => em.IDMedico == idMedico).ToList();
 
-                // Puedes seleccionar un país por defecto si es necesario
-                // Por ejemplo, seleccionar México por defecto:
-                listBox.Items.FindByValue("MX").Selected = true;
+                List<Especialidad> todasLasEspecialidades = especialidadNegocio.listar();
+
+                List<Especialidad> especialidadesNoAsignadas = todasLasEspecialidades.Where(especialidad =>
+                                   !especialidadesDelMedico.Any(espMed => espMed.IDEspecialidad == especialidad.Id)
+                                   ).ToList();
+
+                ddlAgregarEsp.DataSource = especialidadesNoAsignadas;
+
+
+                ddlAgregarEsp.DataTextField = "Nombre"; 
+                ddlAgregarEsp.DataValueField = "Id";    
+
+                ddlAgregarEsp.DataBind();
             }
             catch (Exception)
             {
-
                 throw;
             }
-            /*
+        }
+
+
+        protected void cargarListBox(int idMedico)
+        {
+            List<Especialidad> especialidades = especialidadNegocio.listar();
+            List<Especialidad_x_Medico> listaEspXMed = especialidades_X_Medico.listar().Where(em => em.IDMedico == idMedico).ToList();
+
             try
             {
-                
+                List<Especialidad> especialidadesEncontradas = new List<Especialidad>();
 
-                List<Especialidad_x_Medico> listaEspXMed = especialidades_X_Medico.listar().Where(em => em.IDMedico == idMedico).ToList();
-
-                List<int> especialidadesDelMedico = listaEspXMed.Select(em => em.IDEspecialidad).ToList();
-
-                List<Especialidad> especialidades = especialidadNegocio.listar();
-
-                foreach (Especialidad especialidad in especialidades)
+                foreach (Especialidad_x_Medico espXMed in listaEspXMed)
                 {
-                    ListItem item = new ListItem(especialidad.Nombre, especialidad.Id.ToString());
-                    item.Selected = especialidadesDelMedico.Contains(especialidad.Id);
+                    Especialidad especialidadEncontrada = especialidades.FirstOrDefault(e => e.Id == espXMed.IDEspecialidad);
 
+                    if (especialidadEncontrada != null)
+                    {
+                        especialidadesEncontradas.Add(especialidadEncontrada);
+                    }
                 }
+
+                listBox.DataSource = especialidadesEncontradas;
+                listBox.DataTextField = "Nombre";
+                listBox.DataValueField = "Id";
+                listBox.DataBind();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al cargar la lista de especialidades: " + ex.Message);
+                throw;
             }
-            */
         }
+
+
 
 
 
 
         protected void dgvMedicos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             try
             {
                 GridViewRow row = dgvMedicos.SelectedRow;
@@ -118,15 +136,64 @@ namespace Centro_Medico
                 txtEmail.Text = row.Cells[5].Text;
 
                 cargarListBox(Convert.ToInt32(row.Cells[1].Text));
+                cargarDropDawnList(Convert.ToInt32(row.Cells[1].Text));
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al seleccionar un medico: " + ex.Message);
-        
+
             }
-        
+
         }
+
+        protected void btnAgregarEspecialidad_a_Medico(object sender, EventArgs e)
+        {
+            if (ddlAgregarEsp.SelectedIndex != -1)
+            {
+                Especialidad_x_Medico nuevaExM = new Especialidad_x_Medico();
+
+                string idEspecialidadSeleccionada = ddlAgregarEsp.SelectedValue;
+
+                int idEspecialidad = Convert.ToInt32(idEspecialidadSeleccionada);
+                int idMedico = Convert.ToInt32(txtIdMedico.Text);
+
+                nuevaExM.IDEspecialidad = idEspecialidad;
+                nuevaExM.IDMedico = idMedico;
+
+                especialidades_X_Medico.agregarEspecialidad_x_Medico(nuevaExM);
+
+                cargarListBox(nuevaExM.IDMedico);
+                cargarDropDawnList(nuevaExM.IDMedico);
+
+            }
+        }
+
+        protected void btnQuitarEspecialidad_a_Medico(object sender, EventArgs e)
+        {
+            Especialidad_x_Medico nuevaExM = new Especialidad_x_Medico();
+            if (listBox.SelectedIndex != -1)
+            {
+
+             
+                                                                         
+                string valorSeleccionado = listBox.SelectedItem.Value;
+
+                int idEspecialidad = Convert.ToInt32(valorSeleccionado);
+                int idMedico =  Convert.ToInt32(txtIdMedico.Text);
+
+                nuevaExM.IDEspecialidad = idEspecialidad;
+                nuevaExM.IDMedico = idMedico;
+
+                especialidades_X_Medico.eliminarEspecialidad_x_Medico(nuevaExM);
+
+                cargarListBox(nuevaExM.IDMedico);
+                cargarDropDawnList(nuevaExM.IDMedico);
+
+            }
+        }
+
+        
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -184,19 +251,19 @@ namespace Centro_Medico
 
                 };
 
-               
+
                 medicoNegocio.modificarMedico(medicoModificado);
 
-                
+
                 cargarListaMedicos();
 
-               
+
                 limpiarCampos();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al modificar el paciente: " + ex.Message);
-                
+
             }
         }
 
@@ -221,7 +288,7 @@ namespace Centro_Medico
             txtLegajoMedico.Text = string.Empty;
             txtNombreMedico.Text = string.Empty;
             txtApellidoMedico.Text = string.Empty;
-            txtEmail.Text = string.Empty;   
+            txtEmail.Text = string.Empty;
         }
 
 

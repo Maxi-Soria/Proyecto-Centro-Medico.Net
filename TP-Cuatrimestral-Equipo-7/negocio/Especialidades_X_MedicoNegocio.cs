@@ -42,5 +42,45 @@ namespace negocio
             }
             
         }
+
+        public void agregarEspecialidad_x_Medico(Especialidad_x_Medico nueva)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("INSERT INTO Especialidades_x_Medico VALUES ('" + nueva.IDEspecialidad + "', '" + nueva.IDMedico + "')");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+
+        public void eliminarEspecialidad_x_Medico(Especialidad_x_Medico ExM)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("DELETE FROM Especialidades_x_Medico WHERE IDEspecialidad = @IdEspecialidad AND IDMedico = @IdMedico;");
+                datos.setearParametro("@IdEspecialidad", ExM.IDEspecialidad);
+                datos.setearParametro("@IdMedico", ExM.IDMedico);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
     }
 }

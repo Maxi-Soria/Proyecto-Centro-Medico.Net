@@ -54,10 +54,14 @@
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
 
                     <asp:Label ID="lblEspecialidades" runat="server" CssClass="form-label fw-bold">Especialidades</asp:Label>
-                    <div class="input-group">
-                        <asp:ListBox ID="listBox" CssClass="form-control h-60" runat="server"></asp:ListBox>
+                    <div class="mb-1">
+                        <asp:DropDownList ID="ddlAgregarEsp" runat="server"></asp:DropDownList>
+                        <asp:Button ID="btnAgregarEsp" OnClick="btnAgregarEspecialidad_a_Medico" runat="server" Text="+" />
+                        <asp:Button ID="Button2" runat="server" OnClick="btnQuitarEspecialidad_a_Medico" Text="-" />
                     </div>
-
+                    <div class="input-group">
+                        <asp:ListBox ID="listBox" CssClass="form-control h-100" runat="server"></asp:ListBox>
+                    </div>
 
                     <div class="mt-4 w-100">
                         <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary btn-sm" OnClick="btnAgregar_Click" />
