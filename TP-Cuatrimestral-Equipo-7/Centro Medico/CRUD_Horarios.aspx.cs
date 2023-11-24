@@ -56,15 +56,17 @@ namespace Centro_Medico
                 GridViewRow row = dgvHorarios.SelectedRow;
                 txtIDHorario.Text = row.Cells[1].Text;
 
-                if (TimeSpan.TryParse(row.Cells[2].Text, out TimeSpan horaInicio))
+                
+                if (TimeSpan.TryParse(row.Cells[1].Text, out TimeSpan horaInicio))
                 {
                     txtHoraInicio.Text = horaInicio.ToString("hh\\:mm\\:ss");
                 }
 
-                if (TimeSpan.TryParse(row.Cells[3].Text, out TimeSpan horaFin))
+                if (TimeSpan.TryParse(row.Cells[2].Text, out TimeSpan horaFin))
                 {
                     txtHoraFin.Text = horaFin.ToString("hh\\:mm\\:ss");
                 }
+                
             }
             catch (Exception ex)
             {
