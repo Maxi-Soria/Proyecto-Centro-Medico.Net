@@ -63,6 +63,17 @@
                         <asp:ListBox ID="listBox" CssClass="form-control h-100" runat="server"></asp:ListBox>
                     </div>
 
+
+                   <asp:Label ID="lblHorarios" runat="server" CssClass="form-label fw-bold">Horarios</asp:Label>
+                   <div class="mb-1">
+                        <asp:DropDownList ID="DropDownListHxM" runat="server"></asp:DropDownList>
+                        <asp:Button ID="agregarHxM" OnClick="btnAgregarHorario_a_Medico" runat="server" Text="+" />
+                        <asp:Button ID="quitarHxM" runat="server" Text="-" onClick="btnQuitarHorario_a_Medico" />
+                    </div>
+                    <div>
+                        <asp:ListBox ID="listBoxHxM" CssClass="form-control h-100" runat="server"></asp:ListBox>
+                    </div>
+
                     <div class="mt-4 w-100">
                         <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary btn-sm" OnClick="btnAgregar_Click" />
                         <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning btn-sm" OnClick="btnModificar_Click" />

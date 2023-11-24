@@ -213,6 +213,51 @@ namespace Centro_Medico
         protected global::System.Web.UI.WebControls.ListBox listBox;
 
         /// <summary>
+        /// lblHorarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHorarios;
+
+        /// <summary>
+        /// DropDownListHxM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListHxM;
+
+        /// <summary>
+        /// agregarHxM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button agregarHxM;
+
+        /// <summary>
+        /// quitarHxM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button quitarHxM;
+
+        /// <summary>
+        /// listBoxHxM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox listBoxHxM;
+
+        /// <summary>
         /// btnAgregar control.
         /// </summary>
         /// <remarks>

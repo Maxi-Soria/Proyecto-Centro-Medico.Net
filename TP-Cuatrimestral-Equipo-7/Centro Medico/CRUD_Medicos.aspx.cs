@@ -14,8 +14,10 @@ namespace Centro_Medico
     {
         MedicoNegocio medicoNegocio = new MedicoNegocio();
         EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
+        HorarioNegocio horarioNegocio = new HorarioNegocio();
 
         Especialidades_X_MedicoNegocio especialidades_X_Medico = new Especialidades_X_MedicoNegocio();
+        Horarios_x_MedicoNegocio horarios_X_Med = new Horarios_x_MedicoNegocio();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -59,6 +61,7 @@ namespace Centro_Medico
             }
 
         }
+
         protected void cargarDropDawnList(int idMedico)
         {
             try
@@ -84,6 +87,33 @@ namespace Centro_Medico
                 throw;
             }
         }
+
+
+
+        protected void cargarDropDawnListHxM(int idMedico)
+        {
+            try
+            {
+                List<Horarios_x_Medico> horariosDelMedico = horarios_X_Med.listar().Where(hm => hm.IDMedico == idMedico).ToList();
+                List<Horario> todosLosHorarios = horarioNegocio.listar();
+
+                List<Horario> horariosNoAsignados = todosLosHorarios.Where(horario =>
+                    !horariosDelMedico.Any(horaXMed => horaXMed.IDHorario == horario.IDHorario)
+                ).ToList();
+
+                DropDownListHxM.DataSource = horariosNoAsignados;
+                DropDownListHxM.DataTextField = "HoraInicio"; // Cambia al campo que desees mostrar
+                DropDownListHxM.DataValueField = "IDHorario"; // Cambia al campo de valor que desees
+
+                DropDownListHxM.DataBind();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al cargar los horarios no asignados: " + ex.Message);
+            }
+        }
+
+
 
 
         protected void cargarListBox(int idMedico)
@@ -117,6 +147,37 @@ namespace Centro_Medico
             }
         }
 
+        protected void cargarListBoxHxM(int idMedico)
+        {
+            List<Horario> horarios = horarioNegocio.listar();
+            List<Horarios_x_Medico> listaHoraxMed = horarios_X_Med.listar().Where(hm => hm.IDMedico == idMedico).ToList();
+            try
+            {
+                List<Horario> horariosEncontrados = new List<Horario>();
+
+                foreach (Horarios_x_Medico horaXMed in listaHoraxMed)
+                {
+                    Horario horarioEncontrado = horarios.FirstOrDefault(h => h.IDHorario == horaXMed.IDHorario);
+
+                    if (horarioEncontrado != null)
+                    {
+                        horariosEncontrados.Add(horarioEncontrado);
+                    }
+                }
+
+                listBoxHxM.DataSource = horariosEncontrados;
+                listBoxHxM.DataTextField = "HoraInicio"; // Cambia al campo que desees mostrar
+                listBoxHxM.DataValueField = "IDHorario"; // Cambia al campo de valor que desees
+                listBoxHxM.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al cargar la lista de horarios: " + ex.Message);
+                throw;
+            }
+        }
+
+
 
 
 
@@ -135,8 +196,13 @@ namespace Centro_Medico
                 txtApellidoMedico.Text = row.Cells[4].Text;
                 txtEmail.Text = row.Cells[5].Text;
 
-                cargarListBox(Convert.ToInt32(row.Cells[1].Text));
-                cargarDropDawnList(Convert.ToInt32(row.Cells[1].Text));
+                int idMedico = Convert.ToInt32(row.Cells[1].Text);
+
+                cargarListBox(idMedico);
+                cargarDropDawnList(idMedico);
+
+                cargarListBoxHxM(idMedico);
+                cargarDropDawnListHxM(idMedico);
 
             }
             catch (Exception ex)
@@ -169,6 +235,31 @@ namespace Centro_Medico
             }
         }
 
+        protected void btnAgregarHorario_a_Medico(object sender, EventArgs e)
+        {
+            if (DropDownListHxM.SelectedIndex != -1)
+            {
+                Horarios_x_Medico nuevoHorarioMedico = new Horarios_x_Medico();
+
+                string idHorarioSeleccionado = DropDownListHxM.SelectedValue;
+
+                int idHorario = Convert.ToInt32(idHorarioSeleccionado);
+                int idMedico = Convert.ToInt32(txtIdMedico.Text);
+
+                nuevoHorarioMedico.IDHorario = idHorario;
+                nuevoHorarioMedico.IDMedico = idMedico;
+
+                horarios_X_Med.agregarHorario_x_Medico(nuevoHorarioMedico);
+
+                cargarListBox(idMedico);
+                cargarDropDawnList(idMedico);
+                cargarDropDawnListHxM(idMedico);
+                cargarListBoxHxM(idMedico);
+
+            }
+        }
+        
+
         protected void btnQuitarEspecialidad_a_Medico(object sender, EventArgs e)
         {
             Especialidad_x_Medico nuevaExM = new Especialidad_x_Medico();
@@ -193,7 +284,32 @@ namespace Centro_Medico
             }
         }
 
-        
+        protected void btnQuitarHorario_a_Medico(object sender, EventArgs e)
+        {
+            if (listBoxHxM.SelectedIndex != -1)
+            {
+                Horarios_x_Medico nuevoHorarioMedico = new Horarios_x_Medico();
+
+                string valorSeleccionado = listBoxHxM.SelectedItem.Value;
+                int idHorario = Convert.ToInt32(valorSeleccionado);
+                int idMedico = Convert.ToInt32(txtIdMedico.Text);
+
+                nuevoHorarioMedico.IDHorario = idHorario;
+                nuevoHorarioMedico.IDMedico = idMedico;
+
+                // Eliminar el horario del médico
+                horarios_X_Med.eliminarHorario_x_Medico(nuevoHorarioMedico);
+
+                // Recargar los DropDownList después de eliminar el horario del médico
+                cargarListBox(idMedico);
+                cargarDropDawnList(idMedico);
+                cargarDropDawnListHxM(idMedico);
+                cargarListBoxHxM(idMedico);
+            }
+        }
+
+
+
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {

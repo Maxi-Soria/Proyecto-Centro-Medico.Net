@@ -46,6 +46,7 @@
     <Compile Include="Especialidades_X_MedicoNegocio.cs" />
     <Compile Include="EspecialidadNegocio.cs" />
     <Compile Include="HorarioNegocio.cs" />
+    <Compile Include="Horarios_x_MedicoNegocio.cs" />
     <Compile Include="MedicoNegocio.cs" />
     <Compile Include="PacienteNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
