@@ -215,5 +215,35 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public string ObtenerEmailUsuario(int idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT Email FROM Usuarios WHERE Id = @Id");
+                datos.setearParametro("@Id", idUsuario);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    
+                    return datos.Lector["Email"] != DBNull.Value ? (string)datos.Lector["Email"] : string.Empty;
+                }
+
+                
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

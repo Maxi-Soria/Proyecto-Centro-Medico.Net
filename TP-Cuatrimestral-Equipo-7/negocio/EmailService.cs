@@ -13,20 +13,19 @@ namespace negocio
         private MailMessage email;
         private SmtpClient server;
 
-        public EmailService()
+        public EmailService(string smtpHost, int smtpPort, string smtpUsername, string smtpPassword)
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("e8be951f2764e2", "163fc84964077a");
+            server.Credentials = new NetworkCredential(smtpUsername, smtpPassword);
             server.EnableSsl = true;
-            server.Port = 2525;
-            server.Host = "sandbox.smtp.mailtrap.io";
-
+            server.Port = smtpPort;
+            server.Host = smtpHost;
         }
 
         public void armarCorreo(string emailDestino, string asunto, string cuerpo)
         {
             email = new MailMessage();
-            email.From = new MailAddress("noresponder@centromedico.com");
+            email.From = new MailAddress("noresponder@cocohealth.com");
             email.To.Add(emailDestino);
             email.Subject = asunto;
             email.Body = cuerpo;
@@ -40,6 +39,30 @@ namespace negocio
 
                 throw ex;
             }
+        }
+
+        public void EnviarCorreoConfirmacion(string emailDestino, string asunto, string cuerpo)
+        {
+            try
+            {
+                MailMessage email = new MailMessage();
+                email.From = new MailAddress("noresponder@cocohealth.com");
+                email.To.Add(emailDestino);
+                email.Subject = asunto;
+                email.Body = cuerpo;
+
+                server.Send(email);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private string ObtenerEmailUsuario(int idUsuario)
+        {
+            
+            return "correo_ejemplo@example.com";
         }
 
         public void enviarEmail()

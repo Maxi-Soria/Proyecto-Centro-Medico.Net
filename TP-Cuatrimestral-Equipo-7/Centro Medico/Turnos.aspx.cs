@@ -215,15 +215,13 @@ namespace Centro_Medico
                     return;
                 }
 
-
                 if (ExisteTurnoParaPacienteEnFechaHora(idUsuario, fechaSeleccionada, idHorario))
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Ya existe un turno para el paciente seleccionado en la fecha y hora especificadas.', 'error');", true);
                     return;
                 }
 
-
-
+                
                 AccesoDatos datos = new AccesoDatos();
                 string consulta = "INSERT INTO Turnos (IDMedico, IDUsuario, Estado, Fecha, IDHorario, ObservacionesMedico) VALUES (@IDMedico, @IDUsuario, @Estado, @Fecha, @IDHorario, @ObservacionesMedico)";
 
@@ -239,10 +237,24 @@ namespace Centro_Medico
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Turno confirmado', 'El turno se ha registrado exitosamente.', 'success');", true);
                 LimpiarDropDownLists();
+
+                
+                UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+                string emailDestino = usuarioNegocio.ObtenerEmailUsuario(idUsuario);
+                string asunto = "Confirmación de turno en Centro Médico";
+                string cuerpo = $"Su turno para el {fechaSeleccionada.ToShortDateString()} a las {horarioSeleccionado} ha sido confirmado.";
+
+                string smtpHost = "sandbox.smtp.mailtrap.io";
+                int smtpPort = 2525; 
+                string smtpUsername = "api";
+                string smtpPassword = "53f00aa4e268a85ba2151f6cdcb07da5";
+
+                EmailService emailService = new EmailService(smtpHost, smtpPort, smtpUsername, smtpPassword);
+                emailService.EnviarCorreoConfirmacion(emailDestino, asunto, cuerpo);
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Error al confirmar el turno: " + ex.Message + "', 'error');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", $"Swal.fire('Error', 'Error al confirmar el turno: {ex.Message}', 'error');", true);
             }
         }
 

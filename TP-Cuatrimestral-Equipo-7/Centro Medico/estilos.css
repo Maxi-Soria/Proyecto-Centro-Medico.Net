@@ -1,13 +1,21 @@
-﻿.nav-link {
+﻿@font-face {
+    font-family: 'VinaSans';
+    src: url('https://fonts.googleapis.com/css2?family=Vina+Sans:wght@400;700&display=swap') format('truetype');
+}
+
+body {
+    font-family: 'VinaSans', sans-serif;
+}
+
+.nav-link {
     margin: 0 10px;
     font-weight: 800;
+    font-size: 18px;
     padding: 4px;
     text-decoration: none;
-    border-bottom: 2px solid transparent; 
+    border-bottom: 2px solid transparent;
 }
 
     .nav-link:hover {
-        border-color: #ff0000; 
+        border-color: #ff0000;
     }
-
-
