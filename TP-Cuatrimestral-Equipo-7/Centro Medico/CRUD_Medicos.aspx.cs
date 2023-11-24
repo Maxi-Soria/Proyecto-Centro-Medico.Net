@@ -59,11 +59,27 @@ namespace Centro_Medico
 
         }
 
-        protected void cargarCheckBoxEspecialidades(int idMedico)
+        protected void cargarListBox(int idMedico)
         {
             try
             {
-                chkEspecialidades.Items.Clear();
+                listBox.Items.Add(new ListItem("Argentina", "AR"));
+                listBox.Items.Add(new ListItem("Brasil", "BR"));
+                listBox.Items.Add(new ListItem("México", "MX"));
+
+                // Puedes seleccionar un país por defecto si es necesario
+                // Por ejemplo, seleccionar México por defecto:
+                listBox.Items.FindByValue("MX").Selected = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            /*
+            try
+            {
+                
 
                 List<Especialidad_x_Medico> listaEspXMed = especialidades_X_Medico.listar().Where(em => em.IDMedico == idMedico).ToList();
 
@@ -75,13 +91,14 @@ namespace Centro_Medico
                 {
                     ListItem item = new ListItem(especialidad.Nombre, especialidad.Id.ToString());
                     item.Selected = especialidadesDelMedico.Contains(especialidad.Id);
-                    chkEspecialidades.Items.Add(item);
+
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al cargar la lista de especialidades: " + ex.Message);
             }
+            */
         }
 
 
@@ -100,7 +117,7 @@ namespace Centro_Medico
                 txtApellidoMedico.Text = row.Cells[4].Text;
                 txtEmail.Text = row.Cells[5].Text;
 
-                cargarCheckBoxEspecialidades(Convert.ToInt32(row.Cells[1].Text));
+                cargarListBox(Convert.ToInt32(row.Cells[1].Text));
 
             }
             catch (Exception ex)

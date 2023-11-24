@@ -7,10 +7,10 @@
 
     <div class="container-fluid vh-100">
         <div class="row">
-            
+
             <div class="col-md-2 border vh-100 bg-dark">
                 <div class="btn-group-vertical w-100">
-                    
+
                     <asp:HyperLink ID="Especialidades" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100 " NavigateUrl="CRUD_Especialidades.aspx">Especialidades</asp:HyperLink>
                     <asp:HyperLink ID="Pacientes" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100 " NavigateUrl="CRUD_Pacientes.aspx">Pacientes</asp:HyperLink>
                     <asp:HyperLink ID="Usuarios" runat="server" class="btn btn-primary mt-3 rounded custom-btn-size w-100" NavigateUrl="CRUD_Usuarios.aspx">Usuarios</asp:HyperLink>
@@ -21,9 +21,9 @@
             </div>
 
 
-            
+
             <div class="col-md-7 border ">
-                
+
                 <h2 class="text-center">Medicos</h2>
                 <div class="table-responsive" style="max-height: 600px; max-width: 800px; overflow-x: auto;">
                     <asp:GridView runat="server" ID="dgvMedicos" OnSelectedIndexChanged="dgvMedicos_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark">
@@ -38,8 +38,8 @@
 
             <div class="col-md-3 mt-1 border">
                 <div class="mb-3">
-                    <asp:Label ID="lblId" runat="server" AssociatedControlID="txtIdMedico" CssClass="form-label fw-bold" style="display:none;">ID</asp:Label>
-                    <asp:TextBox ID="txtIdMedico" runat="server" CssClass="form-control" ReadOnly="true" style="display:none;"></asp:TextBox>
+                    <asp:Label ID="lblId" runat="server" AssociatedControlID="txtIdMedico" CssClass="form-label fw-bold" Style="display: none;">ID</asp:Label>
+                    <asp:TextBox ID="txtIdMedico" runat="server" CssClass="form-control" ReadOnly="true" Style="display: none;"></asp:TextBox>
 
                     <asp:Label ID="lblLegajo" runat="server" AssociatedControlID="txtLegajoMedico" CssClass="form-label fw-bold">DNI</asp:Label>
                     <asp:TextBox ID="txtLegajoMedico" runat="server" CssClass="form-control"></asp:TextBox>
@@ -53,9 +53,10 @@
                     <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" CssClass="form-label fw-bold">Correo Electrónico</asp:Label>
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
 
-                    <asp:Label ID="lblEspecialidades" runat="server"  CssClass="form-label fw-bold">Especialidades</asp:Label>
-                    <asp:CheckBoxList ID="chkEspecialidades" runat="server" CssClass="form-check">
-                    </asp:CheckBoxList>
+                    <asp:Label ID="lblEspecialidades" runat="server" CssClass="form-label fw-bold">Especialidades</asp:Label>
+                    <div class="input-group">
+                        <asp:ListBox ID="listBox" CssClass="form-control h-60" runat="server"></asp:ListBox>
+                    </div>
 
 
                     <div class="mt-4 w-100">
