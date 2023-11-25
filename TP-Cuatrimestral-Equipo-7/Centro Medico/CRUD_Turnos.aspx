@@ -23,7 +23,7 @@
 
             <div class="col-md-7 border ">
                 
-                <h2 class="text-center">Turnos</h2>
+                
                 <div class="table-responsive" style="max-height: 3000px; max-width: 3000px; overflow-x: auto;">
                     <asp:GridView runat="server" ID="dgvTurnos" OnSelectedIndexChanged="dgvTurnos_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark">
             <HeaderStyle CssClass="sticky-top" />

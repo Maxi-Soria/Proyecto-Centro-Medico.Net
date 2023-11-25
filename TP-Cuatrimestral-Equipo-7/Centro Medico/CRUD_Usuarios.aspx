@@ -21,8 +21,7 @@
 
 
             <div class="col-md-7">
-                <!-- Contenido del segundo contenedor -->
-                <h2 class="text-center">CRUD Usuarios</h2>
+               
 
                 <div class="table-responsive" style="max-height: 600px; max-width: 800px; overflow-x: auto;">
                     <asp:GridView runat="server" ID="dgvUsuarios" OnSelectedIndexChanged="dgvUsuarios_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark">

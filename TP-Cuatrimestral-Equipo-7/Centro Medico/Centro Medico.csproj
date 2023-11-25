@@ -77,7 +77,7 @@
     <Content Include="CRUD_Usuarios.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="MenuAdminParaBorrar.aspx" />
+    <Content Include="Medico-Perfil.aspx" />
     <Content Include="MenuMedico.aspx" />
     <Content Include="MenuPaciente.aspx" />
     <Content Include="MenuRecepcionista.aspx" />
@@ -166,12 +166,12 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MenuAdminParaBorrar.aspx.cs">
-      <DependentUpon>MenuAdminParaBorrar.aspx</DependentUpon>
+    <Compile Include="Medico-Perfil.aspx.cs">
+      <DependentUpon>Medico-Perfil.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MenuAdminParaBorrar.aspx.designer.cs">
-      <DependentUpon>MenuAdminParaBorrar.aspx</DependentUpon>
+    <Compile Include="Medico-Perfil.aspx.designer.cs">
+      <DependentUpon>Medico-Perfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="MenuMedico.aspx.cs">
       <DependentUpon>MenuMedico.aspx</DependentUpon>

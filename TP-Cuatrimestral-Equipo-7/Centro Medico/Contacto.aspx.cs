@@ -15,9 +15,9 @@ namespace Centro_Medico
 
         }
 
-        /*protected void btnAceptar_Click(object sender, EventArgs e)
+        protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            EmailService emailService = new EmailService();
+            /*EmailService emailService = new EmailService();
             emailService.armarCorreo(txtEmail.Text, txtAsunto.Text, txtMensaje.Text);
 
             try
@@ -28,9 +28,9 @@ namespace Centro_Medico
             {
 
                 throw ex;
-            }
+            }*/
 
-        }*/
+        }
 
     }
 }

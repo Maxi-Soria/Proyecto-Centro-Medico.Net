@@ -24,7 +24,7 @@
 
             <div class="col-md-7 border ">
 
-                <h2 class="text-center">Medicos</h2>
+                
                 <div class="table-responsive" style="max-height: 600px; max-width: 800px; overflow-x: auto;">
                     <asp:GridView runat="server" ID="dgvMedicos" OnSelectedIndexChanged="dgvMedicos_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark">
                         <HeaderStyle CssClass="sticky-top" />

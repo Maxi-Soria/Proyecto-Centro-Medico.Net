@@ -146,5 +146,41 @@ namespace negocio
             return especialidades;
         }
 
+        public Medico listarUnMedico(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Medico aux = null;
+
+            try
+            {
+                datos.setearConsulta("SELECT IDMedico, Legajo, Nombre, Apellido, Email FROM Medicos WHERE IDUsuario = @IDUsuario");
+                datos.setearParametro("@IDUsuario", id);
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    aux = new Medico
+                    {
+                        IDMedico = (int)datos.Lector["IDMedico"],
+                        Legajo = (int)datos.Lector["Legajo"],
+                        Nombre = (string)datos.Lector["Nombre"],
+                        Apellido = (string)datos.Lector["Apellido"],
+                        EmailInstitucional = (string)datos.Lector["Email"],
+                    };
+                }
+
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

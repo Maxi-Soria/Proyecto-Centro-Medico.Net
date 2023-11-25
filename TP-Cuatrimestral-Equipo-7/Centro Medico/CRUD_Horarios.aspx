@@ -19,7 +19,7 @@
             </div>
 
             <div class="col-md-7 border">
-                <h2 class="text-center">Horarios</h2>
+                
                 <div class="table-responsive" style="max-height: 600px; max-width: 800px; overflow-x: auto;">
                     <asp:GridView runat="server" ID="dgvHorarios" OnSelectedIndexChanged="dgvHorarios_SelectedIndexChanged" CssClass="table table-striped table-bordered table-dark" AutoGenerateColumns="false">
     <HeaderStyle CssClass="sticky-top" />

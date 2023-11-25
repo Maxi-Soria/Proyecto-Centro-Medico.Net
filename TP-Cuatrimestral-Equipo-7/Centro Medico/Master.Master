@@ -17,29 +17,46 @@
     <script src="PaperKit2/paper-kit.min.js"></script>
 
     <style>
-        body {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            margin: 0;
-            padding: 0;
-            font-family: 'Javanese Text', sans-serif;
-            font-size: 16px;
-            background-image: url('https://healthimpact.org/wp-content/uploads/2020/12/17767809.jpg');
-            height: 100vh;
-        }
-
-        .navbar-nav .nav-item:hover {
-            background-color: transparent; 
-            border-radius: 5px; 
-        }
-
-        .navbar-nav .nav-link:hover {
-        color: white !important; 
-        text-decoration: none !important;
-        border-bottom: double !important; 
+    body {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+        font-family: 'Javanese Text', sans-serif;
+        font-size: 16px;
+        background-image: url('https://healthimpact.org/wp-content/uploads/2020/12/17767809.jpg');
+        height: 100vh;
     }
-    </style>
+
+    .navbar-nav .nav-item:hover {
+        background-color: transparent;
+        border-radius: 5px;
+    }
+
+    .navbar-nav .nav-link {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: white !important;
+        text-decoration: none !important;
+        border: 2px solid transparent;
+        border-image: linear-gradient(45deg, #D291BC, #B4A5E5);
+        border-image-slice: 1;
+        animation: borderAnimation 1s linear infinite;
+    }
+
+    @keyframes borderAnimation {
+        0% {
+            background-position: 0% 0%;
+        }
+        100% {
+            background-position: 100% 100%;
+        }
+    }
+</style>
 
     <script>
    
