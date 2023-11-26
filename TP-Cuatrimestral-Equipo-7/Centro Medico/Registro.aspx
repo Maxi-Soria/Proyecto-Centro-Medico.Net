@@ -1,5 +1,56 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Registro.aspx.cs" Inherits="Centro_Medico.Registro" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style> 
+         .custom-calendar {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: white;
+    }
+
+    .custom-calendar th,
+    .custom-calendar td {
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .custom-calendar th {
+        background-color: navajowhite;
+    }
+
+    .custom-calendar td {
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .custom-calendar td:hover {
+        background-color: mediumpurple;
+    }
+
+    
+    .custom-calendar th a {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: navajowhite; 
+        color: #333;
+        font-size: 18px;
+        line-height: 20px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .custom-calendar th a:hover {
+        background-color: mediumpurple;
+        color: white; 
+    }
+    </style>
+    
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -28,7 +79,7 @@
                     <input type="email" class="form-control" id="txtEmail" runat="server" />
 
                     <label for="calFechaNacimiento">Fecha de Nacimiento</label>
-                    <asp:Calendar ID="calFechaNacimiento" runat="server"></asp:Calendar>
+                    <asp:Calendar ID="calFechaNacimiento" runat="server" CssClass="custom-calendar"></asp:Calendar>
 
                     <label for="txtDomicilio">Domicilio</label>
                     <input type="text" class="form-control" id="txtDomicilio" runat="server" />

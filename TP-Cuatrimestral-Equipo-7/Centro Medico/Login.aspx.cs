@@ -62,6 +62,11 @@ namespace Centro_Medico
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Usuario o Contraseña incorrectos', 'error');", true);
                     }
                 }
+
+                if(nroUser == 5)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'No existe el usuario. Por favor, regístrese', 'error');", true);
+                }
             }
             catch (Exception ex)
             {
