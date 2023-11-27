@@ -6,14 +6,17 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <h2>Agenda Médico</h2>
+     
 
 
         <asp:GridView ID="GridViewAgenda" runat="server" AutoGenerateColumns="False" 
             EmptyDataText="No hay datos disponibles" CssClass="table table-bordered">
             <Columns>
-                <asp:BoundField DataField="IDUsuario" HeaderText="IDUsuario" SortExpression="IDUsuario" />
-                <asp:BoundField DataField="Fecha" HeaderText="Fecha de Cita" SortExpression="Fecha" />
+                <asp:BoundField DataField="IDTurno" HeaderText="IDTurno" SortExpression="IDTurno" />
+                <asp:BoundField DataField="Día" HeaderText="Día" SortExpression="Día" />
+                <asp:BoundField DataField="Mes" HeaderText="Mes" SortExpression="Mes" />
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
+                <asp:BoundField DataField="Horario" HeaderText="Horario" SortExpression="Horario" />
 
 
             </Columns>
