@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-4 mb-4">
                 <img src="https://1.bp.blogspot.com/-ZAjwF8qMn7I/X6v59qe2_vI/AAAAAAAAAAs/RE9cYjq9lPIDTPvwnDZL9JnnV1laf5L0wCLcBGAsYHQ/s448/informe.png" alt="Imagen 2" class="img-fluid mb-2" style="width: 350px; height: 350px;" />
-                <a href="administrar_turnos.html" class="btn btn-primary">Informes</a>
+                <a href="Médico-Informes.aspx" class="btn btn-primary">Informes</a>
             </div>
             <div class="col-md-4 mb-4">
                 <img src="https://img.freepik.com/vector-premium/ilustracion-lindo-medico-estetoscopio-diseno-personajes-dibujos-animados-vector-kawaii_380474-31.jpg" alt="Imagen 3" class="img-fluid mb-2" style="width: 350px; height: 350px;" />
