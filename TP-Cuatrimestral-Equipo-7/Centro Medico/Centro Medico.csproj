@@ -83,6 +83,7 @@
     <Content Include="MenuRecepcionista.aspx" />
     <Content Include="MenuAdmin.aspx" />
     <Content Include="estilos.css" />
+    <Content Include="Médico-Informes.aspx" />
     <Content Include="Paciente-MiPerfil.aspx" />
     <Content Include="Paciente-TurnoManual.aspx" />
     <Content Include="Paciente-TurnoPersonal.aspx" />
@@ -200,6 +201,13 @@
     </Compile>
     <Compile Include="MenuAdmin.aspx.designer.cs">
       <DependentUpon>MenuAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Médico-Informes.aspx.cs">
+      <DependentUpon>Médico-Informes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Médico-Informes.aspx.designer.cs">
+      <DependentUpon>Médico-Informes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paciente-MiPerfil.aspx.cs">
       <DependentUpon>Paciente-MiPerfil.aspx</DependentUpon>
