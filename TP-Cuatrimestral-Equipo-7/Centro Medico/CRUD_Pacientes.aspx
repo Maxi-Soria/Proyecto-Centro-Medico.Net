@@ -38,17 +38,16 @@
             <div class="col-md-3 mt-1 border">
 
                 <div class="mb-3">
-                    <asp:Label ID="lblIdPaciente" runat="server" AssociatedControlID="txtDniPaciente" CssClass="form-label fw-bold">ID</asp:Label>
-                    <asp:TextBox ID="txtIdPaciente" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="txtIdPaciente" runat="server" CssClass="form-control" ReadOnly="true" Visible="false"></asp:TextBox>
 
                     <asp:Label ID="lblDniPaciente" runat="server" AssociatedControlID="txtDniPaciente" CssClass="form-label fw-bold">DNI</asp:Label>
-                    <asp:TextBox ID="txtDniPaciente" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtDniPaciente" runat="server" CssClass="form-control" required></asp:TextBox>
 
                     <asp:Label ID="lblNombrePaciente" runat="server" AssociatedControlID="txtNombrePaciente" CssClass="form-label fw-bold">Nombre</asp:Label>
-                    <asp:TextBox ID="txtNombrePaciente" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtNombrePaciente" runat="server" CssClass="form-control" required></asp:TextBox>
 
                     <asp:Label ID="lblApellidoPaciente" runat="server" AssociatedControlID="txtApellidoPaciente" CssClass="form-label fw-bold">Apellido</asp:Label>
-                    <asp:TextBox ID="txtApellidoPaciente" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtApellidoPaciente" runat="server" CssClass="form-control" recuired></asp:TextBox>
 
                     <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" CssClass="form-label fw-bold">Correo Electrónico</asp:Label>
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>

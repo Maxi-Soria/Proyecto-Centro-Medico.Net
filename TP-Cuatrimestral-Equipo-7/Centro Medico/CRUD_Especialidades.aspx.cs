@@ -68,7 +68,7 @@ namespace Centro_Medico
                 nuevaEspecialidad = txtNombre.Text;
                 List<Especialidad> lista = especialidadNegocio.listar();
 
-                if (!existeEspecialidad(nuevaEspecialidad) && nuevaEspecialidad != "")
+                if (!existeEspecialidad(nuevaEspecialidad))
                 {
                     if(!lista.Any(especialidad => especialidad.Nombre == nuevaEspecialidad) && !string.IsNullOrEmpty(nuevaEspecialidad))
                     {
@@ -76,17 +76,14 @@ namespace Centro_Medico
                         cargarListaEspecialidades();
                         limpiarCampos();
                     }
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('La especialidad ya existe en la lista');", true);
-                    }
 
                 }
                 else
                 {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('No se puede Agregar', 'La especialidad ya existe.', 'error');", true);
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('La especialidad ya existe en la lista, o el campo esta vacio');", true);
                 }
+
             }
             catch (Exception ex)
             {
@@ -96,19 +93,34 @@ namespace Centro_Medico
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            
             try
             {
+                Especialidades_X_MedicoNegocio ExMNegocio = new Especialidades_X_MedicoNegocio();
+                List<Especialidad_x_Medico> ExMlista = ExMNegocio.listar();
+
                 int idEspecialidad = Convert.ToInt32(txtId.Text);
-                especialidadNegocio.eliminarEspecialidad(idEspecialidad);
-                cargarListaEspecialidades();
-                limpiarCampos();
+
+                bool especialidadAsignada = ExMlista.Any(exm => exm.IDEspecialidad == idEspecialidad);
+
+                if (!especialidadAsignada)
+                {
+                    especialidadNegocio.eliminarEspecialidad(idEspecialidad);
+                    cargarListaEspecialidades();
+                    limpiarCampos();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Eliminado correctamente', '.', '');", true);  
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('No se puede eliminar', 'Existe algun medico asociado a esta especialidad.', 'error');", true);
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al eliminar la especialidad: " + ex.Message);
+ 
             }
         }
+
 
         private bool existeEspecialidad(string especialidad)
         {

@@ -39,6 +39,9 @@ namespace Centro_Medico
             try
             {
                 List<Paciente> lista = pacienteNegocio.listar();
+
+
+             
                 dgvPacientes.DataSource = lista;
                 dgvPacientes.DataBind();
             }
@@ -46,8 +49,8 @@ namespace Centro_Medico
             {
                 Console.WriteLine("Error al cargar la lista de pacientes: " + ex.Message);
             }
-            
         }
+
 
         protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
         {

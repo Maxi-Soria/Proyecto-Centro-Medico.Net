@@ -43,11 +43,10 @@
 
                 <div class="mb-3"> 
 
-                    <asp:Label ID="lblIdEspecialidad" runat="server" AssociatedControlID="txtId" CssClass="form-label fw-bold">ID</asp:Label>
-                    <asp:TextBox ID="txtId" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="txtId" runat="server" CssClass="form-control" ReadOnly="true" Visible="false"></asp:TextBox>
 
                     <asp:Label ID="lblNombreEspecialidad" runat="server" AssociatedControlID="txtNombre" CssClass="form-label fw-bold">Nombre</asp:Label>
-                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" required></asp:TextBox>
 
 
                     <div class="mt-4 w100">
