@@ -54,6 +54,35 @@ namespace Centro_Medico
             }
         }
 
+        public List<int> ObtenerIDsHorariosDisponibles(int idMedico, DateTime fechaTurno)
+        {
+            TurnoNegocio turnosNegocio = new TurnoNegocio();
+            List<Turno> listaTurnos = turnosNegocio.listar();
+
+            Horarios_x_MedicoNegocio HxMnegocio = new Horarios_x_MedicoNegocio();
+            List<Horarios_x_Medico> listaExM = HxMnegocio.listar();
+
+            List<int> HorariosDisponibles = listaExM
+                .Where(horario => horario.IDMedico == idMedico)
+                .Select(horario => horario.IDHorario)
+                .ToList();
+
+
+            List<int> horariosOcupadosEnTurnos = listaTurnos
+                .Where(turno => turno.IDMedico == idMedico && turno.Fecha_Horario_Entrada.Date == fechaTurno.Date)
+                .Select(turno => turno.IDHorario)
+                .ToList();
+
+            HorariosDisponibles = HorariosDisponibles.Except(horariosOcupadosEnTurnos).ToList();
+
+            return HorariosDisponibles;
+        }
+
+
+
+
+
+
         protected void dgvTurnos_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -62,12 +91,16 @@ namespace Centro_Medico
 
                 txtIdTurno.Text = row.Cells[1].Text;
                 txtIdMedico.Text = row.Cells[2].Text;
-                
-                txtFecha.Text = DateTime.Parse(row.Cells[3].Text).ToString("yyyy/dd/MM");
-                txtObservaciones.Text = row.Cells[4].Text;
-                txtIdHorario.Text = row.Cells[5].Text;
-                txtIdUsuario.Text = row.Cells[6].Text;
+                txtIdUsuario.Text = row.Cells[3].Text;
+                txtFecha.Text = DateTime.Parse(row.Cells[4].Text).ToString("yyyy-MM-dd");
+                txtObservaciones.Text = row.Cells[6].Text;
                 txtEstado.Text = row.Cells[7].Text;
+
+                int idMedicoSeleccionado = Convert.ToInt32(row.Cells[2].Text);
+                DateTime fechaTurno = DateTime.Parse(row.Cells[4].Text);
+
+                ddlEspecialidades.DataSource = ObtenerIDsHorariosDisponibles(idMedicoSeleccionado, fechaTurno);
+                ddlEspecialidades.DataBind();
             }
             catch (Exception ex)
             {
@@ -75,35 +108,11 @@ namespace Centro_Medico
             }
         }
 
+
+
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            try
-            {
-             
-                Turno nuevoTurno = new Turno
-                {
-                    IDMedico = int.Parse(txtIdMedico.Text),
-                    Fecha_Horario_Entrada = DateTime.ParseExact(txtFecha.Text, "dd/MM/yyyy", null), 
-                    Observaciones = txtObservaciones.Text,
-                    IDHorario = int.Parse(txtIdHorario.Text),
-                    IDUsuario = int.Parse(txtIdUsuario.Text),
-                    Estado = txtEstado.Text
-                };
-
-                
-                turnoNegocio.agregarTurno(nuevoTurno);
-
-              
-                LimpiarCampos();
-
-                
-                CargarListaTurnos();
-            }
-            catch (Exception ex)
-            {
-                
-                Console.WriteLine("Error al agregar el turno: " + ex.Message);
-            }
+            Response.Redirect("Turnos.aspx");
         }
 
 
@@ -119,7 +128,7 @@ namespace Centro_Medico
                     IDMedico = int.Parse(txtIdMedico.Text),
                     Fecha_Horario_Entrada = DateTime.ParseExact(txtFecha.Text, "dd/MM/yyyy", null),
                     Observaciones = txtObservaciones.Text,
-                    IDHorario = int.Parse(txtIdHorario.Text),
+                    IDHorario = int.Parse(ddlEspecialidades.Text),
                     IDUsuario = int.Parse(txtIdUsuario.Text),
                     Estado = txtEstado.Text
                 };
@@ -164,7 +173,7 @@ namespace Centro_Medico
             txtIdMedico.Text = string.Empty;
             txtFecha.Text = string.Empty;
             txtObservaciones.Text = string.Empty;
-            txtIdHorario.Text = string.Empty;
+            ddlEspecialidades.Text = string.Empty;
             txtIdUsuario.Text = string.Empty;
             txtEstado.Text = string.Empty;
         }

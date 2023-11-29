@@ -43,17 +43,21 @@
                     <asp:Label ID="lblIDMedico" runat="server" AssociatedControlID="txtIdMedico" CssClass="form-label fw-bold">IDMédico</asp:Label>
                     <asp:TextBox ID="txtIdMedico" runat="server" CssClass="form-control"></asp:TextBox>
 
-                    <asp:Label ID="lblFecha" runat="server" AssociatedControlID="txtFecha" CssClass="form-label fw-bold">Fecha</asp:Label>
-                    <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:Label ID="lblIDUsuario" runat="server" AssociatedControlID="txtIdUsuario" CssClass="form-label fw-bold">IDUsuario</asp:Label>
+                    <asp:TextBox ID="txtIdUsuario" runat="server" CssClass="form-control"></asp:TextBox>
 
+                    <asp:Label ID="lblFecha" runat="server" AssociatedControlID="txtFecha" CssClass="form-label fw-bold">Fecha</asp:Label>
+                    <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+
+                    <div>
+                    <asp:Label ID="lblHorario" runat="server" AssociatedControlID="ddlEspecialidades" CssClass="form-label fw-bold">Horario</asp:Label>
+                    <asp:DropDownList ID="ddlEspecialidades" runat="server"></asp:DropDownList>
+                    </div>
+                    
                     <asp:Label ID="lblObservaciones" runat="server" AssociatedControlID="txtObservaciones" CssClass="form-label fw-bold">Observaciones</asp:Label>
                     <asp:TextBox ID="txtObservaciones" runat="server" CssClass="form-control"></asp:TextBox>
 
-                    <asp:Label ID="lblHorario" runat="server" AssociatedControlID="txtIdHorario" CssClass="form-label fw-bold">Horario</asp:Label>
-                    <asp:TextBox ID="txtIdHorario" runat="server" CssClass="form-control"></asp:TextBox>
-
-                    <asp:Label ID="lblIDUsuario" runat="server" AssociatedControlID="txtIdUsuario" CssClass="form-label fw-bold">IDUsuario</asp:Label>
-                    <asp:TextBox ID="txtIdUsuario" runat="server" CssClass="form-control"></asp:TextBox>
+                    
 
                     <asp:Label ID="lblEstado" runat="server" AssociatedControlID="txtEstado" CssClass="form-label fw-bold">Estado</asp:Label>
                     <asp:TextBox ID="txtEstado" runat="server" CssClass="form-control"></asp:TextBox>
