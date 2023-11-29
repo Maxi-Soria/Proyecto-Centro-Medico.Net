@@ -70,7 +70,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("UPDATE Turnos SET IDTurno = @IDTurno, IDMedico = @IDMedico, Fecha = @Fecha, ObservacionesMedico = @ObservacionesMedico, Estado = @Estado, IDHorario = @IDHorario, IDUsuario = @IDUsuario WHERE IDTurno = @IDTurno");
+                datos.setearConsulta("UPDATE Turnos SET IDMedico = @IDMedico, Fecha = @Fecha, ObservacionesMedico = @ObservacionesMedico, Estado = @Estado, IDHorario = @IDHorario, IDUsuario = @IDUsuario WHERE IDTurno = @IDTurno");
 
                 datos.setearParametro("@IDTurno", turno.IDTurno);
                 datos.setearParametro("@IDMedico", turno.IDMedico);

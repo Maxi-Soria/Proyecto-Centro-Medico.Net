@@ -37,21 +37,25 @@
 
             <div class="col-md-3 mt-1 border">
                 <div class="mb-3">
-                    <asp:Label ID="lblId" runat="server" AssociatedControlID="txtIdTurno" CssClass="form-label fw-bold">ID</asp:Label>
-                    <asp:TextBox ID="txtIdTurno" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                    
+                    <asp:TextBox ID="txtIdTurno" runat="server" CssClass="form-control" ReadOnly="true" Visible="false"></asp:TextBox>
+                    <asp:TextBox ID="txtIdMedico" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
 
-                    <asp:Label ID="lblIDMedico" runat="server" AssociatedControlID="txtIdMedico" CssClass="form-label fw-bold">IDMédico</asp:Label>
-                    <asp:TextBox ID="txtIdMedico" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:Label ID="lbl" runat="server" AssociatedControlID="txtLegajoMedico" CssClass="form-label fw-bold">Legajo Medico</asp:Label>
+                    <asp:TextBox ID="txtLegajoMedico" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+
+
 
                     <asp:Label ID="lblIDUsuario" runat="server" AssociatedControlID="txtIdUsuario" CssClass="form-label fw-bold">IDUsuario</asp:Label>
                     <asp:TextBox ID="txtIdUsuario" runat="server" CssClass="form-control"></asp:TextBox>
 
                     <asp:Label ID="lblFecha" runat="server" AssociatedControlID="txtFecha" CssClass="form-label fw-bold">Fecha</asp:Label>
-                    <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                    <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" TextMode="Date" AutoPostBack="true" OnTextChanged="txtFecha_TextChanged"></asp:TextBox>
+
 
                     <div>
-                    <asp:Label ID="lblHorario" runat="server" AssociatedControlID="ddlEspecialidades" CssClass="form-label fw-bold">Horario</asp:Label>
-                    <asp:DropDownList ID="ddlEspecialidades" runat="server"></asp:DropDownList>
+                    <asp:Label ID="lblHorario" runat="server" AssociatedControlID="ddlHorarios" CssClass="form-label fw-bold">Horario</asp:Label>
+                    <asp:DropDownList ID="ddlHorarios" runat="server"></asp:DropDownList>
                     </div>
                     
                     <asp:Label ID="lblObservaciones" runat="server" AssociatedControlID="txtObservaciones" CssClass="form-label fw-bold">Observaciones</asp:Label>

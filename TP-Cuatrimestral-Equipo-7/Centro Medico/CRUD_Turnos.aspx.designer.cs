@@ -78,15 +78,6 @@ namespace Centro_Medico
         protected global::System.Web.UI.WebControls.GridView dgvTurnos;
 
         /// <summary>
-        /// lblId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblId;
-
-        /// <summary>
         /// txtIdTurno control.
         /// </summary>
         /// <remarks>
@@ -96,15 +87,6 @@ namespace Centro_Medico
         protected global::System.Web.UI.WebControls.TextBox txtIdTurno;
 
         /// <summary>
-        /// lblIDMedico control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIDMedico;
-
-        /// <summary>
         /// txtIdMedico control.
         /// </summary>
         /// <remarks>
@@ -112,6 +94,24 @@ namespace Centro_Medico
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIdMedico;
+
+        /// <summary>
+        /// lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl;
+
+        /// <summary>
+        /// txtLegajoMedico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLegajoMedico;
 
         /// <summary>
         /// lblIDUsuario control.
@@ -159,13 +159,13 @@ namespace Centro_Medico
         protected global::System.Web.UI.WebControls.Label lblHorario;
 
         /// <summary>
-        /// ddlEspecialidades control.
+        /// ddlHorarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidades;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHorarios;
 
         /// <summary>
         /// lblObservaciones control.
