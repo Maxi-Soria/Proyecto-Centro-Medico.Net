@@ -99,7 +99,7 @@ namespace Centro_Medico
                 };
 
                 pacienteNegocio.modificarPaciente(pacienteModificado);
-                limpiarCampos();
+                Console.WriteLine("Paciente modificado correctamente");
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "swal('Éxito', 'La información se ha editado correctamente', 'success');", true);
             }
             catch (Exception ex)

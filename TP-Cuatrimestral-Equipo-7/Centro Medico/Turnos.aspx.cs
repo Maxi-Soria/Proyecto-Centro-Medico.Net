@@ -408,15 +408,7 @@ namespace Centro_Medico
             }
         }
 
-        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
-        {
-            if (e.Day.Date < DateTime.Today)
-            {
-                // Deshabilitar días anteriores a la fecha actual
-                e.Day.IsSelectable = false;
-                e.Cell.ForeColor = System.Drawing.Color.Gray; // Cambiar el color de las fechas anteriores
-            }
-        }
+        
 
         private void LimpiarDropDownLists()
         {

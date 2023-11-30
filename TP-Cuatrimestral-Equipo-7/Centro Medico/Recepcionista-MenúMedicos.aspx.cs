@@ -89,7 +89,7 @@ namespace Centro_Medico
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al agregar el paciente: " + ex.Message);
+                Console.WriteLine("Error al agregar el médico: " + ex.Message);
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Error al agregar el paciente');", true);
             }

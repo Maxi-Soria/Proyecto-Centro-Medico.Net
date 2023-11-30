@@ -24,7 +24,7 @@
                     <asp:Label ID="lblId" runat="server" AssociatedControlID="txtIdMedico" CssClass="form-label fw-bold">ID</asp:Label>
                     <asp:TextBox ID="txtIdMedico" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
 
-                    <asp:Label ID="lblLegajo" runat="server" AssociatedControlID="txtLegajoMedico" CssClass="form-label fw-bold">DNI</asp:Label>
+                    <asp:Label ID="lblLegajo" runat="server" AssociatedControlID="txtLegajoMedico" CssClass="form-label fw-bold">Legajo</asp:Label>
                     <asp:TextBox ID="txtLegajoMedico" runat="server" CssClass="form-control"></asp:TextBox>
 
                     <asp:Label ID="lblNombreMedico" runat="server" AssociatedControlID="txtNombreMedico" CssClass="form-label fw-bold">Nombre</asp:Label>

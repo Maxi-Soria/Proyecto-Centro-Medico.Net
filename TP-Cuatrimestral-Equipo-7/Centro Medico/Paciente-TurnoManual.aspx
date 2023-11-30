@@ -59,8 +59,6 @@
             <h4>Email</h4>
             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
 
-            <h4>Motivo del turno</h4>
-            <asp:TextBox ID="txtMotivo" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
         </div>
     </div>
 
@@ -88,8 +86,8 @@
             </asp:DropDownList>
 
             <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" CssClass="btn btn-primary mt-2" />
-
-            <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CssClass="btn btn-primary mt-2" />
+            <asp:HyperLink ID="linkPacientes" runat="server" class="btn btn-primary btn-sm bg-dark" NavigateUrl="MenuPaciente.aspx">Volver</asp:HyperLink>
+            
         </div>
     </div>
 

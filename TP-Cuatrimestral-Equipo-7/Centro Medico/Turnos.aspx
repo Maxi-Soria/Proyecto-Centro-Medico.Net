@@ -83,7 +83,7 @@
             </asp:DropDownList>
 
             <h4>Día</h4>
-            <asp:Calendar ID="calendario" runat="server" OnSelectionChanged="calendario_SelectionChanged" OnDayRender="Calendar1_DayRender" CssClass="calendario"></asp:Calendar>
+            <asp:Calendar ID="calendario" runat="server" OnSelectionChanged="calendario_SelectionChanged" CssClass="calendario"></asp:Calendar>
             <asp:TextBox ID="txtFechaSeleccionada" runat="server" ReadOnly="true" Style="display: none;"></asp:TextBox>
 
 

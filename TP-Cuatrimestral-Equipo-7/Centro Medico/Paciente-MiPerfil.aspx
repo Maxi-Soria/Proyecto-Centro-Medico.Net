@@ -22,7 +22,7 @@
                 <asp:TextBox ID="txtIdPaciente" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
 
                 <asp:Label ID="lblDniPaciente" runat="server" AssociatedControlID="txtDniPaciente" CssClass="form-label fw-bold">DNI</asp:Label>
-                <asp:TextBox ID="txtDniPaciente" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtDniPaciente" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
 
                 <asp:Label ID="lblNombrePaciente" runat="server" AssociatedControlID="txtNombrePaciente" CssClass="form-label fw-bold">Nombre</asp:Label>
                 <asp:TextBox ID="txtNombrePaciente" runat="server" CssClass="form-control"></asp:TextBox>
@@ -44,7 +44,7 @@
 
                 <div class="mt-4 w-100">
                     <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning btn-sm" OnClick="btnModificar_Click" />
-                    <asp:HyperLink ID="linkPacientes" runat="server" class="btn btn-primary btn-sm bg-dark" NavigateUrl="CRUD_Pacientes.aspx">Cancelar</asp:HyperLink>
+                    <asp:HyperLink ID="linkPacientes" runat="server" class="btn btn-primary btn-sm bg-dark" NavigateUrl="MenuPaciente.aspx">Volver</asp:HyperLink>
                 </div>
             </div>
         </div>

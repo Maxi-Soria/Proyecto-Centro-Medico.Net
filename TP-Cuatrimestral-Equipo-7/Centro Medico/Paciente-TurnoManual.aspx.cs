@@ -162,6 +162,19 @@ namespace Centro_Medico
         }
 
 
+        private int ObtenerIdUsuarioDeSesion()
+        {
+            int idUsuario = 0;
+
+            if (Session["usuario"] != null)
+            {
+                Usuario usuario = (Usuario)Session["usuario"];
+                idUsuario = usuario.Id;
+            }
+
+            return idUsuario;
+        }
+
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("MenuRecepcionista.aspx");
@@ -170,6 +183,8 @@ namespace Centro_Medico
         {
             try
             {
+                
+
                 DateTime fechaSeleccionada = Convert.ToDateTime(txtFechaSeleccionada.Text);
 
                 if (fechaSeleccionada < DateTime.Today)
@@ -180,8 +195,8 @@ namespace Centro_Medico
 
                 int idMedico = Convert.ToInt32(ddlMedicos.SelectedValue);
                 DateTime fecha = Convert.ToDateTime(txtFechaSeleccionada.Text);
-                int idUsuario = ViewState["IDUsuarioSeleccionado"] != null ? Convert.ToInt32(ViewState["IDUsuarioSeleccionado"]) : 0;
-                
+                int idUsuario = ObtenerIdUsuarioDeSesion();
+
                 string horarioSeleccionado = ddlHorarios.SelectedValue;
                 int idHorario = ObtenerIDHorario(horarioSeleccionado);
 
@@ -203,8 +218,7 @@ namespace Centro_Medico
 
 
 
-                InsertarTurnoManual(txtNombre.Text, txtApellido.Text, txtEmail.Text, txtDNI.Text, idMedico, fecha, idHorario
-);
+                InsertarTurnoManual(txtNombre.Text, txtApellido.Text, txtEmail.Text, txtDNI.Text, idMedico, fecha, idHorario, idUsuario);
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Turno confirmado', 'El turno se ha registrado exitosamente.', 'success');", true);
                 LimpiarDropDownLists();
@@ -240,7 +254,7 @@ namespace Centro_Medico
             return idHorario;
         }
 
-        private void InsertarTurnoManual(string nombre, string apellido, string email, string dni, int idMedico, DateTime fecha, int idHorario)
+        private void InsertarTurnoManual(string nombre, string apellido, string email, string dni, int idMedico, DateTime fecha, int idHorario, int idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -251,8 +265,9 @@ namespace Centro_Medico
                 return;
             }
 
+
             string consultaTurnosManuales = "INSERT INTO TurnosManuales (NombrePaciente, ApellidoPaciente, EmailPaciente, DNIPaciente, IDMedico, Fecha, IDHorario) VALUES (@NombrePaciente, @ApellidoPaciente, @EmailPaciente, @DNIPaciente, @IDMedico, @Fecha, @IDHorario)";
-            string consultaTurnos = "INSERT INTO Turnos (IDMedico, Fecha, IDHorario, IDUsuario) VALUES (@IDMedico2, @Fecha2, @IDHorario2, 0)";
+            string consultaTurnos = "INSERT INTO Turnos (IDMedico, Fecha, IDHorario, IDUsuario) VALUES (@IDMedico2, @Fecha2, @IDHorario2, @IDUsuario)";
 
             try
             {
@@ -264,6 +279,7 @@ namespace Centro_Medico
                 datos.setearParametro("@IDMedico", idMedico);
                 datos.setearParametro("@Fecha", fecha);
                 datos.setearParametro("@IDHorario", idHorario);
+                datos.setearParametro("@IDUsuario", idUsuario);
 
                 datos.ejecutarAccion();
 

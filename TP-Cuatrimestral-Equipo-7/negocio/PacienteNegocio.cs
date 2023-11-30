@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace negocio
 {
     public class PacienteNegocio
@@ -125,6 +126,7 @@ namespace negocio
                 datos.setearParametro("@Id", paciente.ID);
 
                 datos.ejecutarAccion();
+
             }
             catch (Exception ex)
             {
