@@ -47,10 +47,10 @@
                     <asp:TextBox ID="txtNombrePaciente" runat="server" CssClass="form-control" required></asp:TextBox>
 
                     <asp:Label ID="lblApellidoPaciente" runat="server" AssociatedControlID="txtApellidoPaciente" CssClass="form-label fw-bold">Apellido</asp:Label>
-                    <asp:TextBox ID="txtApellidoPaciente" runat="server" CssClass="form-control" recuired></asp:TextBox>
+                    <asp:TextBox ID="txtApellidoPaciente" runat="server" CssClass="form-control" required></asp:TextBox>
 
                     <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" CssClass="form-label fw-bold">Correo Electrónico</asp:Label>
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" required></asp:TextBox>
 
                     <asp:Label ID="lblFechaNacimiento" runat="server" AssociatedControlID="txtFechaNacimiento" CssClass="form-label fw-bold">Fecha de Nacimiento</asp:Label>
                     <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>

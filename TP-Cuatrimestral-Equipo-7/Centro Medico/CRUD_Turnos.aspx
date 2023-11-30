@@ -40,14 +40,17 @@
                     
                     <asp:TextBox ID="txtIdTurno" runat="server" CssClass="form-control" ReadOnly="true" Visible="false"></asp:TextBox>
                     <asp:TextBox ID="txtIdMedico" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
+                    <asp:TextBox ID="txtIdUsuario" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
 
-                    <asp:Label ID="lbl" runat="server" AssociatedControlID="txtLegajoMedico" CssClass="form-label fw-bold">Legajo Medico</asp:Label>
+                    <asp:Label ID="lblM" runat="server" AssociatedControlID="txtLegajoMedico" CssClass="form-label fw-bold">Datos Medico</asp:Label>
                     <asp:TextBox ID="txtLegajoMedico" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
 
+                    <asp:Label ID="lblP" runat="server" AssociatedControlID="txtDniPaciente" CssClass="form-label fw-bold">Datos Paciente</asp:Label>
+                    <asp:TextBox ID="txtDniPaciente" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
 
 
-                    <asp:Label ID="lblIDUsuario" runat="server" AssociatedControlID="txtIdUsuario" CssClass="form-label fw-bold">IDUsuario</asp:Label>
-                    <asp:TextBox ID="txtIdUsuario" runat="server" CssClass="form-control"></asp:TextBox>
+
+
 
                     <asp:Label ID="lblFecha" runat="server" AssociatedControlID="txtFecha" CssClass="form-label fw-bold">Fecha</asp:Label>
                     <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" TextMode="Date" AutoPostBack="true" OnTextChanged="txtFecha_TextChanged"></asp:TextBox>

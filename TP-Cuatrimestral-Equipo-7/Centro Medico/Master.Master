@@ -5,6 +5,7 @@
 <html>
 <head runat="server">
     <title></title>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vina+Sans:wght@400;700&display=swap">
@@ -79,6 +80,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+
         <div>
 
             <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #D291BC">

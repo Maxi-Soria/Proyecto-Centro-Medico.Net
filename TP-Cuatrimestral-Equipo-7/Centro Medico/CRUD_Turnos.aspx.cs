@@ -17,6 +17,7 @@ namespace Centro_Medico
         TurnoNegocio turnoNegocio = new TurnoNegocio();
         MedicoNegocio mediconegocio = new MedicoNegocio();
         HorarioNegocio horarioNegocio = new HorarioNegocio();
+        PacienteNegocio pacienteNegocio = new PacienteNegocio();
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -36,7 +37,7 @@ namespace Centro_Medico
         private bool IsUserAuthenticated()
         {
             
-            return Session["usuario"] == null;
+            return Session["usuario"] != null;
             
         }
 
@@ -85,6 +86,7 @@ namespace Centro_Medico
         protected void dgvTurnos_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<Medico> listaMedicos = mediconegocio.listar();
+            List<Paciente> listaPacientes = pacienteNegocio.listar();
             try
             {
                 GridViewRow row = dgvTurnos.SelectedRow;
@@ -96,12 +98,17 @@ namespace Centro_Medico
                 txtObservaciones.Text = row.Cells[6].Text;
                 txtEstado.Text = row.Cells[7].Text;
 
-
-
                 int idMedicoSeleccionado = Convert.ToInt32(row.Cells[2].Text);
+                int idPacienteSeleccionado = Convert.ToInt32(row.Cells[3].Text);
                 DateTime fechaTurno = DateTime.Parse(row.Cells[4].Text);
 
-               
+                // Buscar el legajo del médico correspondiente al ID seleccionado en la lista de médicos
+                Medico medicoSeleccionado = listaMedicos.FirstOrDefault(m => m.IDMedico == idMedicoSeleccionado);
+                Paciente pacienteSeleccionado = listaPacientes.FirstOrDefault(p => p.ID == idPacienteSeleccionado);
+
+                txtLegajoMedico.Text = medicoSeleccionado.Legajo.ToString() + " - " + medicoSeleccionado.Nombre + " " + medicoSeleccionado.Apellido;
+
+                txtDniPaciente.Text = pacienteSeleccionado.Dni.ToString() + " - " + pacienteSeleccionado.Nombre + " " + pacienteSeleccionado.Apellido;
 
 
                 List<int> idsHorariosDisponibles = ObtenerIDsHorariosDisponibles(idMedicoSeleccionado, fechaTurno);
@@ -118,6 +125,7 @@ namespace Centro_Medico
                 Console.WriteLine("Error al seleccionar un turno: " + ex.Message);
             }
         }
+
 
         private List<Horario> ObtenerHorariosPorIDs(List<int> idsHorarios)
         {

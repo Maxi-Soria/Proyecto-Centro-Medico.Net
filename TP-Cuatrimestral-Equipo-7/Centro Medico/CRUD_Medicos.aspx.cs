@@ -330,13 +330,13 @@ namespace Centro_Medico
                     medicoNegocio.agregarMedico(nuevo);
                     limpiarCampos();
 
-
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Perfecto', 'Se registro el Medico.', 'success');", true);
                     cargarListaMedicos();
                 }
                 else
                 {
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('El médico ya existe en la lista');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'El legajo ingresado ya se encuentra registrado.', 'error');", true);
                 }
             }
             catch (Exception ex)
@@ -385,12 +385,23 @@ namespace Centro_Medico
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
+            List<Medico> listaMedicos = medicoNegocio.listar();
             try
             {
                 int idMedico = Convert.ToInt32(txtIdMedico.Text);
-                medicoNegocio.eliminarMedico(idMedico);
-                cargarListaMedicos();
-                limpiarCampos();
+                bool medicoConTurno = listaMedicos.Any(medi => medi.IDMedico == idMedico);
+
+                if (!medicoConTurno)
+                {
+                    medicoNegocio.eliminarMedico(idMedico);
+                    cargarListaMedicos();
+                    limpiarCampos();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'No se puede eliminar un medico con turno pendiente.', 'error');", true);
+                }
+
             }
             catch (Exception ex)
             {

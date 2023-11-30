@@ -27,7 +27,7 @@ namespace negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Apellido = (string)datos.Lector["Apellido"];
                     aux.EmailPersonal = (string)datos.Lector["Email"];
-                    aux.FechaDeNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
+                    aux.FechaDeNacimiento = ((DateTime)datos.Lector["FechaNacimiento"]).Date;
                     aux.Domicilio = (String)datos.Lector["Domicilio"];
                     aux.NumeroTelefonico = (string)datos.Lector["NumeroTelefonico"];
 

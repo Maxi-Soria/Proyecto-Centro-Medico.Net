@@ -12,7 +12,10 @@ namespace Centro_Medico
 {
     public partial class CRUD_Pacientes : System.Web.UI.Page
     {
-        private PacienteNegocio pacienteNegocio = new PacienteNegocio();
+        PacienteNegocio pacienteNegocio = new PacienteNegocio();
+
+        TurnoNegocio turnonegocio = new TurnoNegocio();
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,6 +27,11 @@ namespace Centro_Medico
                     Response.Redirect("~/Login.aspx");
                     return;
                 }
+               
+                txtFechaNacimiento.Text = DateTime.Today.ToString("yyyy-MM-dd");
+
+                // Deshabilitar fechas futuras configurando el atributo "max"
+                txtFechaNacimiento.Attributes["max"] = DateTime.Today.ToString("yyyy-MM-dd");
                 cargarListaPacientes();
             }
         }
@@ -41,7 +49,6 @@ namespace Centro_Medico
                 List<Paciente> lista = pacienteNegocio.listar();
 
 
-             
                 dgvPacientes.DataSource = lista;
                 dgvPacientes.DataBind();
             }
@@ -62,19 +69,7 @@ namespace Centro_Medico
                 txtNombrePaciente.Text = row.Cells[3].Text;
                 txtApellidoPaciente.Text = row.Cells[4].Text;
                 txtEmail.Text = row.Cells[5].Text;
-
-                // Convertir el formato de fecha si es necesario
-                DateTime fechaNacimiento;
-                if (DateTime.TryParseExact(row.Cells[6].Text, "dd/M/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaNacimiento))
-                {
-                    // Formatear la fecha al formato deseado "yyyy-MM-dd"
-                    txtFechaNacimiento.Text = fechaNacimiento.ToString("yyyy-MM-dd");
-                }
-                else
-                {
-                    // Si la conversión falla, asigna un mensaje de error o un valor predeterminado
-                    txtFechaNacimiento.Text = "Fecha inválida";
-                }
+                txtFechaNacimiento.Text = DateTime.Parse(row.Cells[6].Text).ToString("yyyy-MM-dd");
 
                 txtDireccion.Text = row.Cells[7].Text;
                 txtTelefono.Text = row.Cells[8].Text;
@@ -82,7 +77,7 @@ namespace Centro_Medico
             catch (Exception ex)
             {
                 Console.WriteLine("Error al seleccionar un paciente: " + ex.Message);
-                // Manejar el error aquí, como mostrar un mensaje de error en la interfaz
+                
             }
         }
 
@@ -109,11 +104,12 @@ namespace Centro_Medico
                     pacienteNegocio.agregarPaciente(nuevo);
                     limpiarCampos();
 
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Perfecto', 'Se registro el paciente.', 'success');", true);
                     cargarListaPacientes();
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('El paciente ya existe en la lista');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'El Dni ingresado ya se encuentra registrado.', 'error');", true);
                 }
             }
             catch (Exception ex)
@@ -147,36 +143,56 @@ namespace Centro_Medico
                     NumeroTelefonico = telefono
                 };
 
-                // Llamar al método para modificar el paciente
+                
                 pacienteNegocio.modificarPaciente(pacienteModificado);
 
-                // Volver a cargar la lista de pacientes
+                
                 cargarListaPacientes();
-
-                // Limpiar los campos después de la modificación
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Perfecto', 'Paciente modificado correctamente.', 'success');", true);
+                
                 limpiarCampos();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al modificar el paciente: " + ex.Message);
-                // Manejar la excepción y mostrar un mensaje de error si es necesario
+                
             }
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
+            List<Turno> listaTurnos = turnonegocio.listar();
+
             try
             {
                 int idPaciente = Convert.ToInt32(txtIdPaciente.Text);
-                pacienteNegocio.eliminarPaciente(idPaciente);
-                cargarListaPacientes();
-                limpiarCampos();
+
+                bool pacienteConTurno = listaTurnos.Any(turno => turno.IDUsuario == idPaciente);
+
+                if (!pacienteConTurno)
+                {
+                    pacienteNegocio.eliminarPaciente(idPaciente);
+                    cargarListaPacientes();
+                    limpiarCampos();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Perfecto', 'Paciente eliminado correctamente.', 'success');", true);
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'No se puede eliminar un paciente con turno activo.', 'error');", true);
+                }
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al eliminar el paciente: " + ex.Message);
             }
         }
+
+
+
+
+
 
         protected void limpiarCampos()
         {

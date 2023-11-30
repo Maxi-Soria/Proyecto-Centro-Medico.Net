@@ -96,13 +96,22 @@ namespace Centro_Medico
         protected global::System.Web.UI.WebControls.TextBox txtIdMedico;
 
         /// <summary>
-        /// lbl control.
+        /// txtIdUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl;
+        protected global::System.Web.UI.WebControls.TextBox txtIdUsuario;
+
+        /// <summary>
+        /// lblM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblM;
 
         /// <summary>
         /// txtLegajoMedico control.
@@ -114,22 +123,22 @@ namespace Centro_Medico
         protected global::System.Web.UI.WebControls.TextBox txtLegajoMedico;
 
         /// <summary>
-        /// lblIDUsuario control.
+        /// lblP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIDUsuario;
+        protected global::System.Web.UI.WebControls.Label lblP;
 
         /// <summary>
-        /// txtIdUsuario control.
+        /// txtDniPaciente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdUsuario;
+        protected global::System.Web.UI.WebControls.TextBox txtDniPaciente;
 
         /// <summary>
         /// lblFecha control.
