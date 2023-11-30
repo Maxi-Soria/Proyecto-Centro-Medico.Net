@@ -27,6 +27,7 @@ namespace Centro_Medico
                 calendario.SelectedDate = DateTime.Today;
             }
         }
+
         private bool IsUserAuthenticated()
         {
             return Session["usuario"] != null;
@@ -404,6 +405,16 @@ namespace Centro_Medico
             finally
             {
                 datos.cerrarConexion();
+            }
+        }
+
+        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date < DateTime.Today)
+            {
+                // Deshabilitar días anteriores a la fecha actual
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = System.Drawing.Color.Gray; // Cambiar el color de las fechas anteriores
             }
         }
 

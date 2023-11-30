@@ -61,31 +61,31 @@
                     <img src="logoUser.png" alt="Logo de Usuario" class="img-fluid mb-3" />
 
                     <label for="txtUser">Usuario</label>
-                    <input type="text" class="form-control" id="txtUser" aria-describedby="emailHelp" runat="server" />
+                    <input type="text" class="form-control" id="txtUser" aria-describedby="emailHelp" runat="server" required />
 
                     <label for="txtPassword">Contraseña</label>
-                    <input type="password" class="form-control" id="txtPassword" runat="server" />
+                    <input type="password" class="form-control" id="txtPassword" runat="server" required />
 
                     <label for="txtNombre">Nombre</label>
-                    <input type="text" class="form-control" id="txtNombre" runat="server" />
+                    <input type="text" class="form-control" id="txtNombre" runat="server" required />
 
                     <label for="txtApellido">Apellido</label>
-                    <input type="text" class="form-control" id="txtApellido" runat="server" />
+                    <input type="text" class="form-control" id="txtApellido" runat="server" required />
 
                     <label for="txtDNI">DNI</label>
-                    <input type="text" class="form-control" id="txtDNI" runat="server" />
+                    <input type="text" class="form-control" id="txtDNI" runat="server" required />
 
                     <label for="txtEmail">Email</label>
-                    <input type="email" class="form-control" id="txtEmail" runat="server" />
+                    <input type="email" class="form-control" id="txtEmail" runat="server" required />
 
                     <label for="calFechaNacimiento">Fecha de Nacimiento</label>
                     <asp:Calendar ID="calFechaNacimiento" runat="server" CssClass="custom-calendar"></asp:Calendar>
 
                     <label for="txtDomicilio">Domicilio</label>
-                    <input type="text" class="form-control" id="txtDomicilio" runat="server" />
+                    <input type="text" class="form-control" id="txtDomicilio" runat="server" required />
 
                     <label for="txtTelefono">Número de Teléfono</label>
-                    <input type="text" class="form-control" id="txtTelefono" runat="server" />
+                    <input type="text" class="form-control" id="txtTelefono" runat="server"/>
 
                     <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" OnClick="btnRegistrar_Click" CssClass="btn btn-primary mt-2 mb-3" />
                 

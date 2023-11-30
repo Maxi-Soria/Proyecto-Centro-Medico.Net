@@ -122,53 +122,52 @@ namespace Centro_Medico
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             List<Paciente> lista = pacienteNegocio.listar();
+            GridViewRow row = dgvPacientes.SelectedRow;
+
+            int dniAnterior = Convert.ToInt32(row.Cells[2].Text);
             try
             {
                 int Id = Convert.ToInt32(txtIdPaciente.Text);
                 int dni = Convert.ToInt32(txtDniPaciente.Text);
-                if (!lista.Any(paciente => paciente.Dni == dni))
+
+                // Si el DNI es diferente al original, verificamos si ya existe en la lista de pacientes
+                if (dni != dniAnterior && lista.Any(paciente => paciente.Dni == dni))
                 {
-                    string nombre = txtNombrePaciente.Text;
-                    string apellido = txtApellidoPaciente.Text;
-                    string email = txtEmail.Text;
-                    DateTime fechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
-                    string domicilio = txtDireccion.Text;
-                    string telefono = txtTelefono.Text;
-                    Paciente pacienteModificado = new Paciente
-                    {
-                        ID = Id,
-                        Dni = dni,
-                        Nombre = nombre,
-                        Apellido = apellido,
-                        EmailPersonal = email,
-                        FechaDeNacimiento = fechaNacimiento,
-                        Domicilio = domicilio,
-                        NumeroTelefonico = telefono
-                    };
-
-                
-                    pacienteNegocio.modificarPaciente(pacienteModificado);
-
-                
-                    cargarListaPacientes();
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Perfecto', 'Paciente modificado correctamente.', 'success');", true);
-                
-                    limpiarCampos();
-
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'El Dni ingresado ya se encuentra registrado.', 'error');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'El DNI ingresado ya se encuentra registrado.', 'error');", true);
+                    return; // Detenemos la operación si el DNI ya está en uso por otro paciente
                 }
 
+                string nombre = txtNombrePaciente.Text;
+                string apellido = txtApellidoPaciente.Text;
+                string email = txtEmail.Text;
+                DateTime fechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
+                string domicilio = txtDireccion.Text;
+                string telefono = txtTelefono.Text;
+                Paciente pacienteModificado = new Paciente
+                {
+                    ID = Id,
+                    Dni = dni,
+                    Nombre = nombre,
+                    Apellido = apellido,
+                    EmailPersonal = email,
+                    FechaDeNacimiento = fechaNacimiento,
+                    Domicilio = domicilio,
+                    NumeroTelefonico = telefono
+                };
 
+                pacienteNegocio.modificarPaciente(pacienteModificado);
+
+                cargarListaPacientes();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Perfecto', 'Paciente modificado correctamente.', 'success');", true);
+
+                limpiarCampos();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al modificar el paciente: " + ex.Message);
-                
             }
         }
+
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {

@@ -50,7 +50,7 @@
                     <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" CssClass="form-label fw-bold">Correo Electrónico</asp:Label>
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
 
-                    <asp:Label ID="lblTipoUser" runat="server" AssociatedControlID="ddlTipoUser" CssClass="form-label fw-bold">Correo Electrónico</asp:Label>
+                    <asp:Label ID="lblTipoUser" runat="server" AssociatedControlID="ddlTipoUser" CssClass="form-label fw-bold">Tipo De Usuario</asp:Label>
                     <asp:DropDownList ID="ddlTipoUser" runat="server">
                             <asp:ListItem Text="1" Value=""></asp:ListItem>
                             <asp:ListItem Text="2" Value="2"></asp:ListItem>

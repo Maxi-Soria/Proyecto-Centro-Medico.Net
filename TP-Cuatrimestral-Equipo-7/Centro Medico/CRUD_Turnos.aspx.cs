@@ -31,17 +31,35 @@ namespace Centro_Medico
                     return;
                 }
                 CargarListaTurnos();
-                string texto = txtSituacion.Text.ToLower(); // Obtener el texto del TextBox en minúsculas
 
-                if (texto.Contains("cancelado"))
-                {
-                    txtSituacion.Attributes["style"] = "background-color: yellow;";
-                }
-                else if (texto.Contains("cancelado"))
-                {
-                    txtSituacion.Attributes["style"] = "background-color: yellow;";
-                }
+                txtFecha.Text = DateTime.Today.ToString("yyyy-MM-dd");
+
+                // Deshabilitar fechas futuras configurando el atributo "max"
+                txtFecha.Attributes["min"] = DateTime.Today.ToString("yyyy-MM-dd");
+                CargarListaTurnos();
+
             }
+        }
+
+        private void actualizarColoresEstado()
+        {
+
+            GridViewRow row = dgvTurnos.SelectedRow;
+            string texto = row.Cells[8].Text.ToLower();// Obtener el texto del TextBox en minúsculas
+
+            if (texto.Contains("nuevo"))
+            {
+                txtSituacion.Attributes["style"] = "background-color: green;";
+            }
+            else if (texto.Contains("re-programado"))
+            {
+                txtSituacion.Attributes["style"] = "background-color: yellow;";
+            }
+            else if (texto.Contains("cancelado"))
+            {
+                txtSituacion.Attributes["style"] = "background-color: red;";
+            }
+
         }
 
         private bool IsUserAuthenticated()
@@ -142,28 +160,7 @@ namespace Centro_Medico
                 ddlHorarios.DataSource = horariosDisponibles.Select(h => h.HoraInicio.ToString(@"hh\:mm"));
                 ddlHorarios.DataBind();
 
-
-                string texto = row.Cells[8].Text.ToLower();// Obtener el texto del TextBox en minúsculas
-
-                if (texto.Contains("nuevo"))
-                {
-                    txtSituacion.Attributes["style"] = "background-color: green;";
-                }
-                else if (texto.Contains("re-programado"))
-                {
-                    txtSituacion.Attributes["style"] = "background-color: yellow;";
-                }    
-                else if (texto.Contains("cancelado"))
-                {
-                    txtSituacion.Attributes["style"] = "background-color: red;";
-                }
-
-
-
-
-
-
-
+                actualizarColoresEstado();
 
             }
             catch (Exception ex)
