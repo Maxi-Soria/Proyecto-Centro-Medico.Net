@@ -121,36 +121,47 @@ namespace Centro_Medico
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
+            List<Paciente> lista = pacienteNegocio.listar();
             try
             {
                 int Id = Convert.ToInt32(txtIdPaciente.Text);
                 int dni = Convert.ToInt32(txtDniPaciente.Text);
-                string nombre = txtNombrePaciente.Text;
-                string apellido = txtApellidoPaciente.Text;
-                string email = txtEmail.Text;
-                DateTime fechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
-                string domicilio = txtDireccion.Text;
-                string telefono = txtTelefono.Text;
-                Paciente pacienteModificado = new Paciente
+                if (!lista.Any(paciente => paciente.Dni == dni))
                 {
-                    ID = Id,
-                    Dni = dni,
-                    Nombre = nombre,
-                    Apellido = apellido,
-                    EmailPersonal = email,
-                    FechaDeNacimiento = fechaNacimiento,
-                    Domicilio = domicilio,
-                    NumeroTelefonico = telefono
-                };
+                    string nombre = txtNombrePaciente.Text;
+                    string apellido = txtApellidoPaciente.Text;
+                    string email = txtEmail.Text;
+                    DateTime fechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
+                    string domicilio = txtDireccion.Text;
+                    string telefono = txtTelefono.Text;
+                    Paciente pacienteModificado = new Paciente
+                    {
+                        ID = Id,
+                        Dni = dni,
+                        Nombre = nombre,
+                        Apellido = apellido,
+                        EmailPersonal = email,
+                        FechaDeNacimiento = fechaNacimiento,
+                        Domicilio = domicilio,
+                        NumeroTelefonico = telefono
+                    };
 
                 
-                pacienteNegocio.modificarPaciente(pacienteModificado);
+                    pacienteNegocio.modificarPaciente(pacienteModificado);
 
                 
-                cargarListaPacientes();
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Perfecto', 'Paciente modificado correctamente.', 'success');", true);
+                    cargarListaPacientes();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Perfecto', 'Paciente modificado correctamente.', 'success');", true);
                 
-                limpiarCampos();
+                    limpiarCampos();
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'El Dni ingresado ya se encuentra registrado.', 'error');", true);
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -168,6 +179,7 @@ namespace Centro_Medico
                 int idPaciente = Convert.ToInt32(txtIdPaciente.Text);
 
                 bool pacienteConTurno = listaTurnos.Any(turno => turno.IDUsuario == idPaciente);
+               
 
                 if (!pacienteConTurno)
                 {
@@ -179,7 +191,7 @@ namespace Centro_Medico
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'No se puede eliminar un paciente con turno activo.', 'error');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'No se puede eliminar un paciente con turno registrado.', 'error');", true);
                 }
 
             }

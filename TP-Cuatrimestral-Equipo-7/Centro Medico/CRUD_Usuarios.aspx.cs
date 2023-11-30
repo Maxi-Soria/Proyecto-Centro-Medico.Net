@@ -57,7 +57,7 @@ namespace Centro_Medico
                 txtIdUsuario.Text = row.Cells[1].Text;
                 txtUser.Text = row.Cells[2].Text;
                 txtPass.Text = row.Cells[3].Text;
-
+                ddlTipoUser.Text = row.Cells[4].Text;
                 txtEmail.Text = row.Cells[5].Text;
 
 
@@ -84,6 +84,7 @@ namespace Centro_Medico
                     nuevo.User = nombreUsuario;
                     nuevo.Pass = txtPass.Text;
                     nuevo.Email = txtEmail.Text;
+                    //nuevo.TipoUsuario = (int)4; PARA VER
 
                     usuarioNegocio.agregarUsuario(nuevo);
                     limpiarCampos();

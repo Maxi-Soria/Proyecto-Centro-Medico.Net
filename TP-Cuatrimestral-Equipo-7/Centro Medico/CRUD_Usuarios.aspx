@@ -50,6 +50,14 @@
                     <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" CssClass="form-label fw-bold">Correo Electrónico</asp:Label>
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
 
+                    <asp:Label ID="lblTipoUser" runat="server" AssociatedControlID="ddlTipoUser" CssClass="form-label fw-bold">Correo Electrónico</asp:Label>
+                    <asp:DropDownList ID="ddlTipoUser" runat="server">
+                            <asp:ListItem Text="1" Value=""></asp:ListItem>
+                            <asp:ListItem Text="2" Value="2"></asp:ListItem>
+                            <asp:ListItem Text="3" Value="3"></asp:ListItem>
+                            <asp:ListItem Text="4" Value="4"></asp:ListItem>
+                    </asp:DropDownList>
+                    
 
                     <div class="mt-4 w-100">
                         <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary btn-sm" OnClick="btnAgregar_Click" />

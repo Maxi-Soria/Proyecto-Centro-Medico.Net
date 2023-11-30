@@ -16,7 +16,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT IDTurno, IDMedico, Fecha, ObservacionesMedico, Estado, IDHorario, IDUsuario FROM Turnos");
+                datos.setearConsulta("SELECT IDTurno, IDMedico, Fecha, ObservacionesMedico, Estado, IDHorario, IDUsuario, Situacion FROM Turnos");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -29,6 +29,7 @@ namespace negocio
                     aux.Estado = (string)datos.Lector["Estado"].ToString();
                     aux.IDHorario = (int)datos.Lector["IDHorario"];
                     aux.IDUsuario = (int)datos.Lector["IDUsuario"];
+                    aux.Situacion = (String)datos.Lector["Situacion"];
 
                     lista.Add(aux);
                 }
@@ -70,7 +71,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("UPDATE Turnos SET IDMedico = @IDMedico, Fecha = @Fecha, ObservacionesMedico = @ObservacionesMedico, Estado = @Estado, IDHorario = @IDHorario, IDUsuario = @IDUsuario WHERE IDTurno = @IDTurno");
+                datos.setearConsulta("UPDATE Turnos SET IDMedico = @IDMedico, Fecha = @Fecha, ObservacionesMedico = @ObservacionesMedico, Estado = @Estado, IDHorario = @IDHorario, IDUsuario = @IDUsuario, Situacion = @Situacion WHERE IDTurno = @IDTurno");
 
                 datos.setearParametro("@IDTurno", turno.IDTurno);
                 datos.setearParametro("@IDMedico", turno.IDMedico);
@@ -79,6 +80,7 @@ namespace negocio
                 datos.setearParametro("@Estado", turno.Estado);
                 datos.setearParametro("@IDHorario", turno.IDHorario);
                 datos.setearParametro("@IDUsuario", turno.IDUsuario);
+                datos.setearParametro("@Situacion", turno.Situacion);
                 
 
                 datos.ejecutarAccion();
@@ -101,7 +103,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("UPDATE Turnos SET Estado = 'Cancelado'WHERE IDTurno = @IDTurno");
+                datos.setearConsulta("UPDATE Turnos SET Situacion = 'Cancelado' WHERE IDTurno = @IDTurno");
                 datos.setearParametro("@IDTurno", id);
                 datos.ejecutarAccion();
             }

@@ -31,6 +31,16 @@ namespace Centro_Medico
                     return;
                 }
                 CargarListaTurnos();
+                string texto = txtSituacion.Text.ToLower(); // Obtener el texto del TextBox en minúsculas
+
+                if (texto.Contains("cancelado"))
+                {
+                    txtSituacion.Attributes["style"] = "background-color: yellow;";
+                }
+                else if (texto.Contains("cancelado"))
+                {
+                    txtSituacion.Attributes["style"] = "background-color: yellow;";
+                }
             }
         }
 
@@ -83,13 +93,23 @@ namespace Centro_Medico
             return HorariosDisponibles;
         }
 
+
+
         protected void dgvTurnos_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             List<Medico> listaMedicos = mediconegocio.listar();
             List<Paciente> listaPacientes = pacienteNegocio.listar();
+            List<Horario> listaHorarios = horarioNegocio.listar();
             try
             {
                 GridViewRow row = dgvTurnos.SelectedRow;
+
+                int idHorario = Convert.ToInt32(row.Cells[5].Text);
+
+                Horario horarioEncontrado = listaHorarios.FirstOrDefault(h => h.IDHorario == idHorario);
+                TimeSpan horaInicio = horarioEncontrado.HoraInicio;
+                string horarioTurno = horaInicio.ToString();
 
                 txtIdTurno.Text = row.Cells[1].Text;
                 txtIdMedico.Text = row.Cells[2].Text;
@@ -97,6 +117,8 @@ namespace Centro_Medico
                 txtFecha.Text = DateTime.Parse(row.Cells[4].Text).ToString("yyyy-MM-dd");
                 txtObservaciones.Text = row.Cells[6].Text;
                 txtEstado.Text = row.Cells[7].Text;
+                txtSituacion.Text = row.Cells[8].Text;
+                txtHorarioTurno.Text = horarioTurno;
 
                 int idMedicoSeleccionado = Convert.ToInt32(row.Cells[2].Text);
                 int idPacienteSeleccionado = Convert.ToInt32(row.Cells[3].Text);
@@ -119,6 +141,30 @@ namespace Centro_Medico
                 // Cargar el DropDownList con los horarios de inicio disponibles
                 ddlHorarios.DataSource = horariosDisponibles.Select(h => h.HoraInicio.ToString(@"hh\:mm"));
                 ddlHorarios.DataBind();
+
+
+                string texto = row.Cells[8].Text.ToLower();// Obtener el texto del TextBox en minúsculas
+
+                if (texto.Contains("nuevo"))
+                {
+                    txtSituacion.Attributes["style"] = "background-color: green;";
+                }
+                else if (texto.Contains("re-programado"))
+                {
+                    txtSituacion.Attributes["style"] = "background-color: yellow;";
+                }    
+                else if (texto.Contains("cancelado"))
+                {
+                    txtSituacion.Attributes["style"] = "background-color: red;";
+                }
+
+
+
+
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -145,6 +191,7 @@ namespace Centro_Medico
         {
             try
             {
+
 
                 int idMedicoSeleccionado = Convert.ToInt32(txtIdMedico.Text);
                 DateTime fechaSeleccionada = DateTime.Parse(txtFecha.Text);
@@ -188,7 +235,8 @@ namespace Centro_Medico
                     Observaciones = txtObservaciones.Text,
                     IDHorario = idHorarioSeleccionado,
                     IDUsuario = idUsuario,
-                    Estado = estado
+                    Estado = estado,
+                    Situacion = "Re-programado"
                 };
 
                 turnoNegocio.modificarTurno(turnoModificado);

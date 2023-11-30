@@ -223,7 +223,7 @@ namespace Centro_Medico
 
                 
                 AccesoDatos datos = new AccesoDatos();
-                string consulta = "INSERT INTO Turnos (IDMedico, IDUsuario, Estado, Fecha, IDHorario, ObservacionesMedico) VALUES (@IDMedico, @IDUsuario, @Estado, @Fecha, @IDHorario, @ObservacionesMedico)";
+                string consulta = "INSERT INTO Turnos (IDMedico, IDUsuario, Estado, Fecha, IDHorario, ObservacionesMedico, Situacion) VALUES (@IDMedico, @IDUsuario, @Estado, @Fecha, @IDHorario, @ObservacionesMedico, @Situacion)";
 
                 datos.setearConsulta(consulta);
                 datos.setearParametro("@IDMedico", idMedico);
@@ -232,6 +232,7 @@ namespace Centro_Medico
                 datos.setearParametro("@Fecha", fecha);
                 datos.setearParametro("@IDHorario", idHorario);
                 datos.setearParametro("@ObservacionesMedico", txtObservacion.Text);
+                datos.setearParametro("@Situacion", "Nuevo");
 
                 datos.ejecutarAccion();
 

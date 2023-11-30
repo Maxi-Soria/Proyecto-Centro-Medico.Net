@@ -75,6 +75,7 @@ namespace Centro_Medico
                         especialidadNegocio.agregarEspecialidad(nuevaEspecialidad);
                         cargarListaEspecialidades();
                         limpiarCampos();
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Perfecto', 'Agregado correctamente.', 'success');", true);
                     }
 
                 }
@@ -107,7 +108,7 @@ namespace Centro_Medico
                     especialidadNegocio.eliminarEspecialidad(idEspecialidad);
                     cargarListaEspecialidades();
                     limpiarCampos();
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Eliminado correctamente', '.', '');", true);  
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Perfecto', 'Eliminado correctamente.', 'success');", true);
                 }
                 else
                 {
@@ -137,21 +138,27 @@ namespace Centro_Medico
                 int idEspecialidad = Convert.ToInt32(txtId.Text);
                 string nuevaNombre = txtNombre.Text;
 
-                
-                Especialidad especialidadEditada = new Especialidad
+                if (!existeEspecialidad(nuevaNombre))
                 {
-                    Id = idEspecialidad,
-                    Nombre = nuevaNombre
-                };
+                    Especialidad especialidadEditada = new Especialidad
+                    {
+                        Id = idEspecialidad,
+                        Nombre = nuevaNombre
+                    };
+
+                    especialidadNegocio.modificarEspecialidad(especialidadEditada);
 
                 
-                especialidadNegocio.modificarEspecialidad(especialidadEditada);
+                    cargarListaEspecialidades();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Perfecto', 'Modificado correctamente.', 'success');", true);
 
+                    limpiarCampos();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('No se puede Agregar', 'La especialidad ya existe.', 'error');", true);
+                }
                 
-                cargarListaEspecialidades();
-
-                
-                limpiarCampos();
             }
             catch (Exception ex)
             {

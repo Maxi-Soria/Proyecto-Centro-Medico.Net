@@ -15,6 +15,7 @@ namespace dominio
         public int IDHorario { get; set; }
         public string Observaciones { get; set; }
         public string Estado { get; set; }
+        public String Situacion { get; set; }
 
     }
 }

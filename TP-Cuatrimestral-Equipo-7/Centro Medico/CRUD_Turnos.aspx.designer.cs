@@ -141,6 +141,24 @@ namespace Centro_Medico
         protected global::System.Web.UI.WebControls.TextBox txtDniPaciente;
 
         /// <summary>
+        /// lblHorarioTurno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHorarioTurno;
+
+        /// <summary>
+        /// txtHorarioTurno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtHorarioTurno;
+
+        /// <summary>
         /// lblFecha control.
         /// </summary>
         /// <remarks>
@@ -195,15 +213,6 @@ namespace Centro_Medico
         protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
 
         /// <summary>
-        /// lblEstado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEstado;
-
-        /// <summary>
         /// txtEstado control.
         /// </summary>
         /// <remarks>
@@ -211,6 +220,24 @@ namespace Centro_Medico
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEstado;
+
+        /// <summary>
+        /// lbiSituacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbiSituacion;
+
+        /// <summary>
+        /// txtSituacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSituacion;
 
         /// <summary>
         /// btnAgregar control.

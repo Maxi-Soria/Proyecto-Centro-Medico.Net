@@ -68,11 +68,8 @@
             </asp:GridView>
 
         </div>
-    </div>
 
-
-    <div class="row justify-content-center mt-4">
-        <div class="col-4 border border-3">
+                <div class="col-4 border border-3">
             <h4>Especialidad</h4>
             <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-select"
                 AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
@@ -89,6 +86,7 @@
             <asp:Calendar ID="calendario" runat="server" OnSelectionChanged="calendario_SelectionChanged" CssClass="calendario"></asp:Calendar>
             <asp:TextBox ID="txtFechaSeleccionada" runat="server" ReadOnly="true" Style="display: none;"></asp:TextBox>
 
+
             <h4>Horario</h4>
             <asp:DropDownList ID="ddlHorarios" runat="server" CssClass="form-select">
                 <asp:ListItem Text="" Value="" />
@@ -102,7 +100,6 @@
             <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CssClass="btn btn-primary mt-2" />
         </div>
     </div>
-
 
 
 </asp:Content>
