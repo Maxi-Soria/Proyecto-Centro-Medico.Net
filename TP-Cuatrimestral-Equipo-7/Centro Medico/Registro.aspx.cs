@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,6 +15,7 @@ namespace Centro_Medico
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            calFechaNacimiento.SelectedDate = DateTime.Today;
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
